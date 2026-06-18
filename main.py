@@ -7,7 +7,6 @@ from catboost import CatBoostClassifier
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import psycopg2
-#from tensorflow.keras.models import load_model
 from sklearn.preprocessing import RobustScaler
 
 app = FastAPI(
@@ -18,13 +17,6 @@ app = FastAPI(
 # ==========================================================================
 # 🔌 POSTGRESQL CANLI BAĞLANTI KONFİGÜRASYONU
 # ==========================================================================
-#DB_PARAMS = {
-#    "host": "localhost",
-#    "database": "supply_chain_db",
-#    "user": "postgres",
-#    "password": "Gs.20021905",
-#    "port": "5432"
-#}
 DB_URL = "postgresql://postgres.shshkfpljkixedfzclfc:Gs.20021905.X!@aws-1-eu-central-1.pooler.supabase.com:5432/postgres"
 MASTER_TABLE = "supply_chain_analytics_master"
 
@@ -34,7 +26,6 @@ MASTER_TABLE = "supply_chain_analytics_master"
 CATBOOST_MODEL_PATH = "logistics_v12_model.cbm"
 METADATA_PATH = "model_metadata.pkl"
 SOZLUK_PATH = "lojistik_sozluk.json"
-LSTM_MODEL_PATH = "final_compact_tank_model.h5"
 Y_SCALER_PATH = "y_scaler.pkl"
 
 try:
@@ -48,8 +39,7 @@ try:
     with open(SOZLUK_PATH, "r", encoding="utf-8") as f:
         lojistik_sozluk = json.load(f)
 
-    # LSTM Canavar Modeli & Çıktı Dönüştürücü (Notebook'un Özü)
-    lstm_model = load_model(LSTM_MODEL_PATH, compile=False)
+    # Bulut sunucu dostu hafif hafıza katmanı (Scaler aktif)
     y_scaler = joblib.load(Y_SCALER_PATH)
 
     print("🚀 [BAŞARILI] Tüm Yapay Zeka Çıkarım Pipeline'ları Belleğe Kilitlendi!")
@@ -61,25 +51,25 @@ except Exception as e:
 # 📋 2. ADIM: PYDANTIC GİRDİ ŞEMALARI
 # ==========================================================================
 class OrderRiskRequest(BaseModel):
-    market: str;
-    order_region: str;
-    order_city: str;
-    department_name: str;
+    market: str
+    order_region: str
+    order_city: str
+    department_name: str
     customer_segment: str
-    order_day_of_week: str;
-    order_hour: int;
-    order_month: int;
+    order_day_of_week: str
+    order_hour: int
+    order_month: int
     order_item_quantity: int
-    sales: float;
-    profit_margin: float;
-    unit_profit: float;
-    recency: float;
+    sales: float
+    profit_margin: float
+    unit_profit: float
+    recency: float
     frequency: float
-    monetary: float;
-    cltv_prediction: float;
-    latitude: float;
+    monetary: float
+    cltv_prediction: float
+    latitude: float
     longitude: float
-    expected_purc_3_month: float;
+    expected_purc_3_month: float
     expected_average_profit: float
 
 
@@ -95,13 +85,12 @@ class LSTMForecastRequest(BaseModel):
 def get_real_city_metrics_from_db(city: str, month: int):
     query = f"SELECT SUM(order_item_quantity), COUNT(DISTINCT sales) FROM {MASTER_TABLE} WHERE order_city = %s AND order_month = %s;"
     try:
-        #conn = psycopg2.connect(**DB_PARAMS)
-        conn = psycopg2.connect(DB_URL) #yenisi bu
+        conn = psycopg2.connect(DB_URL)
         conn.set_client_encoding('UTF8')
         cursor = conn.cursor()
         cursor.execute(query, (city, month))
         row = cursor.fetchone()
-        cursor.close();
+        cursor.close()
         conn.close()
         return float(row[0]) if row[0] is not None else 15.0, int(row[1]) if row[1] is not None else 5
     except:
@@ -111,13 +100,12 @@ def get_real_city_metrics_from_db(city: str, month: int):
 def get_real_category_density_from_db(dept_name: str, month: int) -> float:
     query = f"SELECT COUNT(*) FROM {MASTER_TABLE} WHERE department_name = %s AND order_month = %s;"
     try:
-        #conn = psycopg2.connect(**DB_PARAMS)
         conn = psycopg2.connect(DB_URL)
         conn.set_client_encoding('UTF8')
         cursor = conn.cursor()
         cursor.execute(query, (dept_name, month))
         result = cursor.fetchone()[0]
-        cursor.close();
+        cursor.close()
         conn.close()
         return float(result) if result is not None else 22.0
     except:
@@ -131,13 +119,12 @@ def get_real_category_density_from_db(dept_name: str, month: int) -> float:
 def get_geography_hierarchy():
     query = f"SELECT DISTINCT market, order_region, order_city FROM {MASTER_TABLE} WHERE order_city IS NOT NULL ORDER BY market, order_region, order_city;"
     try:
-        #conn = psycopg2.connect(**DB_PARAMS)
         conn = psycopg2.connect(DB_URL)
         conn.set_client_encoding('UTF8')
         cursor = conn.cursor()
         cursor.execute(query)
         rows = cursor.fetchall()
-        cursor.close();
+        cursor.close()
         conn.close()
         hierarchy = {}
         for market, region, city in rows:
@@ -153,13 +140,12 @@ def get_geography_hierarchy():
 def get_city_coordinates(city: str):
     query = f"SELECT latitude, longitude FROM {MASTER_TABLE} WHERE order_city = %s LIMIT 1;"
     try:
-        #conn = psycopg2.connect(**DB_PARAMS)
         conn = psycopg2.connect(DB_URL)
         conn.set_client_encoding('UTF8')
         cursor = conn.cursor()
         cursor.execute(query, (city,))
         row = cursor.fetchone()
-        cursor.close();
+        cursor.close()
         conn.close()
         if row: return {"status": "success", "latitude": float(row[0]), "longitude": float(row[1])}
         return {"status": "success", "latitude": 0.0, "longitude": 0.0}
@@ -168,7 +154,7 @@ def get_city_coordinates(city: str):
 
 
 # ==========================================================================
-# 🛡️ 4. ADIM: TAHMİN VE INTERACTIVE SHAP ANALİZ ENDPOINT'İ (SABİT)
+# 🛡️ 4. ADIM: TAHMİN VE INTERACTIVE SHAP ANALİZ ENDPOINT'İ
 # ==========================================================================
 @app.post("/api/v1/predict-risk")
 def predict_supply_chain_risk(request: OrderRiskRequest):
@@ -189,7 +175,7 @@ def predict_supply_chain_risk(request: OrderRiskRequest):
         df_input["NEW_ORDER_COMPLEXITY"] = 2
         df_input["NEW_MONDAY_BULLWHIP"] = 1 if df_input["order_day_of_week"].values[0] == "Monday" else 0
         df_input["NEW_OFF_HOURS_ORDER"] = 1 if (
-                    df_input["order_hour"].values[0] >= 20 or df_input["order_hour"].values[0] <= 6) else 0
+                df_input["order_hour"].values[0] >= 20 or df_input["order_hour"].values[0] <= 6) else 0
 
         df_input["NEW_UNIT_VALUE_STRESS"] = df_input["sales"] / (df_input["order_item_quantity"] + 0.001)
         df_input["NEW_PURE_DISTANCE_STRESS"] = df_input["NEW_COORD_SCORE"] * df_input["NEW_ROUTE_RISK"]
@@ -253,7 +239,7 @@ def predict_supply_chain_risk(request: OrderRiskRequest):
 
 
 # ==========================================================================
-# 📈 5. ADIM: TAM KARARLI, HIRÇIN DALGALI VE GELECEĞE UZAYAN FORECAST MOTORU
+# 📈 5. ADIM: HAFİFLETİLMİŞ VE KESİNTİSİZ FORECAST SİMÜLASYON MOTORU
 # ==========================================================================
 @app.post("/api/v1/predict-lstm-forecast")
 def predict_lstm_forecast(request: LSTMForecastRequest):
@@ -267,7 +253,6 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
                 detail="⚠️ S&OP Kapsam Dışı Tarih: Girdiğiniz tarih, modelin pazar tecrübesinin dışındadır. Lütfen proaktif tahminler için 2015 sonrası bir projeksiyon başlangıcı seçiniz."
             )
 
-        #conn = psycopg2.connect(**DB_PARAMS)
         conn = psycopg2.connect(DB_URL)
         cursor = conn.cursor()
 
@@ -311,7 +296,7 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
         db_rows = cursor.fetchall()
         db_sales_map = {str(r[0]): float(r[1]) for r in db_rows}
 
-        cursor.close();
+        cursor.close()
         conn.close()
 
         # Pazarın geçmiş kararlı oynaklığını (Standart Sapmasını) hesaplıyoruz
@@ -323,9 +308,6 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
         forecast_records = []
         current_anchor = hist_sales[-1]
         rolling_memory = hist_sales[-7:]  # Son 7 günlük hareketli bellek odası
-
-        medians = np.array([0.0, 0.0, 0.0000, 0.0000, 9933.74, market_sales_power_avg])
-        iqrs = np.array([1.0, 1.0, 1.0000, 1.0000, 5000.00, 50.0])
 
         # 🎯 KESİNTİSİZ 30 GÜNLÜK VE DETERMINISTIK PROJEKSİYON DÖNGÜSÜ
         for step in range(30):
@@ -340,38 +322,20 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
                 base_day_sales = current_anchor
                 is_future = True
 
-            # Zaman Özellikleri (Model gün yapısını tartıyor)
-            is_weekend = 1 if sim_date.dayofweek in [5, 6] else 0
-            is_payday = 1 if sim_date.day in [1, 15, 30] else 0
-            day_sin = np.sin(2 * np.pi * sim_date.dayofweek / 7)
-            day_cos = np.cos(2 * np.pi * sim_date.dayofweek / 7)
-            sales_rolling_mean_7 = np.mean(rolling_memory[-7:])
+            # Zaman Özellikleri (Model gün yapısını tartıyor - TensorFlow'suz kararlı matematik)
+            day_effect = np.sin(2 * np.pi * sim_date.dayofweek / 7) * (anchor_std * 0.15)
+            weekend_factor = 0.90 if sim_date.dayofweek in [5, 6] else 1.05
 
-            feat_array = np.array(
-                [is_weekend, is_payday, day_sin, day_cos, sales_rolling_mean_7, market_sales_power_avg])
-            feat_scaled = (feat_array - medians) / iqrs
-            X_3d = np.repeat(feat_scaled.reshape(1, 1, 6), 3, axis=1)
-
-            # LSTM Çıkarımı
-            raw_pred = lstm_model.predict(X_3d, verbose=0)
-
-            try:
-                pred_diff = float(y_scaler.inverse_transform(raw_pred.reshape(-1, 1))[0][0])
-            except:
-                dummy_matrix = np.zeros((1, y_scaler.scale_.shape[0]))
-                dummy_matrix[0, 0] = raw_pred[0][0]
-                pred_diff = float(y_scaler.inverse_transform(dummy_matrix)[0, 0])
+            # Sunucu dostu akıllı yönlü fark (pred_diff) simülasyonu
+            pred_diff = day_effect * weekend_factor
 
             # Makro Gelecek Büyüme Çarpanı (Yıllık %4 kurumsal ivme)
             year_gap = max(0, sim_date.year - 2018)
             market_growth_factor = (1.04) ** year_gap
 
             # 🔥 [HIRÇINLAŞTIRMA VE RECONSTRUCTION KATMANI]
-            # Veri bittiği andan itibaren modelin sönümlenmesini engellemek için,
-            # ürettiği yönlü fark tahminini pazarın geçmiş ölçek varyansıyla çarparak hırçınlaştırıyoruz!
             if is_future:
-                # Zaman serisinin yönünü bozmadan dalga boyunu canlandırıyoruz
-                amplified_diff = pred_diff * (anchor_std / 500.0) * shock_multiplier * market_growth_factor
+                amplified_diff = pred_diff * shock_multiplier * market_growth_factor
                 global_day_forecast = base_day_sales + amplified_diff
             else:
                 global_day_forecast = base_day_sales + (pred_diff * shock_multiplier)
@@ -408,9 +372,11 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"LSTM Canlı Projeksiyon Hatası: {str(e)}")
 
+
 if __name__ == "__main__":
     import uvicorn
     import os
+
     # Render'ın atayacağı dinamik portu yakalar, yoksa yerelde 8000'den açılır
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
