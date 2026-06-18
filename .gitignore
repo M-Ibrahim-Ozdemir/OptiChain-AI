@@ -1,0 +1,12 @@
+*.csv
+*.sql
+*.pptx
+*.png
+upload_data_sup*.py
+.env
+!df_cleaned_vFinal.pkl
+!y_scaler.pkl
+!model_metadata.pkl
+!final_compact_tank_model.h5
+!logistic_v12_model.cbm
+!lojistik_sozluk.json
