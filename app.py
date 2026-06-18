@@ -118,7 +118,7 @@ page = st.sidebar.radio("📋 Operasyonel Radarlar",
                         ["🚨 Sipariş Gecikme Riski & SHAP Analizi", "📈 LSTM Global Talep & Stok Tahmini"])
 
 # FastAPI Sunucu Adresleri
-BASE_API_URL = "https://7bd37f69e2e61a21-193-255-91-141.serveousercontent.com"
+BASE_API_URL = "https://optichain-ai-l96o.onrender.com"
 PREDICT_API_URL = f"{BASE_API_URL}/predict-risk"
 LSTM_API_URL = f"{BASE_API_URL}/predict-lstm-forecast"
 
