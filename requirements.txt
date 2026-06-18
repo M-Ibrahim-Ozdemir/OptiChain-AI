@@ -1,4 +1,4 @@
-catboost==1.2.8
+catboost
 fastapi==0.137.1
 holidays==0.95
 joblib==1.4.2
