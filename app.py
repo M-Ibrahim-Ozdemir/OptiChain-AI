@@ -5,6 +5,14 @@ import numpy as np
 import plotly.graph_objects as go
 import datetime
 
+import joblib
+import json
+import psycopg2
+from catboost import CatBoostClassifier
+from tensorflow.keras.models import load_model
+
+
+
 # ==========================================================================
 # 💎 1. ADIM: SAYFA GLOBAL AYARLARI & OPTICHAIN AI MARKALAMA
 # ==========================================================================
