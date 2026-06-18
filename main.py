@@ -7,7 +7,7 @@ from catboost import CatBoostClassifier
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import psycopg2
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 from sklearn.preprocessing import RobustScaler
 
 app = FastAPI(
