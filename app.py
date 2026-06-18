@@ -117,10 +117,10 @@ st.sidebar.markdown("---")
 page = st.sidebar.radio("📋 Operasyonel Radarlar",
                         ["🚨 Sipariş Gecikme Riski & SHAP Analizi", "📈 LSTM Global Talep & Stok Tahmini"])
 
-# FastAPI Sunucu Adresleri
+# FastAPI Sunucu Adresleri (MİLİMETRİK ÜRETİM ENTEGRASYONU)
 BASE_API_URL = "https://optichain-ai-l96o.onrender.com"
-PREDICT_API_URL = f"{BASE_API_URL}/predict-risk"
-LSTM_API_URL = f"{BASE_API_URL}/predict-lstm-forecast"
+PREDICT_API_URL = f"{BASE_API_URL}/api/v1/predict-risk"
+LSTM_API_URL = f"{BASE_API_URL}/api/v1/predict-lstm-forecast"
 
 
 # ==========================================================================
@@ -130,7 +130,7 @@ LSTM_API_URL = f"{BASE_API_URL}/predict-lstm-forecast"
 def load_geography_hierarchy_from_api():
     """FastAPI üzerinden veritabanındaki Market->Region->City bağını çeker."""
     try:
-        response = requests.get(f"{BASE_API_URL}/geography-hierarchy")
+        response = requests.get(f"{BASE_API_URL}/api/v1/geography-hierarchy")
         if response.status_code == 200:
             return response.json().get("hierarchy", {})
         st.error(f"Backend Hata Kodu Döndü: {response.status_code} | Detay: {response.text}")
@@ -177,7 +177,7 @@ if page == "🚨 Sipariş Gecikme Riski & SHAP Analizi":
         order_city = st.selectbox("🏙️ Hedef Şehir (City)", city_list)
 
         try:
-            coord_res = requests.get(f"{BASE_API_URL}/city-coordinates?city={order_city}").json()
+            coord_res = requests.get(f"{BASE_API_URL}/api/v1/city-coordinates?city={order_city}").json()
             latitude = coord_res.get("latitude", 0.0)
             longitude = coord_res.get("longitude", 0.0)
             st.sidebar.success(f"📍 {order_city} Aktif: Enlem {latitude} | Boylam {longitude}")
@@ -309,7 +309,7 @@ if page == "🚨 Sipariş Gecikme Riski & SHAP Analizi":
                 "ℹ️ Sol panelden operasyonel sipariş girdilerini set edip 'Risk Analizini Başlat' butonuna basarak yapay zeka kararlarını tetikleyebilirsiniz.")
 
 # ==========================================================================
-# 📈 2. SAYFA: LSTM GLOBAL TALEP & AMBAR STOK PROJEKSİYONU (KUSURSUZ ENTEGRASYON)
+# 📈 2. SAYFA: LSTM GLOBAL TALEP & AMBAR STOK PROJEKSİYONU
 # ==========================================================================
 elif page == "📈 LSTM Global Talep & Stok Tahmini":
 
@@ -359,7 +359,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                         df_forecast = pd.DataFrame(forecast_list)
                         df_forecast["tarih"] = pd.to_datetime(df_forecast["tarih"])
 
-                        # 🎯 GERÇEKÇİ S&OP AMBAR AKIŞ MATEMATİĞİ (Eksi Sınır Korumalı)
                         stock_trend = []
                         lost_sales_trend = []
                         current_stock = initial_stock
@@ -378,7 +377,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                         df_forecast["simule_kalan_stok"] = stock_trend
                         df_forecast["kacan_ciro_riski"] = lost_sales_trend
 
-                        # S&OP Dinamik Tedarik Karar Bildirimleri
                         stok_durumu_list = []
                         tedarik_emri_list = []
                         for idx, row in df_forecast.iterrows():
@@ -395,7 +393,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                         df_forecast["final_stok_durumu"] = stok_durumu_list
                         df_forecast["final_tedarik_emri"] = tedarik_emri_list
 
-                        # Finansal KPI Kartları Üst Panel
                         kpi_1, kpi_2, kpi_3 = st.columns(3)
                         total_predicted_demand = df_forecast["tahmin_edilen_satis"].sum()
                         total_lost_sales = df_forecast["kacan_ciro_riski"].sum()
@@ -405,7 +402,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                                      delta="- Finansal Kayıp" if total_lost_sales > 0 else "0 $")
                         kpi_3.metric("🌍 Doğrulanan Tarihsel Çapa Verisi", f"{capa_degeri:,.2f} $")
 
-                        # --- GRAFİK 1: CİRO RİTMİ VE GÜVEN KORİDORU ---
                         fig_line = go.Figure()
                         fig_line.add_trace(go.Scatter(
                             x=df_forecast["tarih"], y=df_forecast["tahmin_edilen_satis"],
@@ -430,7 +426,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                         )
                         st.plotly_chart(fig_line, use_container_width=True)
 
-                        # --- GRAFİK 2: AMBAR STOK ERİTME EĞRİSİ ---
                         fig_stock = go.Figure()
                         fig_stock.add_trace(go.Scatter(
                             x=df_forecast["tarih"], y=df_forecast["simule_kalan_stok"],
@@ -445,7 +440,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                         )
                         st.plotly_chart(fig_stock, use_container_width=True)
 
-                        # --- BİLANÇO VE S&OP KARAR DESTEK TABLOSU ---
                         st.markdown("### 📋 Küresel S&OP Karar Destek ve Bilanço Çizelgesi")
                         df_display = df_forecast.copy()
                         df_display["Tarih"] = df_display["tarih"].dt.strftime("%Y-%m-%d")
@@ -461,7 +455,6 @@ elif page == "📈 LSTM Global Talep & Stok Tahmini":
                                         "Holding Cost ($)", "Durum", "Yapay Zeka S&OP Tedarik Emri"]],
                             use_container_width=True
                         )
-
                     else:
                         st.error(f"FastAPI LSTM Motor Hatası: {res_data.get('detail')}")
                 except Exception as e:
