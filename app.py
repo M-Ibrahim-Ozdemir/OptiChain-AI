@@ -17,6 +17,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# FastAPI Sunucu Adresleri
+BASE_API_URL = "https://1effb1f6a28f7be4-193-255-91-141.serveousercontent.com"
+PREDICT_API_URL = f"{BASE_API_URL}/predict-risk"
+LSTM_API_URL = f"{BASE_API_URL}/predict-lstm-forecast"
+
+
+
+
 # 🎨 UX/UI PREMIUM RECOV: Geliştirilmiş Kurumsal CSS ve Hizalama Katmanı
 st.markdown("""
     <style>
@@ -119,18 +127,14 @@ st.sidebar.markdown("---")
 page = st.sidebar.radio("📋 Operasyonel Radarlar",
                         ["🚨 Sipariş Gecikme Riski & SHAP Analizi", "📈 LSTM Global Talep & Stok Tahmini"])
 
-# FastAPI Sunucu Adresleri
-BASE_API_URL = "https://1effb1f6a28f7be4-193-255-91-141.serveousercontent.com"
-PREDICT_API_URL = f"{BASE_API_URL}/predict-risk"
-LSTM_API_URL = f"{BASE_API_URL}/predict-lstm-forecast"
+
 
 
 # ==========================================================================
 # 🛰️ ÖNBELLEKLİ VERİ ENTEGRASYON KATMANI (POSTGRESQL BAĞLANTILARI)
 # ==========================================================================
-@st.cache_data(show_spinner=False)
+""""@st.cache_data(show_spinner=False)
 def load_geography_hierarchy_from_api():
-    """FastAPI üzerinden veritabanındaki Market->Region->City bağını çeker."""
     try:
         response = requests.get(f"{BASE_API_URL}/geography-hierarchy")
         if response.status_code == 200:
@@ -140,6 +144,18 @@ def load_geography_hierarchy_from_api():
     except Exception as e:
         st.error(f"Bağlantı esnasında ağ/sorgu hatası oluştu: {str(e)}")
         return {}
+"""
+@st.cache_data(show_spinner=False)
+def load_geography_hierarchy_from_api():
+    try:
+        # Doğrudan Serveo linkini buraya çakıyoruz şefim:
+        response = requests.get("https://1effb1f6a28f7be4-193-255-91-141.serveousercontent.com/api/v1/geography-hierarchy")
+        if response.status_code == 200:
+            return response.json().get("hierarchy", {})
+        return {}
+    except Exception as e:
+        return {}
+
 
 
 # Coğrafi Hiyerarşiyi Veritabanından Canlı Yüklüyoruz
