@@ -7,7 +7,7 @@ warnings.filterwarnings('ignore')       # Tüm uyarıları bastırır (genelde g
 warnings.filterwarnings(
     "ignore",
     message="A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy"
-)                                       # Belirli uyarı mesajını hedefli olarak gizler
+)                                     
 # metrics
 from sklearn.metrics import mean_squared_error, r2_score ,explained_variance_score
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, classification_report
@@ -18,11 +18,10 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.width', 100000)
 
 
-# 1. Veriyi Oku
 df_ = pd.read_csv('DataCoSupplyChainDataset.csv', encoding='ISO-8859-1')
 df = df_.copy()
 
-# 2. İSİM BİRLEŞTİRME (Veride tam isim yoktu, bu önemli)
+# 2. İSİM BİRLEŞTİRME 
 df['Customer Lname'] = df['Customer Lname'].fillna('Unknown')
 df['Customer_Full_Name'] = df['Customer Fname'] + " " + df['Customer Lname']
 
@@ -42,7 +41,7 @@ df['shipping date (DateOrders)'] = pd.to_datetime(df['shipping date (DateOrders)
 
 
 # =================================================================
-# 5. YENİ DEĞİŞKENLER ÜRETME (FEATURE ENGINEERING) - ANALİSTİN İMZASI
+# 5. YENİ DEĞİŞKENLER ÜRETME (FEATURE ENGINEERING)
 # =================================================================
 
 #    --- A) LOJİSTİK ANALİZ ---
@@ -94,7 +93,6 @@ print(df.info())
 # =================================================================
 # 1. AYKIRI DEĞER VE DEĞİŞKEN ANALİZİ FONKSİYONLARI (VBO STANDARTLARI)
 # =================================================================
-
 def outlier_threshold(data, col_name, w1=0.05, w2=0.95):
     q1 = data[col_name].quantile(w1)
     q3 = data[col_name].quantile(w2)
@@ -128,10 +126,6 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
     num_cols = [col for col in dataframe.columns if dataframe[col].dtypes != "O" and col not in num_but_cat]
 
     return cat_cols, num_cols, cat_but_car
-
-# =================================================================
-# 2. UYGULAMA (SENİN VERİN İÇİN EN DOĞRU VE EKSİKSİZ SIRALAMA)
-# =================================================================
 
 # Güvenlik için kopya alıyoruz
 df_final = df.copy()
@@ -193,7 +187,7 @@ df_final.loc[df_final['Order Status'].isin(invalid_status), 'Order Profit Per Or
 
 # 2. İade Mantığı Kontrolü:
 # Eğer kar (Benefit) aşırı negatifse  ama statü COMPLETE ise
-# bu bir iade olabilir. Onları 'REFUNDED' olarak etiketlemek profesyonelliktir.
+# bu bir iade olabilir. Onları 'REFUNDED' olarak etiketleyelim.
 # --- İYİLEŞTİRİLMİŞ İADE VE ZARAR MANTIĞI ---
 # 1. Önce kâr sütunundaki aykırı (çok aşırı) zarar eşiğini bulalım
 up, low = outlier_threshold(df_final, 'Order Profit Per Order')
@@ -207,10 +201,7 @@ df_final.loc[refund_condition, 'Order Status'] = 'POTENTIAL_ISSUE'
 
 print(f"İncelemeye alınan şüpheli işlem sayısı: {len(df_final[df_final['Order Status'] == 'POTENTIAL_ISSUE'])}")
 
-#Veri biliminde buna "Data Integrity" (Veri Bütünlüğü) denir.
-
-
-
+#"Data Integrity" (Veri Bütünlüğü)
 
 # 3. Miktar ve Fiyat Çelişkisi:
 # Adet (Quantity) > 0 olup Ürün Fiyatı 0 olan saçma kayıtlar var mı?
@@ -225,20 +216,15 @@ print("--- GELİŞMİŞ MANTIK TEMİZLİĞİ TAMAMLANDI ---")
 print(f"Toplam Silinen Hatalı Satır: {len(price_error) + len(sales_error)}")
 print(f"Kârı Sıfırlanan Şüpheli İşlem Sayısı: {len(df_final[df_final['Order Status'].isin(invalid_status)])}")
 
-"""3. Sektörel Mülakat Cevabı)
-"Bu projede veriyi nasıl temizledin?" dediklerinde:
+"""3.
+"Bu projede veriyi temizligini kisaca soyleyeyim":
 "Sadece teknik aykırı değerlere (outliers) bakmadım. İş mantığı (Business Logic) kurallarını da uyguladım. İptal edilen ve dolandırıcılık şüphesi olan 7 binden fazla işlemin kârını sıfırlayarak finansal raporların sapmasını engelledim.
 Ayrıca istatistiksel sınırların dışında kalan 322 şüpheli işlemi 'Potansiyel Sorun' olarak etiketleyip analiz dışı bıraktım."
- "kod yazan biri" olmaktan çıkarıp "işi anlayan bir analistim"..."""
-
-
+"""
 df_final.head(50)
 
-
 ## ***************************** DEĞİŞKENLER ANALİZİ(EDA)***********
-
 # --- 1. FONKSİYONLARIN HAZIRLANMASI ---
-
 def check_df_summary(dataframe):
     print("##################### Shape #####################")
     print(dataframe.shape)
@@ -280,7 +266,7 @@ def num_summary_all(dataframe, numerical_cols, plot=False):
             plt.title(f"{col} Boxplot")
 
             plt.show()
-            plt.close()  # <--- İŞTE BU SATIR UYARIYI SİLECEK VE RAM'İ BOŞALTACAK
+            plt.close()  # <--- BU SATIR UYARIYI SİLECEK VE RAM'İ BOŞALTACAK
 
 def target_vs_num_analysis(dataframe, target, numerical_cols):
     print(f"\n======= {target.upper()} BAZLI SAYISAL ANALİZ =======")
@@ -329,8 +315,10 @@ plt.title("Supply Chain - Tüm Sayısal Değişkenlerin Korelasyonu")
 plt.show()
 
 
-"""Sayısal Yorumlar
-İşte SQL'e geçmeden önce bilmen gereken Kritik Bulgular:
+
+
+      """Sayısal Yorumlar
+SQL'e geçmeden önce bilinmesi gereken Kritik Bulgular:
 1. Kârlılık Analizi (Benefit per order & Order Profit Per Order)
 Durum: Ortalama kâr yaklaşık 22$, ancak standart sapma 92$ (Çok yüksek!).
 Yorum: Veride çok ciddi bir dengesizlik var. Min değer -546$ iken Max 539$. Bu şu demek: Bazı siparişler şirketi resmen "batırıyor".
@@ -338,15 +326,14 @@ Yorum: Veride çok ciddi bir dengesizlik var. Min değer -546$ iken Max 539$. Bu
 
 2. Satış ve Ciro Dağılımı (Sales & Sales per customer)
 Durum: Ortalama satış 202$, medyan (50%) ise 199$.
-Yorum: Bu harika bir haber! Satış dağılımın birbirine çok yakın (Normal dağılıma meyilli). Bu, Ankara operasyonunda "fiyat istikrarı" olduğunu gösterir. Sales Max değerinin 924$ olması da verinin artık "temiz" ve analiz edilebilir olduğunu kanıtlıyor.
+Yorum: Satış dağılımın birbirine çok yakın (Normal dağılıma meyilli). Bu, Ankara operasyonunda "fiyat istikrarı" olduğunu gösterir. Sales Max değerinin 924$ olması da verinin artık "temiz" ve analiz edilebilir olduğunu kanıtlıyor.
 
 3. Zamanlama ve Gecikme Verileri (Order_Hour, Order_Month)
 Durum: Siparişler günün her saatine (0-23) ve yılın her ayına (1-12) yayılmış.
 Yorum: Mevsimsellik analizi yapmaya çok uygun. Özellikle Order_Hour ortalamasının 11.48 olması, öğle saatlerinde sipariş trafiğinin Ankara deposunda tavan yaptığını fısıldıyor.
 
 4. Gereksiz / Ölü Sütunlar (SQL'e Taşırken Atacaklarımız) 🗑️
-İstatistiklerde gördüğün şu sütunlar "Sayısal" görünse de aslında Analitik Değeri Olmayan sütunlardır:
-Customer Id / Order Customer Id: Sadece bir numara. Ortalamasını almanın bir mantığı yok.
+Customer Id / Order Customer Id: 
 Customer Zipcode: Posta kodu sayısal bir büyüklük değildir (Etikettir).
 Order Item Id / Order Id: Bunlar sadece kimlik.
 Latitude / Longitude: Koordinatların ortalamasını almak bizi dünyanın ortasına götürür, analizde bir işe yaramaz.
@@ -362,36 +349,30 @@ Yorum: Şirket genel olarak %10 kâr marjıyla çalışıyor. Ancak Max değerin
 Attığın çıktıda çok önemli bir şey yakaladım:
 --- IS_INTERNATIONAL ANALİZİ --- Ratio: 100.000
 Sorun: Bu sütunun içindeki tüm değerler 1. Yani verideki tüm siparişler "Uluslararası" olarak işaretlenmiş.
-Neden Önemli? Veri biliminde bir sütun hep aynı değerden oluşuyorsa (Varyansı 0 ise), o sütun modele veya analize hiçbir bilgi katmaz. Bilgisayara "Herkes insan" demek gibi bir şeydir; ayırt edici özelliği yoktur.
-Çözüm: Bu sütunu SQL'e taşımamıza veya analizde tutmamıza gerek yok. Yer kaplamasın, sileceğiz.
+Neden Önemli? Veri biliminde bir sütun hep aynı değerden oluşuyorsa (Varyansı 0 ise), o sütun modele veya analize hiçbir bilgi katmaz. sileceğiz.
 """
-"""    --devam
-3. İlk Çıkarımlar (Ankara Projesi İçin İş Zekası)
+"""   
+3. İlk Çıkarımlar (İş Zekası)
 Uyarıların ötesinde, bu rakamlar bize şunları fısıldıyor:
-Gecikme Felaketi (Delivery Status): %54.8 oranında "Late Delivery" var! Bu muazzam bir oran. Ankara projesinde odaklanacağımız yer burası: "Neden her 2 kargodan biri gecikiyor?"
+Gecikme Felaketi (Delivery Status): %54.8 oranında "Late Delivery" var!  "Neden her 2 kargodan biri gecikiyor?"
 Müşteri Lokasyonu: Müşterilerin %61'i ABD, %38'i Porto Riko. Analizde bu iki bölgeyi kıyaslamak çok mantıklı olacak.
 Haftalık Denge: Siparişler haftanın günlerine (Order_Day_of_Week) çok eşit dağılmış (%14 civarı). Yani Ankara deposunda her gün aynı yoğunluk var diyebiliriz.
 Kargo Modu: İnsanların %60'ı "Standard Class" seçiyor. Acaba gecikmeler en çok bu grupta mı?
 """
-
 """
 Is_International sütunu gibi, Is_Late ve Late_delivery_risk sütunları da neredeyse aynı şeyi söylüyor (%54 civarı).
-bu kadar çok gecikme olan bir sistemde; "Standard Class" kargo modunu kullananlar mı daha çok gecikiyor yoksa "First Class" (Hızlı kargo) sözü verilip de geciktirilenler mi? Bu sorunun cevabını bulmak için "Hedef Bazlı Kategorik Analiz" (target_vs_cat_analysis) O tablo her şeyi itiraf edecek! 🛠️📈
+bu kadar çok gecikme olan bir sistemde; "Standard Class" kargo modunu kullananlar mı daha çok gecikiyor yoksa "First Class" (Hızlı kargo) sözü verilip de geciktirilenler mi? Bu sorunun cevabını bulmak için "Hedef Bazlı Kategorik Analiz" (target_vs_cat_analysis) O tablo soyleyecek
 """
-
 """
 Sayısal Verilerdeki "Gizli Detaylar" (İnceleme Sonucu)
-Uyarıyı geçip attığın rakamlara bakınca, Ankara projesi için iki tane bomba bilgi yakaladım:
 Profit_Margin (Kâr Marjı): * Ortalama %10 ama bazı yerlerde -2.43 (Yani %243 zarar!).
 Analist Notu: Bir ürünün satışından %243 zarar etmek normal değildir. Bu büyük ihtimalle "İade maliyeti + Kargo maliyeti + Ürün kaybı" birleşimidir. SQL'de "Zarar Tablosu" kurmamız şart.
 Unit_Profit (Birim Kâr):
 Standart sapma 70$. Ortalamanın (16$) çok üstünde.
-Yorum: Ürün bazlı kârlılık çok istikrarsız. Bu da bizi mülakatta şu cümleyi kurmaya iter: "Ankara operasyonunda birim maliyetleri standardize etmemiz gerekiyor."
+Yorum: Ürün bazlı kârlılık çok istikrarsız. birim maliyetleri standardize etmemiz gerekiyor."
 Order Item Discount Rate:
 Maksimum indirim oranı 0.25 (%25).
 Sektörel Check: Veride %25'ten fazla indirim yapılmamış. Eğer %50-70 indirimler görseydik "Hata var" derdik. Veri bu konuda tutarlı."""
-
-
 
 #hedef - sauısal ilişki analizi
 """1. Kârlılık ve Gecikme İlişkisi (Zarar Kapıda!) 📉
@@ -400,11 +381,11 @@ Tespit: Zamanında giden kargolarda (Is_Late=0) ortalama kâr 22.48$ iken, gecik
 
 2. "Zaman Makinesi" Etkisi (Order_Hour) ⏰
 Tespit: Zamanında giden siparişlerin saat ortalaması 11.08, gecikenlerin ise 11.78.
-Yorum: Çok ince ama kritik bir fark! Öğleden sonra (12:00'ye doğru) verilen siparişlerin gecikme ihtimali daha yüksek. Ankara deposundaki personelin öğle yemeği saati veya vardiye değişimi sevkiyatı yavaşlatıyor olabilir mi? İşte bu, "Derinlemesine Analiz" konusudur.
+Yorum: Çok ince ama kritik bir fark! Öğleden sonra (12:00'ye doğru) verilen siparişlerin gecikme ihtimali daha yüksek. Personelin öğle yemeği saati veya vardiye değişimi sevkiyatı yavaşlatıyor olabilir mi?.
 
 3. Satış Miktarı Fark Etmiyor! (İlginç Bulgusu) 📊
 Tespit: Sales ortalaması her iki grupta da neredeyse aynı (202$).
-Yorum: "Büyük siparişler gecikir, küçükler hızlı gider" efsanesi vernde çürüdü. Gecikme, paketin büyüklüğünden veya fiyatından bağımsız olarak sistemde kronikleşmiş bir sorun.
+Yorum: "Büyük siparişler gecikir, küçükler hızlı gider" diyemeyiz. Gecikme, paketin büyüklüğünden veya fiyatından bağımsız olarak sistemde kronikleşmiş bir sorun.
 
 4. Coğrafi ve Kimlik Verileri (Gereksizler Netleşti) 🗑️
 Tespit: Latitude, Longitude, Customer Id ve Category Id ortalamaları iki grupta da (0 ve 1) birbirine tıpatıp benziyor.
@@ -414,19 +395,16 @@ Yorum: Bu şu demek; gecikme sorunu belirli bir lokasyona veya belirli bir ürü
 Tespit: Kâr oranı zamanında gidenlerde 0.123, gecikenlerde 0.119.
 Yorum: Geciken her bir ürün birim bazında verimliliği düşürüyor."""
 
-#Muhammet, Buradaki "Analist" Sırrı Nedir?
 #Sayısal veriler bize şunu söyledi: "Operasyonel süreçlerin saatleri ve kâr marjları gecikmeden etkileniyor ama asıl sorumlu sayısal büyüklükler (fiyat, miktar) değil."
-#Bu durumda suçlu kim? Suçlu büyük ihtimalle Kategorik Değişkenlerde saklı. Yani;
+# büyük ihtimalle Kategorik Değişkenlerde saklı. Yani;
 #Hangi kargo şirketiyle gönderdik?
 #Hangi bölgeye gönderdik?
 #Hangi ödeme tipiyle alındı?
 
 #hedef - kategorik
-"""Gemini şunu dedi:
-Muhammet, bu tablo projenin "kara kutusunu" açtı. Kategorik analiz sonuçları, sayısal analizden çok daha çarpıcı gerçekleri ortaya koyuyor. Ankara projesi için mülakatlarda sunabileceğin, operasyonu iyileştirecek "katil bulguları" tek tek analiz ediyorum:
+"""
 1. En Büyük Skandal: Shipping Mode (Kargo Modu) 🚨
-İşte verinin en can alıcı noktası burası:
-First Class (Hızlı Kargo): Gecikme oranı %100! (Şaka değil, tabloda 1.000 görünüyor).
+First Class (Hızlı Kargo): Gecikme oranı %100! (tabloda 1.000 görünüyor).
 Second Class: Gecikme oranı %79.7.
 Standard Class: Gecikme oranı sadece %39.8.
 Analiz: Bu tam bir operasyonel felaket! Müşteri daha fazla para ödeyip "hızlı gelsin" (First Class) dedikçe, sistem o kargoyu daha çok geciktirmiş. * Öneri: Ankara şubesinde "Hızlı Kargo" hattı tamamen çökmüş durumda. Önceliklendirme algoritması yanlış çalışıyor.
@@ -449,7 +427,6 @@ Pet Shop departmanında gecikme oranı %61.4 ile en yüksek seviyede.
 Yorum: Hassas veya hızlı tüketim ürünleri (belki mamalar?) daha çok gecikiyor. Bu departmanın sevkiyat süreci acilen incelenmeli."""
 
 #Bu analiz bize şunu öğretti: Sayısal veriler (para, miktar) masum; asıl suçlu kargo yönetim biçimi (Shipping Mode).
-
 #*******************------------------*************************
 
 
@@ -468,11 +445,11 @@ target_vs_cat_profit(df_final, "Order Profit Per Order", cat_cols)
 #kategorik değişkenlerin karagore ortalamalaır
 """1. Departman Bazlı Şampiyon: Technology 💻
 Bulgu: Technology departmanının ortalama kârı 102.6$ iken, Book Shop sadece 2.11$ kâr getirmiş.
-Analiz: Arada neredeyse 50 kat fark var! Şirketin ana kâr motoru teknoloji ürünleri. Ankara şubesi operasyonel kaynağını (en iyi kuryeleri, en güvenli rafları) bu departmana ayırmalı.
+Analiz: Arada neredeyse 50 kat fark var! Şirketin ana kâr motoru teknoloji ürünleri. şubenin operasyonel kaynağını (en iyi kuryeleri, en güvenli rafları) bu departmana ayırmalı.
 
 (((2. "POTENTIAL_ISSUE" Felaketi Teşhis Edildi 📉
 Bulgu: Order Status bazında baktığımızda, bizim etiketlediğimiz POTENTIAL_ISSUE grubunun ortalaması -545.95$.
-Yorum: Az önce yaptığımız temizliğin ne kadar haklı olduğunu burada görüyoruz. Bu satırlar kârlılığı aşağı çeken devasa bir kara delik. SQL'de bunları mutlaka ayrı bir "Risk Analiz" tablosunda incelemeliyiz.
+Yorum: Az önce yaptığımız temizliğin ne kadar haklı olduğunu burada görüyoruz. Bu satırlar kârlılığı aşağı çekiyor. SQL'de bunları mutlaka ayrı bir "Risk Analiz" tablosunda incelemeliyiz.
 )))
 
 3. Ödeme Tipi ve Kârlılık (CASH vs. TRANSFER) 💳
@@ -510,7 +487,6 @@ Lokasyon: Latitude (-0.000), Longitude (-0.002), Customer Zipcode (0.001).
 Kimlik: Order Id, Customer Id, Order Item Id.
 Analist Notu: Bu sütunları SQL'de "İlişkisel Veritabanı" kurmak için (JOIN işlemleri için) tutacağız ama kâr tahmini yaparken (ML) kesinlikle modelin içine koymayacağız. Çünkü kârı etkilemiyorlar.
 """
-
 
 # Veriyi CSV olarak kaydet
 df_final.to_csv('DataCo_Cleaned_Final.csv', index=False, encoding='utf-8')
