@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import datetime
+import os
 
 # ==========================================================================
 # 💎 1. ADIM: SAYFA GLOBAL AYARLARI & OPTICHAIN AI MARKALAMA
@@ -117,8 +118,8 @@ st.sidebar.markdown("---")
 page = st.sidebar.radio("📋 Operasyonel Radarlar",
                         ["🚨 Sipariş Gecikme Riski & SHAP Analizi", "📈 LSTM Global Talep & Stok Tahmini"])
 
-# FastAPI Sunucu Adresleri (MİLİMETRİK ÜRETİM ENTEGRASYONU)
-BASE_API_URL = "https://optichain-ai-l96o.onrender.com"
+# 🔒 BACKEND ENTEGRASYON PROTOKOLÜ: Canlı URL çevre değişkenlerinden güvenle beslenir.
+BASE_API_URL = os.getenv("BACKEND_API_URL", "https://optichain-ai-l96o.onrender.com")
 PREDICT_API_URL = f"{BASE_API_URL}/api/v1/predict-risk"
 LSTM_API_URL = f"{BASE_API_URL}/api/v1/predict-lstm-forecast"
 
@@ -303,7 +304,7 @@ if page == "🚨 Sipariş Gecikme Riski & SHAP Analizi":
                     else:
                         st.error(f"FastAPI Hatası: {res_data.get('detail')}")
                 except Exception as e:
-                    st.error(f"Backend sunucusu ile bağlantı kurulamadı. main.py çalışıyor mu? Hata: {str(e)}")
+                    st.error(f"Backend sunucusu ile bağlantı kurulamadı. Hata: {str(e)}")
         else:
             st.info(
                 "ℹ️ Sol panelden operasyonel sipariş girdilerini set edip 'Risk Analizini Başlat' butonuna basarak yapay zeka kararlarını tetikleyebilirsiniz.")
