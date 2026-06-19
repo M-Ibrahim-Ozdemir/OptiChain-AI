@@ -11,13 +11,11 @@ from tqdm.auto import tqdm
 # --- 1. AYARLAR VE VERİ ÇEKME (ENCODING & CURSOR FIX) ---
 import os
 
-# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
-# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD"),  # 🎯 BAK BURADAKİ ŞİFREYİ TAMAMEN SİLDİK, SADECE DEĞİŞKEN KALDI!
+    "password": os.getenv("DB_PASSWORD"), 
     "port": os.getenv("DB_PORT", "5432")
 }
 engine = create_engine(
