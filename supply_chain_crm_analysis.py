@@ -10,18 +10,13 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.width', 100000)
 
-
-# 1. VERİYİ ÇEKELİM (Hafızadaki df_final'i kullanabilirsin veya SQL'den tekrar çekebilirsin)
-# Ben SQL'den temiz halini çektiğini varsayıyorum.
 import os
 
-# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
-# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD"),  # 🎯 BAK BURADAKİ ŞİFREYİ TAMAMEN SİLDİK, SADECE DEĞİŞKEN KALDI!
+    "password": os.getenv("DB_PASSWORD"),  
     "port": os.getenv("DB_PORT", "5432")
 }
 conn = psycopg2.connect(**db_params)
@@ -63,27 +58,21 @@ cltv_df = df.groupby('customer_id').agg({
 
 cltv_df.columns = cltv_df.columns.droplevel(0)
 cltv_df.columns = ['recency', 'T', 'frequency', 'monetary']
-
 # Monetary'yi "işlem başına ortalama" yapalım
 cltv_df["monetary"] = cltv_df["monetary"] / cltv_df["frequency"]
-
 # Modeller için haftalık dönüşüm
 cltv_df["recency"] = cltv_df["recency"] / 7
 cltv_df["T"] = cltv_df["T"] / 7
-
 # Sadece tekrar eden müşterileri alalım (Frequency > 1)
 cltv_df = cltv_df[(cltv_df['frequency'] > 1)]
-
 print("📊 CRM Tahmin Tablosu Hazır!")
 print(cltv_df.head())
 
 
 # --- 4. BG-NBD MODELİNİN EĞİTİLMESİ ---
 print("\n🧪 BG-NBD Modeli eğitiliyor (Gelecek işlem sayısı tahmini)...")
-
 # penalizer_coef: Katsayıların aşırı büyümesini engelleyen ceza terimi.
 bgf = BetaGeoFitter(penalizer_coef=0.001)
-
 bgf.fit(cltv_df['frequency'],
         cltv_df['recency'],
         cltv_df['T'])
@@ -93,25 +82,18 @@ cltv_df["expected_purc_3_month"] = bgf.predict(12,
                                                cltv_df['frequency'],
                                                cltv_df['recency'],
                                                cltv_df['T'])
-
 print("\n📊 3 Ay İçinde En Çok İşlem Yapması Beklenen İlk 5 Müşteri:")
 print(cltv_df.sort_values("expected_purc_3_month", ascending=False).head())
 
 
-
-
 # --- 5. GAMMA-GAMMA MODELİNİN EĞİTİLMESİ ---
 print("\n🧪 Gamma-Gamma Modeli eğitiliyor (Gelecek kâr tahmini)...")
-
 ggf = GammaGammaFitter(penalizer_coef=0.01)
 ggf.fit(cltv_df['frequency'], cltv_df['monetary'])
-
 # İşlem başına beklenen ortalama kâr
 cltv_df["expected_average_profit"] = ggf.conditional_expected_average_profit(cltv_df['frequency'],
                                                                              cltv_df['monetary'])
-
 print("\n✅ İşlem başına beklenen kâr tahminleri hazır.")
-
 
 
 # --- 6. 6 AYLIK CLTV TAHMİNİ ---
@@ -129,7 +111,7 @@ cltv_df["segment"] = pd.qcut(cltv_df["cltv_prediction"], 4, labels=["D", "C", "B
 """
 odun sonunda oluşturduğun o ABCD segmentleri, sadece geçmiş satışlara göre değil, 6 aylık gelecek beklentisine göre yapıldı:
 
-A Segmenti (Premium): Gelecekteki en değerli hazinen. Onlara VIP hizmet vermelisin.
+A Segmenti (Premium): Gelecekteki en değerli hazine. Onlara VIP hizmet verilmeli.
 B Segmenti: Sadık ama kâr marjı artırılabilir.
 C Segmenti: Kararsızlar. Doğru bir kampanya ile B'ye çıkabilirler.
 D Segmenti: Maliyeti yüksek, getirisi düşük. Onlar için fazla reklam harcaması yapılmamalı.
@@ -140,12 +122,11 @@ SegmentTakma :A- Yıldızlar (Star Class)Gelecek 6 ayda
 en çok kârı bırakacak olan elit kitle.Onları el üstünde tutmak, özel lojistik hat tanımlamak.B Sadıklar 
 (Loyals)Düzenli alışveriş yapan, kârlı ama A kadar "zengin" bırakmayanlar.Çapraz satış (Cross-sell)
 yaparak onları A'ya taşımak lazım.C Potansiyeller (Potentials)Arada bir gelen, kârlılığı orta şekerli grup."
-Daha fazla alırsan kargon bedava" gibi promosyonlarla canlandır.D Riskli / Düşük Değer (Low Value)Hem az harcıyor 
-hem de nadir geliyor. Gelecek vaatleri çok düşük.Onlar için çok reklam harcaması yapma, maliyetini koru.
+Daha fazla alırsak kargo bedava" gibi promosyonlarla canlandır.D Riskli / Düşük Değer (Low Value)Hem az harcıyor 
+hem de nadir geliyor. Gelecek vaatleri çok düşük.Onlar için çok reklam harcaması yapılmamalı, maliyet korunmali.
 ZTek Seferlikler (One-Shotters)Sisteme girmiş, bir kez almış ve bir daha uğramamış olanlar.Onları "Churn" (terk etmiş) kabul etme, 
 geri kazanma kampanyası.
 """
-
 
 
 
@@ -164,21 +145,17 @@ print(cltv_df.groupby("segment").agg({"cltv_prediction": ["mean", "count", "sum"
   Bu sayede pazarlama ekibine hangi müşteriye 'ücretsiz kargo' tanımlaması gerektiğini, hangisine 'indirim kuponu' 
   verilmesi gerektiğini bilimsel olarak kanıtladım."""
 
+
 # --- 7. TÜM SÜTUNLARI KAPSAYAN VE NaN BIRAKMAYAN MASTER BİRLEŞTİRME ---
-
 print("\n🔗 Tahminler ve tüm CRM metrikleri birleştiriliyor, boşluklar mühürleniyor...")
-
 try:
     # 1. cltv_df'deki TÜM sütunları (Recency, T, Frequency, Monetary, Tahminler) alıyoruz
     cltv_results = cltv_df.reset_index()
-
     # 2. Tip Eşitleme (Merge hatasını engellemek için metin formatına zorluyoruz)
     df['customer_id'] = df['customer_id'].astype(str)
     cltv_results['customer_id'] = cltv_results['customer_id'].astype(str)
-
     # 3. SOL BİRLEŞTİRME (Left Join): 180.519 satırı koru, yanına tüm analizleri ekle
     df_final_master = df.merge(cltv_results, on='customer_id', how='left')
-
     # --- 4. KRİTİK DÜZELTME: TÜM YENİ GELEN SÜTUNLARI TARAYALIM ---
     # customer_id dışındaki yeni eklenen tüm sütunları listeleyelim
     added_cols = cltv_results.columns.drop('customer_id').tolist()
@@ -188,8 +165,8 @@ try:
             # Segmenti boş olanları (tek seferlikler) "Z-Single-Transaction" yap
             df_final_master[col] = df_final_master[col].astype(str).replace(['nan', 'None', ''], 'Z-Single-Transaction')
         else:
-            # Sayısal olan her şeyi (T, recency, prediction vb.) 0.0 yap
-            # Boşlukları (None/NaN) yakalar ve Power BI için sayısal 0'a çevirir
+            # Sayısal olan her şeyi (T, recency, prediction vb.) 0.0 yapalim
+            # Boşlukları (None/NaN) yakalar ve Power BI için sayısal 0'a çevirirelimn
             df_final_master[col] = pd.to_numeric(df_final_master[col], errors='coerce').fillna(0.0)
 
     print(f"✅ Birleştirme bitti! Sütun Sayısı: {len(df_final_master.columns)} | Satır Sayısı: {len(df_final_master)}")
@@ -245,8 +222,7 @@ except Exception as e:
 df_final_master.head(150)
 
 
-
 #NOT:Shemaa  Python ile yepyeni bir sütun (Gecikme Olasılığı vb.) eklediğimizde, sadece View koduna bir satır ekleyecez ve tüm raporların saniyeler içinde güncellenecek.
 # SQL tarafında ham tabloya dokunmadan, sanal tablolar üzerinden analiz yapmak
-#Vri poestresql sutun tipleridogur olamdan iletildifalakt orda en godgru sekilde  duzldtidli. Sonrajki çalısmalarda temzi. her sey dogru bşir data ile  calısacagız...
+#Vri poestresql sutun tipleridogur olamdan iletildi falakt orda en dogru sekilde  duzldtidli. Sonrajki çalısmalarda temiz her sey dogru şir data ile  calısacagız...
 
