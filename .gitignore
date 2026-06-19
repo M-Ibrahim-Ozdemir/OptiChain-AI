@@ -2,6 +2,6 @@
 *.sql
 *.pptx
 upload_data_sup*.py
-.env
 !v12_shap_genel_analiz_perfect_dark.png
 !optimal_k_elbow_plot.png
+.env

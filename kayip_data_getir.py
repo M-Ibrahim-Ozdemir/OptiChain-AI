@@ -6,11 +6,14 @@ from psycopg2.extras import execute_values
 
 print("🔄 Kayıp tablo geri yükleniyor...")
 
+import os
+
+# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
 db_params = {
-    "host": "localhost",
-    "database": "supply_chain_db",
-    "user": "postgres",
-    "password": "Gs.20021905",
+    "host": os.getenv("DB_HOST", "localhost"),
+    "database": os.getenv("DB_NAME", "supply_chain_db"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", "Gs.20021905"),
     "port": "5432"
 }
 

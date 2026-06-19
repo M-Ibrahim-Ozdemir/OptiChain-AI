@@ -13,11 +13,14 @@ for col in df.select_dtypes(include=['object']).columns:
     df[col] = df[col].astype(str).str.encode('ascii', 'ignore').str.decode('ascii')
 
 # 2. SQL Bağlantı Parametreleri
+import os
+
+# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
 db_params = {
-    "host": "localhost",
-    "database": "supply_chain_db",
-    "user": "postgres",
-    "password": "",
+    "host": os.getenv("DB_HOST", "localhost"),
+    "database": os.getenv("DB_NAME", "supply_chain_db"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", "Gs.20021905"),
     "port": "5432"
 }
 
