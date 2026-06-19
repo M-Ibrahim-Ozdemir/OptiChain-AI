@@ -57,17 +57,13 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.width', 100000)
 
 
-
-# 1. Veritabanı Bilgilerin
 import os
 
-# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
-# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD"),  # 🎯 BAK BURADAKİ ŞİFREYİ TAMAMEN SİLDİK, SADECE DEĞİŞKEN KALDI!
+    "password": os.getenv("DB_PASSWORD"),  
     "port": os.getenv("DB_PORT", "5432")
 }
 
@@ -88,12 +84,10 @@ def backup_data_to_csv():
         print(f"❌ Hata: {e}")
         return False
 
-# BU SATIRI BİR KEZ ÇALIŞTIRMAN YETERLİ
+# BU SATIRI BİR KEZ ÇALIŞTIRMAk yeterli
 backup_data_to_csv()
 
 
-
-# 1. CSV'DEN VERİYİ YÜKLEME
 df_ = pd.read_csv("final_supply_chain_master.csv")
 df =  df_.copy()
 
@@ -170,24 +164,18 @@ important_cats = [col for col in cat_cols if col not in ["is_late", "late_delive
 
 for col in important_cats:
     target_summary_with_cat(df, "is_late", col)
-
     """
     delivery_status sonuçlarına :"Late delivery" olanların TARGET_MEAN değeri 1.000. Yani kargo durumu "Geç kaldı" ise gecikme %100'dür diyor.
     late_delivery_risk de aynı şekilde.
     delivery_gap değerlerine bak: 1, 2, 3, 4 gün olanların tamamı gecikmiş (1.000).
-    delivery_gap ve delivery_status: Analizinde bunların TARGET_MEAN değerinin 1.000 olduğunu gördün. Bu, projenin en büyük sızıntı (leakage) noktasıdır. Yeni değişken üretirken bu kolonları asla formüle dahil etme.
-    is_international: Bu kolonun %100 oranında 1 değerine sahip olduğunu (Ratio: 100.000) görüyorum. Eğer tüm veride sadece "1" varsa, bu değişkenin model için bir "bilgi değeri" (variance) yoktur. Modeli eğitirken bu kolonu çıkarman gerekecek çünkü model için bir "fark" yaratmıyor.
-    """
-    """
-    Eğer bu sütunları modele verirsek, model "Kopya Çekmiş" olur. Çünkü bir siparişin gecikip gecikmediğini (is_late), kargo teslim edildikten sonra oluşan bu sütunlara bakarak tahmin etmek imkansızdır. Bizim amacımız sipariş henüz yola çıkmadan tahmin etmek.
-    Aksiyon: Bu sütunları model eğitiminden (X) kesinlikle çıkartacağız.
+    delivery_gap ve delivery_status: Analizinde bunların TARGET_MEAN değerinin 1.000. Bu, projenin en büyük sızıntı (leakage) noktasıdır. Yeni değişken üretirken bu kolonları asla formüle dahil edemeyiz.
+    is_international: Bu kolonun %100 oranında 1 değerine sahip olduğunu (Ratio: 100.000) görüyorum.
     """
     """
     shipping_mode (Kargo Modu): "First Class" kargoların gecikme oranı 1.000 (%100) görünüyor!  Şirket "Hızlı Gönderi" sözü veriyor ama hepsini geciktiriyor demektir. Bu operasyonel bir felaket ve model bunu çok iyi yakalar.
     department_name: "Pet Shop" ve "Technology" ürünleri diğerlerine göre daha çok gecikiyor. Kategorik bir risk farkı var.
     market: Avrupa (Europe) pazarı diğerlerine göre biraz daha riskli (%57.7).
     """
-
 
 # 1. Sayısal değişkenlerin Target (is_late) ile olan ilişkisi
 def target_summary_with_num(dataframe, target, numerical_col):
@@ -212,15 +200,13 @@ sns.heatmap(df[important_nums].corr(), annot=True, fmt=".2f", cmap="RdBu")
 plt.title("Sayısal Değişkenler Arasındaki Korelasyon")
 plt.show()
 
-"""sales ile order_item_total ve sales_per_customer neredeyse aynı şey.
+"""sales ile order_item_total ve sales_per_customer neredeyse aynı.
 product_price ile order_item_product_price birebir aynı.
 Sağ alttaki o koyu mavi kare (recency, frequency, monetary, cltv_prediction arası) çok tutarlı görünüyor.
 expected_purc_3_month ile frequency arasındaki 0.77'lik korelasyon, modelimizin geçmiş alışkanlıklardan düzgün bir gelecek tahmini ürettiğini kanıtlıyor.
 Bu blok, gecikme tahmininde (XGBoost) doğrudan devasa bir rol oynamasa da, müşteri segmentasyonu ve risk önceliklendirme aşamasında bizim en büyük kozumuz olacak.
 Mesela order_hour veya order_month sütunlarının diğerleriyle bağı yok; yani bunlar sisteme "zaman" bazlı eşsiz bir bilgi katıyor
 """
-
-
 
 # 1. Aykırı değerlerin eşiklerini belirleme ve kontrol etme fonksiyonları
 def outlier_thresholds(dataframe, col_name, q1=0.05, q3=0.95): # Verimiz büyük olduğu için 0.05-0.95 daha güvenli
@@ -354,11 +340,10 @@ def finalize_and_grab_cols(dataframe, cat_th=10, car_th=23):
     cat_but_car = [col for col in dataframe.columns if dataframe[col].nunique() > car_th and
                    dataframe[col].dtypes == "O"]
 
-    # --- KRİTİK MÜDAHALE GÜNCELLENDİ ---
-    # NEW_DAY_HOUR_STRESS zaten cat_cols içinde değilse ve kardinalde yakalandıysa kurtaralım
+    # NEW_DAY_HOUR_STRESS zaten cat_cols içinde değilse
     if 'NEW_DAY_HOUR_STRESS' in cat_but_car:
         cat_but_car.remove('NEW_DAY_HOUR_STRESS')
-        if 'NEW_DAY_HOUR_STRESS' not in cat_cols:  # EĞER LİSTEDE YOKSA EKLE (VİRGÜLÜ ÇÖZER)
+        if 'NEW_DAY_HOUR_STRESS' not in cat_cols:  # EĞER LİSTEDE YOKSA EKLE
             cat_cols.append('NEW_DAY_HOUR_STRESS')
 
     # Listeyi son kez temizle (Unique hale getir)
@@ -402,11 +387,6 @@ df_model.info()
 
 
 
-
-# 2. MODEL İÇİN TEMİZLENMİŞ DATAYI CSV OLARAK KAYDETME
-# Neden? Çünkü modelleme aşamasında binlerce kez 'is_late' ile oynayacağız.
-# Bu tertemiz hali elimizde bir 'Snapshot' olarak dursun.
-# --- ADIM 3: Veriyi Mühürle (Snapshot) ---
 model_ready_file = "supply_chain_model_ready_data.csv"
 df_model.to_csv(model_ready_file, index=False, encoding='utf-8-sig')
 
@@ -517,12 +497,8 @@ print(final_df['is_late'].value_counts(normalize=True))
 
 
 ## MACHİNE LEARNING MODEL
-# 1. Mühürlediğimiz ABT dosyasını okuyoruz
 model_df = pd.read_csv("FİNAL_MODEL_DATA_supply_chain_ABT_.csv")
 
-# 2. X ve y Ayrımı (Sektörel Standart)
-# is_late: Hedef değişken (Cevap anahtarı)
-# X: Özellikler (Sorular)
 y = model_df['is_late']
 X = model_df.drop('is_late', axis=1)
 
@@ -600,7 +576,6 @@ import time
 
 
 # 1. GÜÇLENDİRİLMİŞ PARAMETRE SETLERİ (V4 - Ezber Karşıtı & Hassas)
-
 # XGBoost: Overfit'i engellemek için gamma ve subsample dengelendi.
 xgboost_params = {
     "n_estimators": [500, 1000],
@@ -803,7 +778,6 @@ LightGBM     0.874    0.802       0.072
 """
 
 
-# 1. EN UYGUN PARAMETRELER (Lojistik Dürüstlük Odaklı)
 balanced_params = {
     'iterations': 1500,
     'learning_rate': 0.03,
@@ -893,8 +867,6 @@ Precision           0.644         0.621       0.023
 """
 
 
-# 1. EN İYİ VE DENGELİ PARAMETRE SETİ (V5 - THE CHAMPION)
-# Hem V4'teki yüksek performansı hem de dürüstlüğü birleştiriyoruz.
 final_optimized_params = {
     'iterations': 1000,
     'learning_rate': 0.05,
@@ -939,7 +911,6 @@ Precision           0.881         0.804       0.077
 #NOT: "V12 parametreleri verideki karmaşıklığı çözmek için en optimal noktadaydı. Ben bu başarının üzerine Isotonic Regression ekleyerek modelin olasılık çıktılarını
 # (raw probabilities) gerçek lojistik hata oranlarıyla hizaladım. Ardından iş biriminin ihtiyacı olan %75'lik Precision (isabet) değerini garanti altına alacak dinamik
 # eşiği belirledim."  DENEDIM AMA MAASEF BU sonuctan bıle kotı sonuc verDİ. BİR SONRAKİ MODELİM SONUCTUR...
-
 """from sklearn.calibration import CalibratedClassifierCV
 import numpy as np
 
@@ -1352,61 +1323,17 @@ Lojistik Bilgileri: -- Gönderim tipi cıkardık datadan(ezber)-- , depo konumu 
 Müşteri Bilgileri: Müşterinin toplam alışveriş tutarı, sisteme kayıt tarihi.
 """
 """
-3. Arayüz ve API Yapısı (Streamlit, Flask veya FastAPI)
-Bu işin en profesyonel yolu bir API yazmaktır.
-Backend (Sunucu): Python'da FastAPI veya Flask kullanarak bir sunucu kurarız. Modelin (.pkl veya .cat formatında kaydedilmiş hali) burada bekler.
-API Endpoint: Bir URL oluştururuz (Örn: api.ibrahim-lojistik.com/predict).
-Arayüz (Frontend): Streamlit (veri bilimciler için en kolayı) veya React ile basit bir form hazırlarız.
-4. Örnek Bir Senaryo: "Gecikme Tahmin Paneli"
-Yönetici paneli açar ve şu formu doldurur:
-Ürün: Akıllı Telefon
-Varış Şehri: Bartın
-Sipariş Tarihi: Cuma, Saat 18:00
-"Tahmin Et" butonuna bastığı an:
-Veriler API'ye gider.
-Python kodu mesafeyi, saatin stres puanını ve öncelik derecesini hesaplar.
-CatBoost modeli bu 5 değişkene bakar ve saniyenin onda birinde cevap döner: "%85 İhtimalle Gecikecek!"
-Ekranda kırmızı bir uyarı yanar: "Operasyonel Risk! Bu siparişi hızlandırın."
-"""
-"""
 SHAP (SHapley Additive exPlanations) ise şunu söyler: "Bu spesifik sipariş (Sipariş No: 12345) neden gecikiyor? Çünkü mesafesi 500 km (gecikmeye +%20 etki etti) ama gönderim tipi First Class (gecikmeye +%40 etki etti)."
 Yani SHAP, her bir sipariş için özel bir "suçlu listesi" çıkarır.
-💻 Arayüzde (Arayüz Paneli) SHAP Nasıl Görünür?
-Bir yönetici arayüze girdiğinde sadece "Gecikecek" uyarısını görmez. SHAP sayesinde şunu görür:
-Tahmin: Gecikme Riski %85 (Kırmızı Alarm)
-Nedenleri (SHAP Katkısı):
-🔴 Shipping Priority: +35% (Sipariş First Class olduğu için risk çok yüksek)
-🔴 Order Hour: +15% (Sipariş akşam saatinde verildiği için depo yoğun)
-🟢 City Load: -5% (Bartın deposu şu an boş olduğu için risk biraz azaldı)
-Yöneticiye Faydası: Yönetici sadece sorunu görmez, çözümü de görür. "Demek ki akşam saatinde First Class sipariş alırsak Bartın'dan bile olsa yetişmiyor, o zaman kargo firmasını erkenden çağıralım" der.
-
-🚀 Yol Planımız (Gelecek İçin Not)
-Sen yol planını attığında şunları yapacağız:
-Global SHAP: Modelin tüm verilerde neyi, ne kadar dikkate aldığının görsel haritası.
-Local SHAP: Tek bir siparişin röntgenini çekme.
-Arayüz Entegrasyonu: Streamlit veya benzeri bir araçla, kutucukları doldurduğun anda yan tarafta SHAP çubuklarının (kırmızı ve mavi) oynadığı o havalı paneli tasarlayacağız.
-Senin o atacağın metni ve planı bekliyorum. Bu SHAP işi seni sıradan bir öğrenciden, "Explainable AI" (Açıklanabilir Yapay Zeka) bilen bir uzmana dönüştürecek.
-Şu an için her şey net mi? Arayüzde bu "neden-sonuç" ilişkisini göstermek senin için heyecan verici mi?
 """
 """
 "Feature Engineering: Operasyonel darboğazları temsil eden 'zeka değişkenleri' ürettim ama modele ezber yaptıracak (Data Leakage) değişkenleri eledim."
 "Hyperparameter Tuning: CatBoost'un en dengeli öğreneceği 'Şampiyon Parametreleri' (Figure 3) kullandım."
 "Threshold Optimization: Klasik %50 eşiği yerine, lojistik riskleri en doğru yakalayan (F1-Optimized) eşik değerini belirleyerek modelimi mühürledim."
 """
-"""
-🧠 Bu Veriyle Derin Öğrenme (Deep Learning) ile Stok Tahmini Yapılır mı?
-Kısa cevap: Kesinlikle EVET. Ama küçük bir "perspektif" değişikliğiyle.
-Şu an biz "Bu kargo gecikecek mi?" diye bakıyoruz. Stok tahmini için veriye şu gözle bakmalıyız:
-Talep Tahmini (Demand Forecasting): Elinde order_date_dateorders, category_name, order_item_quantity ve sales var. Derin Öğrenme (özellikle LSTM veya GRU gibi zaman serisi modelleri) kullanarak; "Gelecek hafta hangi kategoriden kaç tane satılacak?" sorusuna yanıt bulabilirsin.
-Safety Stock (Güvenlik Stoğu) Analizi: Gecikme tahminlerin (is_late) ile stok verilerini birleştirirsen; "Hangi ürünler hep geç geliyor, o yüzden depoda bunlardan daha fazla tutmalıyım?" stratejisini kurabilirsin.
-Hangi Mimari? Klasik yapay sinir ağları (ANN) yerine, geçmiş satış trendlerini unutmayan RNN (Recurrent Neural Networks) bu veri seti için biçilmiş kaftan olur.
-"""
 
 
-#Shazp analizi
-
-
-
+                                #Shazp analizi
 import matplotlib.pyplot as plt
 import shap
 # 1. MODELİ VE ÖRNEKLEMİ HAZIRLA
@@ -1448,7 +1375,7 @@ plt.show()
 
 
 # --- 🔍 GÖRSEL 2: TEKİL KARGO "NEDEN" ANALİZİ (Bar Plot) ---
-# Mülakatta: "Bakın bu kargo gecikmiş, sebebi de şunlar..." demek için en net grafik.
+# "Bakın bu kargo gecikmiş, sebebi de şunlar..." 
 # Gerçekten geciken (is_late=1) bir kargo seçelim
 geciken_indices = np.where(y_test.loc[X_sample.index] == 1)[0]
 if len(geciken_indices) > 0:
@@ -1463,7 +1390,6 @@ else:
     print("Örneklemde geciken kargo bulunamadı, farklı random_state deneyin.")
 
 #Çıktı ları yanı grafşkleri metne donusturelim
-
 
 def get_shap_explanation(shap_values_single, feature_names):
     # En yüksek pozitif (gecikmeyi tetikleyen) 3 sebebi bul
@@ -1481,12 +1407,6 @@ def get_shap_explanation(shap_values_single, feature_names):
 # Örnek Kullanım:
 # reasons = get_shap_explanation(shap_values[0], X_test.columns)
 # print(reasons)
-
-
-"""
-API ve Arayüz Kodlaması: O attığın örnekteki gibi; sol tarafa verileri girdiğimiz, sağ tarafta ise hem bu SHAP sonuçlarının (metin olarak) hem de sonucun çıktığı FastAPI/Streamlit kodunu hazırlayalım mı?
-Söyle bakalım, artık "Görsel Ürün" aşamasına (Kodlama) geçelim mi? 🚀🏆🥇
-"""
 
 
 def get_akilli_lojistik_yorum(shap_values_single, feature_names, top_n=3):
@@ -1640,15 +1560,6 @@ else:
 # 2. SHAP Explainer'ı Kaydet
 joblib.dump(explainer, "shap_explainer.pkl")
 
-# 3. Hazırladığımız Sektörel Sözlüğü (sozluk) bir JSON olarak kaydetmek çok profesyonel olur
-# ama şimdilik fonksiyonu bir kenara not etmen de yeterli.
-
-
-
-
-# 1. SHAP Explainer'ı Kaydet (Daha sonra hesaplama yapmadan direkt kullanmak için)
-joblib.dump(explainer, "shap_explainer.pkl")
-
 # 2. Fonksiyonun içindeki o dev sözlüğü bir değişkene alıp JSON olarak kaydedelim
 lojistik_sozluk = {
     'order_region': "Bölgesel lojistik koridoru ve gümrük süreçleri",
@@ -1685,7 +1596,7 @@ lojistik_sozluk = {
     'NEW_OFF_HOURS_ORDER': "Mesai dışı siparişlerin depo yükü üzerindeki etkisi"
 }
 
-# Sözlüğü UTF-8 desteğiyle JSON olarak mühürle
+# Sözlüğü UTF-8 desteğiyle JSON olarak
 with open('lojistik_sozluk.json', 'w', encoding='utf-8') as f:
     json.dump(lojistik_sozluk, f, ensure_ascii=False, indent=4)
 
