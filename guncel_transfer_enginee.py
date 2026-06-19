@@ -24,12 +24,13 @@ df.columns = [col.lower().replace(' ', '_').replace('(', '').replace(')', '').re
 import os
 
 # GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
+# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD", "Gs.20021905"),
-    "port": "5432"
+    "password": os.getenv("DB_PASSWORD"),  # 🎯 BAK BURADAKİ ŞİFREYİ TAMAMEN SİLDİK, SADECE DEĞİŞKEN KALDI!
+    "port": os.getenv("DB_PORT", "5432")
 }
 
 print(f"Veri '{db_params['database']}' veritabanına UTF-8 formatında akıtılıyor...")
