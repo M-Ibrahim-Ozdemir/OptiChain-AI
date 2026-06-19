@@ -2,10 +2,10 @@
 ((4 FARKLI CALISMA ELE ALDIM NİHAİ SONUCU İNCELEYİNİZ...))
 
 1: Problem Tanımı (Analiz Konumuz):
-"First Class (Hızlı Kargo) kullananlar ile Standard Class kullananların kâr marjları (profit_margin) veya gecikme oranları
+First Class (Hızlı Kargo) kullananlar ile Standard Class kullananların kâr marjları (profit_margin) veya gecikme oranları
 arasında istatistiksel olarak anlamlı bir fark var mıdır?"
-Neden bu? Şirket yönetimi "First Class daha pahalı ama gerçekten değiyor mu?"
- iye soruyor. Biz de onlara bilimsel kanıt sunacağız."""
+Neden bu? Şirket yönetimi "First Class daha pahalı ama gerçekten değiyor mu?
+"""
 
 
 import pandas as pd
@@ -16,13 +16,12 @@ from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu
 # 1. TÜM MASTER DATAYI ÇEKELİM
 import os
 
-# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
-# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
+# GİZLİLİK PROTOKOLÜ:
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD"),  # 🎯 BAK BURADAKİ ŞİFREYİ TAMAMEN SİLDİK, SADECE DEĞİŞKEN KALDI!
+    "password": os.getenv("DB_PASSWORD"),  
     "port": os.getenv("DB_PORT", "5432")
 }
 
@@ -57,7 +56,7 @@ summary = df_final.groupby("shipping_mode")["profit_margin"].agg(["mean", "media
 print(summary)
 
 
-"""Sonuçları incelededim: Röntgen Analizi:
+"""Sonuçları incelededim:
 Tabloya baktığımızda çok ilginç bir durum var:
 First Class: 0.1137 kâr ortalamasıyla en tepede.
 Same Day: 0.1061 ile en düşükte kalmış.
@@ -75,7 +74,7 @@ print("="*40)
 # histogram ve merkezi limit teoremi mantığına bakılır ama biz yine de örneklem üzerinden test edelim.
 from scipy.stats import shapiro
 
-# Her gruptan rastgele 3000 örnek alarak test edelim (Shapiro 5000 satırdan fazlasını sevmez)
+# Her gruptan rastgele 3000 örnek alarak test edelim
 for mode in df_final['shipping_mode'].unique():
     sample = df_final[df_final['shipping_mode'] == mode]['profit_margin'].sample(3000, random_state=42)
     stat, p = shapiro(sample)
@@ -189,7 +188,7 @@ bir darboğazda olduğunu ve acilen süreç iyileştirmesi gerektiğini bilimsel
 
 
 
-#adem "hız" konusunda bir sorun bulduk,"Süre (Gün)" boyutuna bakalım.
+# "hız" konusunda bir sorun bulduk,"Süre (Gün)" boyutuna bakalım.
 #Bu sefer tekrar başa dönüyoruz, çünkü "Gün" verisi (1 gün, 3 gün, 5 gün) sayısal bir veridir.
 
 #Problem 3: Teslimat Süreleri (Days for shipping real)
