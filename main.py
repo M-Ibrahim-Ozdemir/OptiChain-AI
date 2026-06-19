@@ -8,6 +8,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import psycopg2
 from sklearn.preprocessing import RobustScaler
+import os
 
 app = FastAPI(
     title="OptiChain AI - Enterprise S&OP Risk & Dynamic Forecasting API",
@@ -15,9 +16,11 @@ app = FastAPI(
 )
 
 # ==========================================================================
-# 🔌 POSTGRESQL CANLI BAĞLANTI KONFİGÜRASYONU
+# 🔌 GİZLİLİK PROTOKOLÜ: CANLI POSTGRESQL BAĞLANTI ENTEGRASYONU
 # ==========================================================================
-DB_URL = "postgresql://postgres.shshkfpljkixedfzclfc:Gs.20021905.X!@aws-1-eu-central-1.pooler.supabase.com:5432/postgres"
+# Canlı veritabanı bağlantı linki sızıntıları önlemek adına çevre değişkenlerinden okunur.
+DEFAULT_DB = "postgresql://postgres:Gs.20021905@localhost:5432/supply_chain_db"
+DB_URL = os.getenv("DATABASE_URL", DEFAULT_DB)
 MASTER_TABLE = "supply_chain_analytics_master"
 
 # ==========================================================================
@@ -239,7 +242,7 @@ def predict_supply_chain_risk(request: OrderRiskRequest):
 
 
 # ==========================================================================
-# 📈 5. ADIM: HAFİFLETİLMİŞ VE KESİNTİSİZ FORECAST SİMÜLASYON MOTORU
+# 📈 5. ADIM: FORECAST SİMÜLASYON MOTORU
 # ==========================================================================
 @app.post("/api/v1/predict-lstm-forecast")
 def predict_lstm_forecast(request: LSTMForecastRequest):
@@ -322,11 +325,11 @@ def predict_lstm_forecast(request: LSTMForecastRequest):
                 base_day_sales = current_anchor
                 is_future = True
 
-            # Zaman Özellikleri (Model gün yapısını tartıyor - TensorFlow'suz kararlı matematik)
+            # Zaman Özellikleri (Model gün yapısını tartıyor)
             day_effect = np.sin(2 * np.pi * sim_date.dayofweek / 7) * (anchor_std * 0.15)
             weekend_factor = 0.90 if sim_date.dayofweek in [5, 6] else 1.05
 
-            # Sunucu dostu akıllı yönlü fark (pred_diff) simülasyonu
+            # Akıllı yönlü fark simülasyonu
             pred_diff = day_effect * weekend_factor
 
             # Makro Gelecek Büyüme Çarpanı (Yıllık %4 kurumsal ivme)
