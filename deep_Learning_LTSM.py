@@ -177,15 +177,15 @@ for col in important_cats_lstm:
 
 """
 Departman Bazlı Devasa Fark (department_name)
-Kritik Gözlem: Technology departmanı 536.13 ortalama satışla diğerlerinin (Örn: Book Shop 31.0) fersah fersah önünde.
+Kritik Gözlem: Technology departmanı 536.13 ortalama satışla diğerlerinin (Örn: Book Shop 31.0) önünde.
 LSTM Stratejisi: Bu değişken model için "altın" değerinde. Modelin teknoloji ürünlerindeki yüksek hacimli trendleri kaçırmaması için bu değişkeni kesinlikle güçlü bir Embedding katmanıyla beslemeliyiz.
 
 2. Bölgesel Getiri Farkları (order_region)
 Gözlem: Northern Europe (215) ve Western Europe (212) en yüksek ortalamaya sahipken, South of USA (194) en düşüklerden biri.
-Lojistik Yorumu: Bölgesel bazda satış hacmi farkları belirgin. LSTM'in "Burası Avrupa, satışlar burada daha yüksek başlar" demesini bekleyeceğiz.
+Lojistik Yorumu: Bölgesel bazda satış hacmi farkları belirgin.
 
 3. "Sinsi" ama Etkisiz Değişkenler (Cleaning List)
-is_international: Ratio %100 görünüyor (Hepsi 1). Eğer verinin tamamı uluslararasıysa, bu değişken model için bir şey ifade etmez, gürültüdür. Bunu eleme listesine alabiliriz.
+is_international: Ratio %100 görünüyor (Hepsi 1). Eğer verinin tamamı uluslararasıysa, bu değişken model için bir şey ifade etmez, gürültüdür.
 order_day_of_week: Günler arasında satış ortalaması (198-204 arası) çok dar bir bantta. Yani haftanın günü tek başına satış miktarını radikal değiştirmiyor. LSTM bunu trend içinde kendi yakalayacaktır.
 
 4. Operasyonel Durumlar (order_status)
@@ -226,12 +226,12 @@ for col in important_nums_lstm:
 
 """
 🚨 1. "Sinsi İkizler" Suçüstü Yakalandı (Sızıntı Tespiti)
-SALES_PER_CUSTOMER ve ORDER_ITEM_TOTAL: Korelasyon 0.9886! * Senior Analizi: Bu iki değişken sales ile neredeyse birebir aynı. Eğer bunları LSTM modeline feature (özellik) olarak verirsek, model hiçbir şey öğrenmez; sadece bu sütunlara bakıp "satış budur" der. Gerçek hayatta gelecek hafta satışın ne olacağını tahmin ederken elinde "o günkü toplam sipariş tutarı" olmayacak.
+SALES_PER_CUSTOMER ve ORDER_ITEM_TOTAL: Korelasyon 0.9886! * Senior Analizi: Bu iki değişken sales ile neredeyse birebir aynı. Eğer bunları LSTM modeline feature (özellik) olarak verirsek, model hiçbir şey öğrenmez;
 Karar: Bu ikisini Feature listesinden kesinlikle siliyoruz.
 
 📈 2. Gerçek Motorlar (Güçlü Feature'lar)
-ORDER_ITEM_PRODUCT_PRICE ve PRODUCT_PRICE: Korelasyon 0.7472. Fiyat bilgisi satış hacmini tahmin etmek için muazzam bir sinyal.
-ORDER_ITEM_DISCOUNT: Korelasyon 0.6002. İndirim miktarı arttıkça satışın (mean) 142'den 300'e fırladığı görülüyor. LSTM bu "kampanya" etkisini çok sevecektir.
+ORDER_ITEM_PRODUCT_PRICE ve PRODUCT_PRICE: Korelasyon 0.7472. Fiyat bilgisi satış hacmini tahmin etmek için bir sinyal.
+ORDER_ITEM_DISCOUNT: Korelasyon 0.6002. İndirim miktarı arttıkça satışın (mean) 142'den 300'e fırladığı görülüyor. LSTM bu "kampanya" etkisi
 
 📉 3. "Gürültü" Yapanlar (Eleme Adayları)
 LATITUDE, LONGITUDE, CUSTOMER_ZIPCODE: Korelasyonlar neredeyse 0. Koordinat verileri ham haliyle regresyon modeline bir şey katmıyor. Bunları makine öğrenmesinde yaptığımız gibi "Bölge" bazlı kategorik verilerle ( zaten order_region var) temsil etmek daha doğru.
@@ -330,10 +330,6 @@ print("Bu liste sızıntıları, ikizleri ve anlamsız ID'leri tam kapsamlı ola
 """
 
 
-
-
-
-
 # 1. Threshold (Eşik) Belirleme Fonksiyonu - Derin Öğrenme Standartları
 def outlier_thresholds(dataframe, col_name, q1=0.05, q3=0.95):
     # Sinir ağları uç değerlere karşı çok hassastır, o yüzden aralığı %5-%95 tutuyoruz.
@@ -416,15 +412,12 @@ print("✅ Değişkenler hazır!")
 """
 """
 sistemin en kritik virajına giriyoruz. Bu devasa veriyi günlük bazda özetleyip, sales değerini sum, feature'ları ise mean (veya max) yaparak Zaman Serisi boyutuna taşıyacağız.
-Dah sonra
+Daha sonra
 """
 
-
 df_cleaned = df.drop(columns=[col for col in final_drop_list if col in df.columns])
-
 print(f"✅ Temizlik Tamamlandı: {len(final_drop_list)} sütun silindi.")
 print(f"📊 Kalan Sütun Sayısı: {df_cleaned.shape[1]}")
-
 
 def grab_cols_for_lstm_final_fixed(dataframe, target="sales", date_col="order_date_dateorders", cat_th=10, car_th=20):
     # 1. Zaman sütunu
@@ -467,7 +460,7 @@ def grab_cols_for_lstm_final_fixed(dataframe, target="sales", date_col="order_da
 # Uygulayalım
 cat_cols, num_cols, cat_but_car, date_cols = grab_cols_for_lstm_final_fixed(df_cleaned)
 """
-Kardinal Değişkenler: category_name, order_country ve order_region şu an Kardinal kutusunda. Bu harika, çünkü Resampling yaparken veriyi bu kırılımlara göre böleceğiz.
+Kardinal Değişkenler: category_name, order_country ve order_region şu an Kardinal kutusunda. Resampling yaparken veriyi bu kırılımlara göre böleceğiz.
 """
 df_cleaned.head(100).T
 
@@ -511,17 +504,14 @@ import numpy as np
 import holidays
 
 # 1. VERİ YÜKLEME VE KRONOLOJİK SIRALAMA
-# -----------------------------------------------------------------------
 df = pd.read_csv("df_cleaned_vFinal_Senior.csv")
 df['order_date_dateorders'] = pd.to_datetime(df['order_date_dateorders'])
 df.sort_values(by='order_date_dateorders', inplace=True)
 
 # 2. KATEGORİK DEĞİŞKENLER & RESAMPLING
-# -----------------------------------------------------------------------
 df_final = pd.get_dummies(df, columns=cat_cols, drop_first=True)
 
 # 1. ÖNCE SADECE SAYISAL SÜTUNLARI SEÇELİM
-# -----------------------------------------------------------------------
 # Metin içeren sütunları (object tipi) dışarıda bırakıyoruz.
 # order_date_dateorders sütununu resample için koruyoruz.
 cols_to_keep = df_final.select_dtypes(include=[np.number]).columns.tolist()
@@ -531,7 +521,6 @@ if 'order_date_dateorders' not in cols_to_keep:
 df_numeric = df_final[cols_to_keep]
 
 # 2. AGGREGATION MAP (GÜVENLİ VERSİYON)
-# -----------------------------------------------------------------------
 agg_map = {}
 for col in df_numeric.columns:
     if col == 'order_date_dateorders':
@@ -544,17 +533,12 @@ for col in df_numeric.columns:
         # Geri kalan sayısal değerlerin (fiyat, kâr vb.) ortalamasını alalım
         agg_map[col] = 'mean'
 
-# 3. RESAMPLING (ARTIK HATA VERMEYECEK)
-# -----------------------------------------------------------------------
+# 3. RESAMPLING ( HATA VERMEYECEK)
 df_daily = df_numeric.resample('D', on='order_date_dateorders').agg(agg_map).fillna(0)
-
 print(f"✅ Hata giderildi! Günlük özetleme başarılı. Boyut: {df_daily.shape}")
 
 
-
-
 # 3. SENIOR TAKVİM ÖZELLİKLERİ
-# -----------------------------------------------------------------------
 # Hafta içi mi (1) Hafta sonu mu (0)? Satış karakteristiği burada gizlidir.
 df_daily['is_weekend'] = df_daily.index.dayofweek.isin([5, 6]).astype(int)
 df_daily['is_payday'] = df_daily.index.day.isin([1, 15, 30]).astype(int)
@@ -570,7 +554,6 @@ us_holidays = holidays.US()
 df_daily['is_holiday'] = pd.Series(df_daily.index).apply(lambda x: 1 if x in us_holidays else 0).values
 
 # 4. GÜÇLÜ HAFIZA ÖZELLİKLERİ (LAG & VOLATILITY)
-# -----------------------------------------------------------------------
 # Sadece satış değil, indirimlerin de gecikmeli etkisini ekliyoruz.
 for lag in [1, 7, 14]:
     df_daily[f'sales_lag_{lag}'] = df_daily['sales'].shift(lag)
@@ -581,7 +564,6 @@ df_daily['sales_rolling_mean_7'] = df_daily['sales'].shift(1).rolling(window=7).
 df_daily['sales_rolling_std_7'] = df_daily['sales'].shift(1).rolling(window=7).std()
 
 # 5. GÜVENLİ ETKİLEŞİM DEĞİŞKENLERİ
-# -----------------------------------------------------------------------
 # Momentum hesabında 0'a bölme hatasını önlemek için clip kullanıyoruz.
 df_daily['sales_momentum_weekly'] = df_daily['sales_lag_1'] / (df_daily['sales_lag_7'].clip(lower=1))
 
@@ -591,7 +573,6 @@ print(f"🚀 Feature Engineering tamamlandı. Yeni Boyut: {df_daily.shape}")
 print(f"🔗 Toplam Feature Sayısı: {len(df_daily.columns)}")
 
 df_daily.head()
-
 
 
 df_daily.columns.tolist()
@@ -726,7 +707,6 @@ print(f"🔹 R² Skoru: {r2_score(y_test_actual, y_final_pred):.4f}")
 
 
 
-
 import random
 import os
 import numpy as np
@@ -821,21 +801,13 @@ import tensorflow as tf
 # 1. Modelin Kayıt Edilmesi (.h5 formatı LSTM için standarttır)
 model.save('final_compact_tank_model.h5')
 print("✅ Model 'final_compact_tank_model.h5' adıyla kaydedildi.")
-
 # 2. X_scaler (Girdi Ölçekleyici) Kayıt
 # Arayüzde yeni bir tarih seçildiğinde veriyi aynı standartta ölçeklemek için lazım.
 joblib.dump(X_scaler, 'X_scaler.pkl')
-
 # 3. y_scaler (Çıktı Ölçekleyici) Kayıt
 # Modelin 0-1 arası sonucunu gerçek satış farkına döndürmek (Inverse) için lazım.
 joblib.dump(y_scaler, 'y_scaler.pkl')
 print("✅ Scaler nesneleri (.pkl) başarıyla kaydedildi.")
-
-"""
-Gerçek Tahminler: y_final_sales_pred artık $0$ ile $1$ arası değil, doğrudan gerçek satış adetleridir.İş Mantığı (Business Logic): 
-Power BI'da bu adetleri, depodaki stok miktarlarıyla karşılaştırıp "⚠️ Kritik Stok" uyarıları oluşturabileceksin.
-Pipeline Hazırlığı: API tarafında kullanıcı sadece bir tarih girecek, sen arka planda bu kaydettiğin .pkl dosyalarıyla veriyi işleyip .h5 modeline vereceksin.
-"""
 
 
 # =======================================================================
@@ -845,7 +817,6 @@ import pandas as pd
 import numpy as np
 
 print("\n⚙️ Power BI Export Pipeline Başlatılıyor...")
-
 # 1. TAHMİNLERİ GERÇEK BİRİME DÖNDÜRME (RECONSTRUCTION)
 # -----------------------------------------------------------------------
 y_pred_diff_scaled = model.predict(X_test_3d, verbose=0)
@@ -903,108 +874,33 @@ print(results_df.head(50))
 """
 
 
-
-
-
-
-
-#alttaki her seyi oku
-"""
-2. Power BI ve Arayüz (API): Bölge Nasıl Olacak?
-Model "Yarın toplamda 10.000 adet satılacak" dediğinde, biz bunu bölge bazlı göstermek için "Dağıtım Katmanı" (Distribution Layer) kullanacağız. Yani modeli tekrar eğitmiyoruz, sadece sonucu paylaştırıyoruz:
-Geçmiş Analiz (SQL): PostgreSQL'den her bölgenin toplam satıştaki payını biliyoruz. (Örn: Batı Avrupa %30, Pasifik Asya %20).
-Matematiksel Dağıtım: Modelin ürettiği 10.000 rakamını, bu yüzdelerle çarpıp Power BI ekranına yansıtacağız.
-Kullanıcı Batı Avrupa'yı seçince: 10.000 x 0.30 = 3.000 adet.
-Sonuç: Kullanıcı bölge bazlı tahmin görüyormuş gibi olur ama arkada çalışan model her zaman en stabil olduğu "Global" seviyede kalır.
-
-🏗️ Şimdi Ne Yapmamız Gerekiyor? (Yol Haritası)
-Senin hiçbir kodu değiştirmen veya modeli yeniden eğitmen gerekmiyor. Yapacağımız işlem şu:
-Power BI'da: PostgreSQL'deki ana tablona bağlanacaksın. Bölge isimlerini oradan çekeceksin.
-Filtreleme: Power BI'daki "Region" dilimleyicisi (Slicer), senin grafiklerini filtreleyecek.
-Hibrid Görünüm:
-Geçmiş: Tamamen PostgreSQL'den gelen gerçek bölge verileri.
-Tahmin: Modelin ürettiği rakamın bölge oranına göre dağıtılmış hali.
-💡 Mülakatta Ne Diyeceksin?
-"Modelimi 'Global Trend' seviyesinde eğiterek yüksek kararlılık (R²: 0.61) sağladım. Bölge bazlı detaylandırmayı ise modelin içinde karmaşıklık yaratmak yerine, İş Zekası (BI) katmanında istatistiksel ağırlıklandırma yöntemiyle çözdüm. Bu sayede modelim her bölge için ayrı ayrı ezber yapmadan, pazarın genel ritmini koruyabiliyor."
-"""
-
-"""
-"Şu anki modelim, operasyonel hızı artırmak adına tüm pazarların toplam satış gücünü tahmin eden bir 'Global Sales Engine' olarak kurgulandı.
- Ancak mimarim tamamen modülerdir. İstenildiği takdirde, SQL'deki order_region bazlı verileri modele bir 'Filter' (Filtre) olarak ekleyebilir ve 
- her bölge için özel (Regional Forecast) sonuçlar üretecek seviyeye getirebilirim."
-"""
-"""
-🏗️ Power BI'da Bunu Nasıl Göstereceğiz?
-Power BI'da tek bir "Tarih" dilimleyicisi (Slicer) koymak yerine, yanına bir de "Bölge" (Region) filtresi koyacağız.
-Sen PostgreSQL'den tüm geçmişi çekeceğin için, kullanıcı "Avustralya"yı seçtiğinde geçmişteki gerçek satışları görecek.
-LSTM tahminimiz şu an genel pazar için olsa da, Power BI'da bunu bölge bazlı oranlarla (örneğin Avustralya toplam satışın %20'sidir diyerek) dağıtabilirsin.
-"""
-"""
-Power BI'da Filtre: Dashboard'un en üstüne "Bölge" ve "Kategori" filtresi koyacağız. Kullanıcı tıkladığında PostgreSQL'den gelen gerçek veriler filtrenecek.
-API'da Oranlama: Arayüzde bölge seçildiğinde, senin modelinin tahminini o bölgenin yüzdesine bölen küçük bir Python fonksiyonu (weighted_forecast) yazacağız.
-Bu sayede mülakatta; "Modelimi en saf ve genel trendi yakalayacak şekilde eğittim; bölge bazlı detaylandırmayı ise yazılımsal bir dağıtım katmanı (Distribution Layer) ile çözdüm" diyerek teknik dehanı göstereceksin.
-"""
-######
-
-
 """
 "Modelimi eğitirken MSE ve MAE metriklerini kullanarak hata paylarını minimize ettim.
 Ancak iş birimlerine sunum yaparken, modelin genel açıklayıcılık gücünü temsil eden $R^2$ skoruna 
 ve operasyonel riskleri gösteren Güven Aralıklarına odaklanmayı tercih ettim."
 """
 """
-Terminal Kapalıyken MAE ve RMSE'yi Nasıl Bileceğiz?
-Senin paylaştığın son tabloda modelin ürettiği hata paylarını zaten görebiliyoruz:
-MAE (Ortalama Hata) Nerede?: Tablondaki Gercek_Satis ile Tahmin_Edilen_Satis arasındaki farkların ortalaması senin MAE değerindir. Örneğin, ilk satırda fark yaklaşık 3.859 birim. Tüm satırlardaki bu farkların ortalaması senin MAE skorunu verir.
+MAE (Ortalama Hata): Tablondaki Gercek_Satis ile Tahmin_Edilen_Satis arasındaki farkların ortalaması senin MAE değeridir. Örneğin, ilk satırda fark yaklaşık 3.859 birim. Tüm satırlardaki bu farkların ortalaması senin MAE skorunu verir.
 RMSE ve Standart Sapma: Kodda hesapladığımız prediction_std değeri (Standart Sapma), aslında RMSE ile çok yakındır. Tablondaki Alt_Limit ve Ust_Limit arasındaki mesafe, modelin ne kadar "kararsız" veya "hata payına sahip" olduğunu gösteren RMSE'nin bir yansımasıdır.
 
 2. "Hata Koridoru" Grafiği Nedir ve Nasıl Görünecek?
-Power BI'da çizeceğimiz bu grafik, mülakatçılara "Ben sadece tahmin yapmadım, riskleri de hesapladım" demeni sağlayacak. Grafiğin yapısı şöyle olacak:
-Orta Çizgi (Tahmin): Senin Tahmin_Edilen_Satis değerlerin. Modelin "beklentisini" gösterir.
-Gölge Alan (Hata Koridoru): Alt_Limit ve Ust_Limit arasında kalan boyalı alan. İşte bu alan senin MAE ve RMSE değerlerinin görselleşmiş halidir.
+Orta Çizgi (Tahmin): Tahmin_Edilen_Satis değerlerin. Modelin "beklentisini" gösterir.
+Gölge Alan (Hata Koridoru): Alt_Limit ve Ust_Limit arasında kalan boyalı alan. MAE ve RMSE değerlerinin görselleşmiş halidir.
 Eğer bu gölge alan çok genişse: "Modelin hata payı (RMSE) yüksek, belirsizlik fazla" demektir.
 Eğer bu alan darsa: "Model kendine çok güveniyor, hata payı düşük" demektir.
 Noktalar (Gerçek Satış): Gercek_Satis değerlerini bu gölge alanın üzerine noktalar olarak koyacağız.
-Başarı Kriteri: Eğer gerçek noktalar o "gölge alanın" (koridorun) içinde kalıyorsa, mülakatta "Gördüğünüz gibi, modelim %95 güven aralığında (1.96 z-score) yanılmadı, gerçek satışlar belirlediğim hata koridoru içinde gerçekleşti" diyebileceksin.
+Başarı Kriteri: Eğer gerçek noktalar o "gölge alanın" (koridorun) içinde kalıyorsa, modelim %95 güven aralığında (1.96 z-score) yanılmadı, gerçek satışlar belirlediğim hata koridoru içinde gerçekleşti" diyebilecez.
 """
-
 """
 Dürüst Tahminleme: "Modelim sadece sayı üretmiyor; gerçek satış trendlerini (0-5. satırlardaki düşüş gibi) anlık olarak takip edebiliyor."
 Güven Aralığı Yönetimi: "Alt_Limit ve Ust_Limit sütunlarıyla, kararlarımızı sadece tek bir noktaya değil, %95 güven aralığına (1.96 z-score) dayandırdım."
 Karar Destek Sistemi: "Dinamik eşik hesaplamasıyla (Mean + 0.5 Std), manuel müdahale gerektirmeden operasyonel riskleri (Stok_Durumu) otomatik olarak tespit eden bir boru hattı kurdum."
 """
 """
-Power BI'da Bu Veriyle Ne Şov Yapacağız?
-Bu tabloyu Power BI'a attığım anda şunları yapacağım:
-Area Chart: Alt_Limit ve Ust_Limit sütunlarını kullanarak bir "Gölge Alan" (Confidence Band) oluşturup, ortasından Tahmin_Edilen_Satis çizgisini geçireceğim.
-Alert Dashboard: Stok_Durumu sütununu bir "KPI Card"a bağlayıp, ekranda kırmızı yanan dev bir "ACİL SİPARİŞ GEREKLİ" uyarısı çıkaracağım.
-"""
-"""
-Bu senin "Güven Aralığın". Mülakatta şunu demelisin: "Ben sadece bir nokta tahmini yapmıyorum, modelimin yanılma payını da hesaplıyorum."
-Anlamı: "Yarın %95 ihtimalle satışlar Alt_Limit ile Ust_Limit arasında kalacak" diyorsun.
-Grafik çizdiğinde, gerçek satışların bu iki çizginin arasında kalması, modelinin dürüst ve başarılı olduğunu kanıtlar.
-"""
-"""
 Model geleceği tahmin ediyor (Forecasting).
 İstatistiksel sınırları kontrol ediyor (Monitoring).
 Risk varsa haber veriyor (Alerting).
 """
-"""
-
-
-#yapilcaklar
-2. Performance_Metric() ve Loglama
-Bu fonksiyon, modelin zaman içindeki başarısını takip etmek içindir.
-Mülakat Cevabı: "Modeli canlıya aldığımda (Deployment), her gün gerçekleşen gerçek satışları kaydedip modelin o günkü hatasını (MAE/MAPE) bir log dosyasına yazan bir 'Model Monitoring' (Model İzleme) sistemi kurguladım." diyebilirsin.
-Power BI Bağlantısı: Power BI'da bir sayfayı sadece "Model Performansı"na ayırıp, zamanla bu hatanın azalıp azalmadığını gösterebiliriz.
-
-3. Feature Impact Dashboard (Özellik Etki Paneli)
-Notlarındaki en değerli kısım burası. Sadece "kaç satacağız?" sorusuna değil, "neden bu kadar satacağız?" sorusuna cevap veririz:
-NEW_MARKET_SALES_POWER: Pazarın genel gücü.
-NEW_PROFIT_EFFICIENCY: Kâr verimliliği.
-Görselleştirme: Power BI'da bir Scatter Chart (Saçılım Grafiği) oluşturup, bir eksene pazar gücünü, diğerine satışları koyduğumuzda aradaki o güçlü bağı (korelasyonu) kanıtlamış olursun. Bu, mülakatta senin sadece derin öğrenme değil, ciddi bir İş Analitiği yaptığını gösterir.
-"""
-
 
                     ####Çıktılar####
 """
@@ -1012,9 +908,7 @@ Kaydedilmiş Model: final_compact_tank_model.h5
 Ölçekleyiciler: X_scaler.pkl ve y_scaler.pkl
 Power BI Verisi: PowerBI_Forecast_Data.csv
 """
-
-
-#hem 1100 satır olması, 14 gubkık penerece maselef ecmısı ezberliyor 3 encere yaptık saf
+#hem 1100 satır olması, 14 gubkık penerece maselef gecmısı ezberliyor 3 pencere yaptık saf
 """
 Neyi ve Ne Kadar Süreyi Tahmin Ediyoruz?
 Neyi: Biz "Satış Farkını" (sales_diff) tahmin ediyoruz. Sonra bu farkı dünkü gerçek satışa ekleyerek (Reconstruction) nihai satış rakamına ulaşıyoruz. Bu yöntem, doğrudan satış tahminlemekten çok daha profesyonel ve dürüst sonuç verir.
@@ -1026,45 +920,9 @@ işletmenin mevcut stok seviyeleriyle kıyaslayan bir algoritma yazdım. Eğer t
 sistem otomatik olarak 'Yetersiz Stok Riski' uyarısı verir. Böylece veri mühendisliği süreçlerini doğrudan ticari bir kâr mekanizmasına dönüştürmüş oldum."
 """
 """
-Site arayüzü (Streamlit vb.) aşamasında kullanıcıya karmaşık girdiler sormayacaksın. Kullanıcı sadece bir tarih seçecek; senin yazdığın Feature Engineering kodun
+Site arayüzü (Streamlit vb.) aşamasında kullanıcıya karmaşık girdiler değil Kullanıcı sadece bir tarih seçecek;
 arka planda o günün hafta sonu mu, tatil mi olduğunu ve son 7 günlük ortalamasını SQL'den çekerek otomatik olarak modele verecek.
 """
-"""
-1. Tahmin Paneli (Ana Çıktı)
-Kullanıcı bir tarih aralığı seçtiğinde modelin "Reconstruction" (Yeniden İnşa) adımını kullanarak ürettiği gerçek satış rakamlarını görecek:
-Net Satış Tahmini: "Seçilen tarih için beklenen satış: 1,250 Adet."
-Trend Analizi: "Önceki güne göre %5 artış bekleniyor."
-Güven Aralığı: "Tahmin Aralığı: 1,150 - 1,350 (Modelin %95 güven oranıyla)."
-
-2. Akıllı Stok ve Tedarik Uyarıları (Business Logic)
-Mülakatta en çok puan toplayacağın kısım burasıdır. Sadece rakam değil, karar desteği sunacaksın
-Stok Durumu: Sistem depodaki mevcut stok verisini (örneğin SQL'den) çeker ve tahminle kıyaslar.
-Kritik Uyarı: Eğer tahmin edilen 30 günlük toplam satış stoktan fazlaysa: "⚠️ DİKKAT: Mevcut stok, beklenen talebi karşılamıyor. 450 adet yeni sipariş oluşturulmalı."
-Lojistik Planlama: "Yoğunluk Tahmini: Hafta sonu ve maaş günü birleşimi nedeniyle kargo çıkışlarında %20 gecikme riski."
-
-
-
-2. Model ve Scaler Nesnelerini Saklama (Pickle/Joblib)
-Arayüzü (API/Streamlit) kurarken modeli her seferinde yeniden eğitemezsin. Şu anki en iyi modelini ve veriyi ölçeklendirdiğin scaler nesnelerini diske kaydetmen şart:
-Model Save: model.save('final_compact_tank_model.h5')
-Scaler Save: X_scaler ve y_scaler nesnelerini pickle veya joblib ile kaydet. Arayüzde yeni bir tarih seçildiğinde, sistemin o veriyi eğitildiği gibi ölçeklendirmesi (transform) gerekir.
-
-3. Business Logic (İş Mantığı) Fonksiyonları
-Power BI'da analiz yaparken veya arayüzde çıktı verirken sadece rakam göstermemek için şu Python fonksiyonlarını şimdiden hazırla:
-Stock_Alert_Level(): Mevcut_Stok - Tahmin_Edilen_Satis sonucuna göre "Kritik", "Normal" veya "Fazla Stok" etiketi dönen bir fonksiyon.
-Performance_Metric(): Her gün gerçek satış geldikçe modelin hata payını (MAPE/MAE) hesaplayıp bir log dosyasına yazan bir sistem.
-
-Doğru Mantık: Bizim yazdığımız dinamik eşik (Mean + 0.5 Std), pazarın sıra dışı, ekstrem talep patlamalarını yakalamak için var. Ocak 2018 tahminlerinde veri seti sakin ve stabil gittiği için sistem haklı olarak "Her şey yolunda, NORMAL" diyor.
-Geliştirme Vizyonu: Mülakatta jüriye; "Bu yapı şu an istatistiksel sınırları izliyor (Monitoring). API aşamasında bu fonksiyonu depodaki anlık stok verisiyle bağlayacağız; böylece tahmin edilen satış anlık stoku geçtiği an sistem otomatik olarak ⚠️ KRİTİK STOK / ACİL SİPARİŞ uyarısı fırlatacak" diyeceksin. Tam bir karar destek sistemi!
-"""
-"""
-4. Feature Impact (Özellik Etki Paneli) ve Model İzleme (Monitoring)
-NEW_MARKET_SALES_POWER ve Scatter Chart: Power BI'da bir eksene pazar gücünü, diğerine gerçek satışları koyarak modelin arkada hangi güçlü doğrusal bağları kullanarak akıllandığını jüriye görsel olarak kanıtlayacağız.
-NEW_PROFIT_EFFICIENCY Zekası: Bu kâr metriğini sızıntı olmasın diye modelin içine KAYDETMEDİK, bilerek dışarıda bıraktık. Ama Power BI'da satış tahminleriyle yan yana koyup, "Yüksek satış beklediğimiz günler gerçekten kârlı mı? Ticari olarak buna değer mi?" sorusunu analiz ettik. Bu senin İş Zekası (BI) uzmanı kimliğindir!
-Performance_Metric() ve Loglama: Canlıya alınan her model zamanla eskir (Data Drift). Her günün hatasını (MAE/MAPE) bir log dosyasına yazan izleme sistemini tasarlaman, projeyi production seviyesine çıkartan son mühürdür.
-"""
-
-
 
 
 
