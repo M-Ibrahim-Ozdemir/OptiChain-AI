@@ -7,7 +7,7 @@ import datetime
 import os
 
 # ==========================================================================
-# 💎 1. ADIM: SAYFA GLOBAL AYARLARI & OPTICHAIN AI MARKALAMA
+# 💎 1. ADIM: SAYFA GLOBAL AYARLARI & OPTICHAIN AI
 # ==========================================================================
 st.set_page_config(
     page_title="OptiChain AI - Risk & S&OP Yönetim Paneli",
@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 🎨 UX/UI PREMIUM RECOV: Geliştirilmiş Kurumsal CSS ve Hizalama Katmanı
+# 🎨 UX/UI 
 st.markdown("""
     <style>
     .stApp {
