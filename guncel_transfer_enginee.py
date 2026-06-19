@@ -17,14 +17,12 @@ pd.set_option('display.width', 100000)
 print("Temizlenmiş veri okunuyor...")
 df = pd.read_csv('DataCo_Cleaned_Final.csv')
 
-# 2. Sütun isimlerini SQL uyumlu yap
+# 2. Sütun isimlerini SQL uyumlu 
 df.columns = [col.lower().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_') for col in df.columns]
 
 # 3. SQL Bağlantı Bilgileri
 import os
 
-# GİZLİLİK PROTOKOLÜ: Şifreler kodun içinde değil, sistem çevre değişkenlerinden güvenle okunur.
-# 🔒 %100 KORUMALI MUTLAK GİZLİLİK MODU
 db_params = {
     "host": os.getenv("DB_HOST", "localhost"),
     "database": os.getenv("DB_NAME", "supply_chain_db"),
@@ -45,7 +43,7 @@ try:
 
     # --- KRİTİK NOKTA 2: Bellek tamponunu UTF-8 olarak oluştur ---
     output = StringIO()
-    # index=False önemli, veriyi sekmeyle ayırıyoruz (tab-separated)
+    # index=False, veriyi sekmeyle ayırıyoruz (tab-separated)
     df.to_csv(output, sep='\t', header=False, index=False, encoding='utf-8')
     output.seek(0)
 
