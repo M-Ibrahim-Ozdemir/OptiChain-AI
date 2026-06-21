@@ -26,10 +26,10 @@ MASTER_TABLE = "supply_chain_analytics_master"
 # ==========================================================================
 # 🛠️ 1. ADIM: YAPAY ZEKA MOTORLARININ BELLEĞE KİLİTLENMESİ
 # ==========================================================================
-CATBOOST_MODEL_PATH = "logistics_v12_model.cbm"
-METADATA_PATH = "model_metadata.pkl"
-SOZLUK_PATH = "lojistik_sozluk.json"
-Y_SCALER_PATH = "y_scaler.pkl"
+CATBOOST_MODEL_PATH = "2-Data_Science_&_ML_Engineering/logistics_v12_model.cbm"
+METADATA_PATH = "2-Data_Science_&_ML_Engineering/model_metadata.pkl"
+SOZLUK_PATH = "2-Data_Science_&_ML_Engineering/lojistik_sozluk.json"
+Y_SCALER_PATH = "2-Data_Science_&_ML_Engineering/y_scaler.pkl"
 
 try:
     # CatBoost Risk Motoru
@@ -38,7 +38,7 @@ try:
     metadata = joblib.load(METADATA_PATH)
     CHAMP_THRESHOLD = metadata["threshold"]
     MODEL_FEATURES = metadata["features"]
-    explainer = joblib.load("shap_explainer.pkl")
+    explainer = joblib.load("2-Data_Science_&_ML_Engineering/shap_explainer.pkl")
     with open(SOZLUK_PATH, "r", encoding="utf-8") as f:
         lojistik_sozluk = json.load(f)
 
