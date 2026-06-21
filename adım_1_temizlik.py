@@ -317,7 +317,7 @@ plt.show()
 
 
 
-      """Sayısal Yorumlar
+"""Sayısal Yorumlar
 SQL'e geçmeden önce bilinmesi gereken Kritik Bulgular:
 1. Kârlılık Analizi (Benefit per order & Order Profit Per Order)
 Durum: Ortalama kâr yaklaşık 22$, ancak standart sapma 92$ (Çok yüksek!).
