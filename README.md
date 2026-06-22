@@ -28,10 +28,10 @@
   veri tabanındaki lojistik ve finansal mantık hataları ise makine öğrenmesi modellerinin yanlış öğrenmesine 
   (<b>Garbage In, Garbage Out</b>) yol açmaktadır.
   <br><br>
-  <b>OptiChain AI v2.0</b>; ham lojistik, finans, CRM ve operasyonel veri setlerini <b>uçtan uca</b> işleyerek 
-  operasyon yöneticilerinin ve C-Level karar vericilerin günlük stratejik kararlarını optimize eden, 
+  <b>OptiChain AI v2.0</b>; ham tedarik zinciri - lojistik veri setini, <b>uçtan uca</b> işleyerek detaylı analizler, tespitler ve
+  operasyon yöneticilerinin ve C-Level karar vericilerin günlük stratejik kararlarını optimize eden, gecikme riskini tespit eden ve
   yapay zeka tabanlı küresel bir <b>S&OP (Satış ve Operasyon Planlama) Karar Destek Sistemidir</b>. 
-  Bu ekosistem; Python ile çok aşamalı veri temizliğinden ileri düzey müşteri analitiğine (<b>RFM, K-Means, CLTV</b>), 
+  Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden ileri düzey analizler, EDA, tespitler, AB testleri ,müşteri analitiğine (<b>RFM, K-Means, CLTV</b>, gamma), power BI da detaylıca analız raporlama sonuçları,
   PostgreSQL mimarisindeki kurumsal veri kalitesi kalkanlarından (<b>Data Quality Validation Views</b>) 
   açıklanabilir yapay zeka (<b>XAI</b>) ve derin öğrenme simülasyonlarına kadar geniş bir yelpazeyi 
   iş zekası (<b>Power BI</b>) vizyonuyla birleştirmektedir.
