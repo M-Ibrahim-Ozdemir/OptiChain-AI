@@ -270,31 +270,6 @@
   <b>🌐 Uçtan Uca Canlı Üretim Mimarisi (Production Architecture):</b><br>
   Projenin son safhasında, geliştirilen tüm analitik zeka ve tahmine dayalı yapay zeka modelleri bulut mimarisi üzerinde canlıya (Production) alınmıştır. Arka plan veri motoru olarak <b>FastAPI</b> kullanılmış, tüm veri akışı buluttaki <b>PostgreSQL</b> veritabanına bağlanmıştır. API katmanı <b>Render Cloud</b> platformu üzerinde Dockerized mantıkla ayağa kaldırılırken; kullanıcı dostu, proaktif karar destek arayüzü <b>Streamlit</b> ile asenkron olarak kodlanmış ve <b>Streamlit Share Cloud</b> üzerinde küresel erişime açılmıştır. Sistem, yöneticilerden karmaşık parametreler istemeden, arka plandaki dinamik boru hatlarını (Pipelines) tetikleyerek gerçek zamanlı karar destek sinyalleri üretmektedir.
 </p>
-
-<br>
-
-<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
-  <tr>
-    <td style="padding: 10px;">
-      <p><b>App Screen 1: Canlı Yapay Zeka Risk & SHAP Teşhis Arayüzü</b></p>
-      <img src="4-Web_Interface_(Streamlit_Frontend)/app_predict_risk_shap.png" alt="Streamlit Predict Risk and SHAP Interface" width="415" style="border-radius: 6px; border: 1px solid #f0a500;"/>
-    </td>
-    <td style="padding: 10px;">
-      <p><b>App Screen 2: Canlı LSTM Proaktif Talep & Ambar Stok Simülasyonu</b></p>
-      <img src="4-Web_Interface_(Streamlit_Frontend)/app_lstm_demand_simulation.png" alt="Streamlit LSTM Demand and Stock Simulation Interface" width="415" style="border-radius: 6px; border: 1px solid #00d2d3;"/>
-    </td>
-  </tr>
-</table>
-
-<br>
-
-<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>🛡️  <b>App Screen 1 - Canlı Yapay Zeka Risk & SHAP Teşhis Arayüzü:</b> Sipariş henüz depodan çıkmadan lojistik girdiler ve CRM geçmişi set edilerek FastAPI boru hattı tetiklenmektedir. Canlı istek sonucunda <b>CatBoost V12 motoru %54.06 cerrahi risk eşiğini (Threshold)</b> denetleyerek Gauge grafik üzerinde anlık gecikme olasılığını hesaplar. Eşzamanlı olarak çalışan <i>TreeExplainer</i> motoru, siparişe özel <b>Kritik Riskleri ve Operasyonel Avantajları</b> dynamic olarak çözer ve ilk 10 SHAP karar faktörünü interaktif bir yatay bar grafik ile yöneticinin ekranına fırlatır.</p>
-  
-  <p>📈 <b>App Screen 2 - Canlı LSTM Proaktif Talep & Ambar Stok Simülasyonu:</b> Seçilen takvim tarihinden itibaren ileriye doğru 30 günlük kesintisiz bir S&OP (Satış ve Operasyon Planlama) bilançosu simüle edilmektedir. Kullanıcının arayüzden girdiği anlık kampanya/talep şokları ve günlük atıl stok maliyet oranları, buluttaki PostgreSQL'den gelen 45 günlük tarihsel ciro çapa verisiyle harmanlanır. Model, talep dalgalanmasını %95 güven koridorunda hesaplarken; ambar kalan stok seviyesini anlık düşürür ve stoğun tükendiği kırılımları tespit ederek <b>'❌ STOK TÜKENDİ -> 🚨 ACİL TEDARİK: Üretimi Tetikle'</b> emrini akıllı bilanço çizelgesinde otomatik olarak listeler.</p>
-</div>
-
----
 ---
 
 
