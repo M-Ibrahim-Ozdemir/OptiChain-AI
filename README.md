@@ -252,6 +252,19 @@
   <p>🧠 <b>Page 12 - SHAP Analizi & 3 Kritik Risk İzolatörü (XAI):</b> Kara kutu yapay zeka modellerini şeffaflaştıran Açıklanabilir AI (XAI) katmanıdır. Sol taraftaki listeden herhangi bir siparişe tıklandığında, arka plandaki TreeExplainer motoru milisaniyeler içinde çalışarak o siparişin gecikme olasılığını çözmektedir. Geliştirilen dinamik tercüme motoru sayesinde, siparişi geciktiren <b>1. Kritik Risk, 2. Kritik Risk ve 3. Kritik Risk kök nedenleri (Örn: Hafta başı kamçı etkisi, bölgesel gümrük stresi, mevsimsel yoğunluk)</b> kelime kelime yöneticinin ekranına fırlatılarak nokta atışı lojistik müdahale imkanı sunulmuştur.</p>
 </div>
 
+<p align="center">
+  <b>Page 13: LSTM Makro Talep Projeksiyonu & %95 Güven Aralığı Hata Koridoru</b>
+</p>
+<p align="center">
+  <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_lstm_demand_forecast.png" alt="LSTM Global Demand Forecasting Dashboard" width="620" style="border-radius: 6px; border: 1px solid #1a2238"/>
+</p>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>📉 <b>Page 13 - LSTM Makro Talep Projeksiyonu & %95 Güven Aralığı Hata Koridoru:</b> Projenin en ileri proaktif S&OP (Satış ve Operasyon Planlama) karar destek katmanıdır. Doğrudan satışı tahminlemek yerine "Satış Farkını" (Sales Diff) öngörerek %44.43 dürüstlük oranına ulaşan <i>"The Compact Tank" LSTM</i> modelinin günlük tahminleri mühürlenmiştir. Model belirsizliğini görselleştiren <b>%95 Güven Aralığı Hata Koridoru (Alt/Üst Limit gölgeli alanı)</b>, gerçekleşen ciro noktalarını kusursuz biçimde içine alarak model başarısını kanıtlamıştır. Sistem, son 30 günlük pazar oynaklığını tarayarak kod tarafından belirlenen <b>13,856.52 $ dinamik kritik talep eşiğini</b> aşan günleri otomatik olarak <b>'⚠️ KRİTİK'</b> (Yetersiz Stok Riski) olarak etiketlemekte, ambar yöneticilerine sıfır manuel müdahaleyle proaktif tedarik emri üreterek veri mühendisliğini doğrudan ticari kâr mekanizmasına dönüştürmektedir.</p>
+</div>
+
 ---
 ---
 
