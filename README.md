@@ -335,6 +335,84 @@
   <p>📋 <b>Otomatik Tedarik Zinciri Karar Matrisi (Screen 3 & 4):</b> Yaşayan S&OP bilanço çizelgesi incelendiğinde, ilk 10 günlük periyotta (Screen 3) fiziksel stok yeterli olduğu için kaçan ciro riski oluşmamış ve sistem durum parametresini <code>'✅ OPTİMAL'</code>, aksiyon sinyalini ise <code>'👍 SÜREÇ STABİL: Maliyet Optimize'</code> olarak mühürlemiştir. Ancak simülasyonun son dönemine doğru (Screen 4) stok erimesi kritik sınırlara ulaşmıştır. Sistem; 25, 26 ve 27. günlerde stok seviyesi düştüğü için otomatik olarak <code>'⚠️ KRİTİK SEVİYE -> 📦 GÜVENLİK STOKU: Sipariş Geç'</code> emrini fırlatmıştır. Stokların tamamen sıfırlandığı 28 and 29. günlerde ise kaçan ciro riskini engellemek adına adli otomasyon devreye girmiş ve <code>'❌ STOK TÜKENDİ -> 🚨 ACİL TEDARİK: Üretimi Tetikle'</code> üretim tetikleme komutunu kurumsal dökümantasyona canlı olarak işlemiştir.</p>
 </div>
 
+<!-- ========================================================================== -->
+<!-- 🛠️ 7. KULLANILAN TEKNOLOJİLER, KÜTÜPHANELER & DEPLOYMENT ENVANTERİ -->
+<!-- ========================================================================== -->
+<h2>🛠️ 7. KULLANILAN TEKNOLOJİLER & BULUT DAĞITIM (DEPLOYMENT) ENVANTERİ</h2>
+
+<p>OptiChain AI mimarisi, uçtan uca veri mühendisliği, iş zekası, yapay zeka modelleme ve canlı bulut dağıtım süreçlerini kapsayan kurumsal bir teknoloji yığını (Tech-Stack) ile inşa edilmiştir:</p>
+
+<ul>
+  <li><b>Veri Mühendisliği & Depolama:</b> PostgreSQL (T-SQL), Supabase Cloud (AWS Frankfurt Altyapısı) 🌐</li>
+  <li><b>İş Zekası & Raporlama (BI):</b> Power BI Desktop & Service, DAX Veri Modelleme Mimarisi 📊</li>
+  <li><b>Yapay Zeka & Derin Öğrenme:</b> Python, CatBoost Classifier (ML Gecikme Motoru), K-Means (Kümeleme), BG/NBD & Gamma-Gamma (CRM/CLTV), LSTM (Deep Learning Makro Talep Tahmini), SHAP (Açıklanabilir AI - XAI) 🧠</li>
+  <li><b>Uygulama Geliştirme & Dağıtım:</b> FastAPI (Kurumsal API Katmanı), Streamlit (İnteraktif Web Arayüzü), Git & GitHub Sürüm Kontrolü 🚀</li>
+  <li><b>Bulut Dağıtım Sunucuları (Cloud Production):</b> Render Cloud (Dockerized API Sunucusu), Streamlit Share Cloud (Canlı Kullanıcı Arayüzü) ☁️</li>
+</ul>
+
+<br>
+
+<div align="center">
+  <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/" target="_blank" style="padding: 15px 30px; font-size: 20px; font-weight: bold; color: #121927; background-color: #f0a500; border-radius: 10px; text-decoration: none; box-shadow: 0px 4px 15px rgba(240, 165, 0, 0.4);">
+    🌐 OPTICHAIN AI LIVE PRODUCTION APPLICATION INTERFACE
+  </a>
+</div>
+
+<br><br>
+
+<!-- ========================================================================== -->
+<!-- 📂 8. KURUMSAL REPOSITORY MİMARİSİ & DOSYA HİYERARŞİSİ -->
+<!-- ========================================================================== -->
+<h2>📂 8. KURUMSAL REPOSITORY MİMARİSİ & DOSYA HİYERARŞİSİ</h2>
+
+<p>Proje deposu, kurumsal standartlara uygun olarak bağımsız katmanlar halinde organize edilmiştir. Dosya yapısı ve mimari dağılımı aşağıdaki tabloda listelenmiştir:</p>
+
+<table width="100%" style="border-collapse: collapse; text-align: left;">
+  <thead>
+    <tr style="background-color: #1a2333;">
+      <th style="padding: 10px; border: 1px solid #2d3d5a;">Dizin / Dosya Yolu</th>
+      <th style="padding: 10px; border: 1px solid #2d3d5a;">Katman ve Dosya İçeriği</th>
+      <th style="padding: 10px; border: 1px solid #2d3d5a;">Görevi & Operasyonel Rolü</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📂 1-Data_Analytics_&_Business_Intelligence/</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">DAX & BI Modelleme, Python RFM & K-Means Kodları, Power BI Sayfa Görselleri</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">İş zekası ve C-Level yönetici raporlama vitrinini besleyen görsel ve analitik katman.</td>
+    </tr>
+    <tr style="background-color: #151d2a;">
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📂 2-Data_Science_&_ML_Engineering/</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">CatBoost (<code>.cbm</code>), LSTM (<code>.h5</code>), Scaler pkl nesneleri, SHAP Explainer, Araştırma Scriptleri</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Yapay zeka çıkarım pipeline'larını ve açıklanabilir AI (XAI) motorlarını barındıran çekirdek.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📂 3-Data_Engineering_(Veritabanı)_&_ETL/</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Gelişmiş T-SQL Görünümleri (Views), Kelime Temizleme, İndeks ve ETL Python Kodları</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Veri tabanı yönetişimi (Data Governance), veri bütünlüğü kalkanı ve Star Schema yapısı.</td>
+    </tr>
+    <tr style="background-color: #151d2a;">
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📂 4-Streamlit_Frontend/.streamlit/</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>config.toml</code>, Canlı Arayüz Risk ve LSTM Simülasyon Çıktı Ekran Görüntüleri</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Premium karanlık arayüz yapılandırmasını ve Streamlit Cloud dökümantasyon varlıklarını tutan klasör.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📄 app.py</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Streamlit Web Application Source Code</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Kullanıcıların canlı tahmin ve S&OP simülasyonları yapmasını sağlayan etkileşimli arayüz kodu.</td>
+    </tr>
+    <tr style="background-color: #151d2a;">
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📄 main.py</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">FastAPI Enterprise Production API Code</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Modelleri belleğe kilitleyen, PostgreSQL bağlantısını yöneten ve tahmin üreten canlı arka plan motoru.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📄 requirements.txt</code></td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Production Dependency List</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">Render ve Streamlit Cloud sunucularının kütüphane bağımlılıklarını optimize kuran konfigürasyon.</td>
+    </tr>
+  </tbody>
+</table>
 ---
 
 
