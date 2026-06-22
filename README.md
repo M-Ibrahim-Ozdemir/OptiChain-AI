@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">🚀 OptiChain AI v2.0</h1>
-<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği - Tahmine Dayalı gecikme riski ve Akıllı Satış ve Operasyon Planlaması Karar Ekosistemi</h3>
+<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği-Tahmine Dayalı Gecikme Riski ve Akıllı Satış ve Operasyon Planlaması Karar Ekosistemi</h3>
 
 <p align="center">
   <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/">
@@ -15,7 +15,7 @@
 
 ---
 
-<h2 align="center">📈 1. EXECUTIVE SUMMARY & BUSINESS VALUE PROPOSITION</h2>
+<h2 align="center">📈 1. ÖZET VE İŞ DEĞERİ ÖNERİSİ</h2>
 
 <p align="center" style="font-size: 18px; line-height: 1.6; max-width: 850px; margin: 0 auto;">
   <b>🌐 Sektörel Problem Tanımı ve Projenin Vizyonu</b>
