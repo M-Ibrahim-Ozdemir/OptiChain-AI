@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">🚀 OptiChain AI v2.0</h1>
-<h3 align="center">Enterprise End-to-End Data Analytics & Intelligent S&OP Decision Ecosystem</h3>
+<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği - Tahmine Dayalı gecikme riski ve Akıllı Satış ve Operasyon Planlaması Karar Ekosistemi</h3>
 
 <p align="center">
   <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/">
