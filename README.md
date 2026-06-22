@@ -302,6 +302,40 @@
   
   <p>🧠 <b>Yapay Zeka Teşhis ve Vaka Analizi (Screen 3 & 4):</b> 'Risk Analizini Başlat' butonuna basıldığı an, CatBoost V12 inference motoru çalışarak test senaryosu için <b>%58.1 Gecikme Olasılığı hesaplamış ve belirlenen kritik cerrahi eşik değeri (T=%54.1) aşıldığı için kırmızı alarm</b> vermiştir. Dynamic lojistik sözlükle entegre çalışan adli teşhis motoru, gecikmeyi tetikleyen en büyük kök nedenlerin sırasıyla <b>'Teslimat adresinin ana rotalara olan coğrafi uzaklığı (+%25.3)', 'Müşterinin aktiflik durumu ve adres güncelliği (+%13.4)' ve 'Mevsimsel/dönemsel yük etkileri (+%11.6)'</b> olduğunu saptamıştır. SHAP model karar terazisinde (Şelale Grafik) ise, <code>customer_segment_Home_Office</code> ve <code>NEW_PURE_DISTANCE_STRESS</code> gibi zeka değişkenlerinin olasılığı aşağı çeken güçlü operasyonel kaldıraçlar olduğu, <code>latitude</code> ve <code>order_month</code> kırılımlarının ise gecikmeyi yukarı iten ana suçlular olduğu net bir şekilde tescillenmiştir.</p>
 </div>
+<h3 align="center">📈 PRODUCTION SCREEN: LSTM KÜRESEL PROAKTİF TALEP & AMBAR YÖNETİM RADARI</h3>
+
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>App Screen 1: Stok Kontrolü & Şok Parametreleri</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_1.png" alt="Streamlit LSTM Input Layer" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>App Screen 2: Canlı Projeksiyon Grafikleri & KPI Paneli</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_2.png" alt="Streamlit LSTM Trend and KPI Output" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>App Screen 3: S&OP Bilanço Çizelgesi (İlk 10 Gün)</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_3.png" alt="Streamlit S&OP Ledger Initial Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>App Screen 4: S&OP Otomatik Tedarik Emirleri (Son Dönem)</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_4.png" alt="Streamlit S&OP Ledger Critical Alert Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>📦 <b>Simülasyon Girdileri ve KPI Dağılımı (Screen 1 & 2):</b> Kullanıcı tarafından belirlenen test senaryosunda; Projeksiyon Başlangıç Tarihi <code>2018-01-05</code>, Başlangıç Depo Stok Seviyesi <code>230,000.00 $</code>, Tahmini Kampanya Şoku <code>%41</code> ve Günlük Atıl Stok Maliyet Oranı <code>‰26</code> olarak set edilmiştir. FastAPI üzerinden tetiklenen LSTM motoru, <b>30 Günlük Toplam Talep Baskısını 251,370.79 $</b> olarak hesaplamış ve buluttaki PostgreSQL veritabanından <b>15,120.66 $ tutarındaki tarihsel çapa verisini</b> başarıyla doğrulamıştır. Üretilen volatilite koridoru grafiğinde ciro dalgalanmaları %95 güven sınırları içinde izlenirken, ambar stok seviyesinin erime eğrisi sıfır sınır korumalı olarak simüle edilmiştir.</p>
+  
+  <p>📋 <b>Otomatik Tedarik Zinciri Karar Matrisi (Screen 3 & 4):</b> Yaşayan S&OP bilanço çizelgesi incelendiğinde, ilk 10 günlük periyotta (Screen 3) fiziksel stok yeterli olduğu için kaçan ciro riski oluşmamış ve sistem durum parametresini <code>'✅ OPTİMAL'</code>, aksiyon sinyalini ise <code>'👍 SÜREÇ STABİL: Maliyet Optimize'</code> olarak mühürlemiştir. Ancak simülasyonun son dönemine doğru (Screen 4) stok erimesi kritik sınırlara ulaşmıştır. Sistem; 25, 26 ve 27. günlerde stok seviyesi düştüğü için otomatik olarak <code>'⚠️ KRİTİK SEVİYE -> 📦 GÜVENLİK STOKU: Sipariş Geç'</code> emrini fırlatmıştır. Stokların tamamen sıfırlandığı 28 and 29. günlerde ise kaçan ciro riskini engellemek adına adli otomasyon devreye girmiş ve <code>'❌ STOK TÜKENDİ -> 🚨 ACİL TEDARİK: Üretimi Tetikle'</code> üretim tetikleme komutunu kurumsal dökümantasyona canlı olarak işlemiştir.</p>
+</div>
+
+---
 
 
 
