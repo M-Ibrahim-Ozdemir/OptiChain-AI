@@ -31,7 +31,7 @@
   <b>OptiChain AI v2.0</b>; ham tedarik zinciri - lojistik veri setini, <b>uçtan uca</b> işleyerek detaylı analizler, tespitler ve
   operasyon yöneticilerinin ve C-Level karar vericilerin günlük stratejik kararlarını optimize eden, gecikme riskini tespit eden ve
   yapay zeka tabanlı küresel bir <b>S&OP (Satış ve Operasyon Planlama) Karar Destek Sistemidir</b>. 
-  Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden ileri düzey analizler, EDA, tespitler, AB testleri ,müşteri analitiğine (<b>RFM, K-Means, CLTV</b>, gamma), power BI da detaylıca analız raporlama sonuçları,
+  Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden ileri düzey analizler, EDA, tespitler, AB testleri ,müşteri analitiğine (<b>RFM, K-Means, CLTV</b>, gamma), power BI da detaylıca analız raporlama sonuçları(ileri,gelişmiş duzey DAX 100+),
   PostgreSQL mimarisindeki kurumsal veri kalitesi kalkanlarından (<b>Data Quality Validation Views</b>) 
   açıklanabilir yapay zeka (<b>XAI</b>) ve derin öğrenme simülasyonlarına kadar geniş bir yelpazeyi 
   iş zekası (<b>Power BI</b>) vizyonuyla birleştirmektedir.
