@@ -231,6 +231,26 @@
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
   <p>⚖️ <b>Page 10 - Karar Bilimi & İstatistiksel Doğrulama Laboratuvarı (A/B Labs):</b> Python safhasında yürütülen 4 büyük hipotez testi veritabanı entegrasyonuyla görselleştirilmiştir. <b>Kruskal-Wallis analizi kargo modlarının kârlılık marjı üzerinde bir farkı olmadığını ($p=0.46$)</b> kanıtlarken, lojistik operasyonun hız değil planlama odaklı çöktüğü deşifre edilmiştir. <b>Mann-Whitney U testi First Class'ın fiziksel olarak 2 kat hızlı (2.00 gün) ulaştığını</b> belgelerken, <b>Proportions Z-Test ise First Class'ın %95.32 oranında kronik olarak geciktiğini ($p=0.00$)</b> doğrulamıştır. Buradaki kök nedenin fiziksel yavaşlık değil, sisteme girilen gerçek dışı "1 Gün" vaat parametresi olduğu tescillenmiş ve söz verilen sürelerin revize edilmesi emri verilmiştir. Finans-operasyon darboğazı bacağında ise, Debit Kart onay süreçlerindeki provizyon beklemelerinin gecikme riskini anlamlı derecede tetiklediği ($p<0.05$) ciro-gecikme matrisiyle mühürlenmiştir.</p>
 </div>
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>Page 11: ML Gecikme Motoru & Performans Testi</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_ml_delay_engine.png" alt="Machine Learning Delay Engine Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>Page 12: SHAP Analizi & 3 Kritik Risk İzolatörü</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_shap_analysis.png" alt="SHAP Explainable AI Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🤖 <b>Page 11 - ML Gecikme Motoru & Performans Testi:</b> Şampiyon <i>CatBoost V12</i> modelinin dürüst test sonuçları kurumsal KPI paneline mühürlenmiştir. Model, <b>%71.9 Accuracy, %70.9 Precision, %77.8 F1-Score ve %86.2 Recall</b> başarısıyla çalışmaktadır. Eğitim ve Sınav setleri arasındaki F1 farkının (Overfitting Gap) sadece 0.0492 olması modelin ezberlemediğini kanıtlarken; en yüksek karar ağırlığının türetilen zeka değişkeni olan <code>NEW_CITY_ITEM_QUANTITY_LOAD</code> (Varış şehrindeki anlık paket yığılması) olduğu deşifre edilmiş ve finansal sigorta primi olarak %86.2'lik Recall gücü korunarak operasyonel riskler depodayken kontrol altına alınmıştır.</p>
+  
+  <p>🧠 <b>Page 12 - SHAP Analizi & 3 Kritik Risk İzolatörü (XAI):</b> Kara kutu yapay zeka modellerini şeffaflaştıran Açıklanabilir AI (XAI) katmanıdır. Sol taraftaki listeden herhangi bir siparişe tıklandığında, arka plandaki TreeExplainer motoru milisaniyeler içinde çalışarak o siparişin gecikme olasılığını çözmektedir. Geliştirilen dinamik tercüme motoru sayesinde, siparişi geciktiren <b>1. Kritik Risk, 2. Kritik Risk ve 3. Kritik Risk kök nedenleri (Örn: Hafta başı kamçı etkisi, bölgesel gümrük stresi, mevsimsel yoğunluk)</b> kelime kelime yöneticinin ekranına fırlatılarak nokta atışı lojistik müdahale imkanı sunulmuştur.</p>
+</div>
 
 ---
 ---
