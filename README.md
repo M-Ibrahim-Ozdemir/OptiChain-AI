@@ -79,3 +79,42 @@
   <b>🛠️ Veri Tipi Standardizasyonu, Yıldız Şeması (Star Schema) Gösterim Modeli ve İndeks Optimizasyonu:</b><br>
   Python ETL süreçlerinden (psycopg2 bulk load) sonra PostgreSQL havuzuna başlangıçta güvenli biçimde TEXT formatında akıtılan veriler, veri bütünlüğünü ve matematiksel doğruluğu korumak amacıyla kurumsal standartlarda dönüştürülmüştür. Ağır iç içe CAST <code>(TYPE USING ::NUMERIC::INTEGER)</code> protokolleri işletilerek 11 adet kimlik değişkeni tam sayıya, finansal ve CRM tahmin metrikleri ise <code>DOUBLE PRECISION</code> veri tipine mühürlenmiştir. Veritabanının fiziksel katmanını iş birimlerinin sorgu ihtiyaçlarından izole etmek amacıyla, normalize edilmiş 4 boyut (Dimension) og lu (Fact) tablosundan oluşan <b>Modern Yıldız Şeması (Star Schema)</b> sanal katmanlar (Views) üzerinden inşa edilmiştir. <code>v_fact_sales</code> tablosu tüm ciro, iskonto ve lojistik performans gerçeklerini mühürlerken; <code>v_dim_customers</code> (CRM/CLTV zekası eklenmiş dinamik müşteri 360 görünümü), <code>v_dim_products</code> (kategori kırılımları), <code>v_dim_location</code> (coğrafi koridorlar) ve <code>v_dim_time</code> (sezonsal döngüler) boyut tabloları <code>DISTINCT ON</code> optimizasyonuyla en güncel transaksiyonel kayıtları yakalayacak şekilde kurgulanmıştır. 180 bin satırlık bu dev ekosistemin Power BI interaktif panellerinde ve analitik sorgularda milisaniyeler içinde yanıt vermesi adına, B-Tree tabanlı 14 kritik performans indeksi (Bağlantı, lojistik, takvim, segment ve finans odaklı) stratejik sütunlara çakılmıştır. Son aşamada <code>VACUUM ANALYZE</code> komutu tetiklenerek PostgreSQL sorgu planlayıcısının (Query Planner) istatistikleri güncellenmiş ve veritabanı motorunun arama maliyetleri sıfıra indirilmiştir.
 </p>
+
+<h3 align="center">📊 İLERİ DÜZEY ANALİTİK SQL SORGULARI & S&OP AKSİYON ÇIKTILARI</h3>
+
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>1. v_risky_orders Çıktısı</b></p>
+      <img src="3-Data_Engineering_(Veritabanı)_&_ETL/sql_output_risky_orders.png" alt="Risky Orders SQL Output" width="410" style="border-radius: 6px; border: 1px solid #444;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>2. v_data_quality_alerts Çıktısı</b></p>
+      <img src="3-Data_Engineering_(Veritabanı)_&_ETL/sql_output_data_quality.png" alt="Data Quality SQL Output" width="410" style="border-radius: 6px; border: 1px solid #444;"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>3. v_customer_performance_tracker Çıktısı</b></p>
+      <img src="3-Data_Engineering_(Veritabanı)_&_ETL/sql_output_performance_tracker.png" alt="Customer Performance Tracker SQL Output" width="410" style="border-radius: 6px; border: 1px solid #444;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>4. v_customer_360_analysis Çıktısı</b></p>
+      <img src="3-Data_Engineering_(Veritabanı)_&_ETL/sql_output_customer_360.png" alt="Customer 360 Analysis SQL Output" width="410" style="border-radius: 6px; border: 1px solid #444;"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🚨 <b>1. v_risky_orders (Operasyonel Risk Önceliklendirme):</b> İptal edilen siparişlerdeki 0$ kâr denetimi ve finansal risk baremleri başarıyla izole edilmiştir. Çıktıda görüldüğü üzere, Python segmentasyonundan gelen elit <b>'A' grubu VIP müşterilerin yaşadığı gecikmeler otomatik olarak 'Priority 3: VIP Delay'</b> statüsüne yükseltilerek operasyon ekibine doğrudan müşteri kaybını (Churn) engellemek adına öncelikli kriz müdahale gücü sunulmuştur.</p>
+  
+  <p>🛡️ <b>2. v_data_quality_alerts (Veri Sağlığı Kontrol Kalkanı):</b> 180 bin satırlık ana veritabanı üzerinde anlık lojistik, zamanlama ve finansal mantık turnusolü işletilmektedir. Çıktıda tescillendiği üzere sistem <b>%100 'Healthy Data'</b> fazına çekilmiş, negatif kargo günleri veya kur farkı/giriş hatasından kaynaklanan ciro-kâr çelişkileri elenerek Power BI katmanına ve yapay zeka modellerine gürültüsüz, rafine veri beslemesi garanti edilmiştir.</p>
+  
+  <p>📈 <b>3. v_customer_performance_tracker (Anlık Ciro-Kâr Takip Motoru):</b> Makro CLTV tahmin modelleri ile mikro transaksiyonel gerçekler tek bir görünümde birleştirilmiştir. Cari siparişiyle zarar yazan müşteriler anlık olarak <b>'Urgent Intervention (Loss)'</b> bayrağıyla işaretlenerek, arka plandaki operasyonel/lojistik sızıntıların finans ekipleri tarafından büyümeden durdurulması mekanizması kurulmuştur.</p>
+  
+  <p>💎 <b>4. v_customer_360_analysis (CTE & Window Function Sentezi):</b> Ağır veritabanı maliyetleri optimize edilerek, her müşterinin hayat boyu yaptığı toplam harcama <code>(lifetime_sales)</code> ve sipariş başına kâr ortalaması, <code>ROW_NUMBER()</code> pencere fonksiyonuyla yakalanan <b>yaşam boyu en çok ciro bıraktığı favori kategorisi (top_category)</b> ile tek bir satırda birleştirilmiştir. Pazarlama ekipleri için doğrudan nokta atışı kişiselleştirilmiş kampanya altyapısı sağlanmıştır.</p>
+</div>
+
+---
