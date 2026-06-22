@@ -59,3 +59,15 @@
 </div>
 
 ---
+
+
+
+
+<h2 align="center">🔬 3. ADVANCED ANALYTICS & INSIGHT DISCOVERY PHASE (PYTHON)</h2>
+
+<p align="center" style="font-size: 16.5px; line-height: 1.7; max-width: 850px; margin: 0 auto; text-align: justify;">
+  <b>💡 Veri Sızıntısı Yönetimi ve Operasyonel Paradoksların Teşhisi:</b><br>
+  Projenin analitik keşif ve modelleme öncesi hazırlık safhasında, sisteme doğrudan sızıntı (Data Leakage) fısıldayan ve modelleri ezberciliğe sürükleyen 29 adet ölü değişken (Lojistik durum çıktıları ve yüksek korelasyonlu finansal ikizler) cerrahi bir müdahaleyle elenerek veri yönetişimi (Data Governance) tam koruma altına alınmıştır. Yapılan ileri istatistiksel hipotez testleri ve A/B doğrulama süreçleri, şirket yönetiminin ezberlerini bozan kritik bir operasyonel paradoksu tescillemiştir: Kruskal-Wallis testi sonucunda kargo modlarının kârlılık üzerinde anlamlı bir fark yaratmadığı ($p = 0.4600$) kanıtlanırken; Proportions Z-Test ve Mann-Whitney U testlerinin çarpışmasıyla, premium ücret ödenen <b>"First Class" (Hızlı Kargo) teslimatlarının fiziksel olarak 2 kat daha hızlı ulaştığı (2.00 gün) ancak sistemsel planlama (Scheduling) hatası yüzünden ironik bir şekilde %95.32 oranında kronik gecikmeye</b> uğradığı şok edici bir darboğaz olarak teşhis edilmiştir. Ayrıca ödeme yöntemlerinin lojistik hıza etkisi incelendiğinde, Debit Kart onay mekanizmalarındaki banka provizyon gecikmelerinin operasyonel akışı anlamlı derecede yavaşlattığı Z-Test çıktısıyla matematiksel olarak mühürlenmiştir. Müşteri değer analitiği bacağında ise; sadece geçmiş cirolara odaklanan geleneksel yaklaşımlar terk edilmiş, K-Means Kümeleme ve BG/NBD & Gamma-Gamma CLTV olasılık motorları hibrit olarak entegre edilmiştir. Bu sayede, finansal olarak "Sadık" görünen birçok VIP müşterinin aslında sistemdeki kronik lojistik süreçlerden ötürü en çok mağdur edilen <i>(New_High_Risk_Late)</i> grupta yer aldığı deşifre edilerek pazarlama ekiplerine proaktif churn engelleme kalkanı sunulmuştur. Tüm bu makro yapıyı geleceğe bağlayan proaktif derin öğrenme katmanında ise, geçmişi ezberleyen geniş pencereler yerine 3 günlük mikro pencerelerle kurgulanan <b>"The Compact Tank" LSTM zaman serisi modeli</b> devreye alınmıştır. Doğrudan ciroyu tahminlemek yerine "Satış Farkını" (Sales Diff) öngörerek %44.43'lük kusursuz bir dürüstlük/genelleme oranına (Overfitting Gap) ulaşan bu mekanizma; pazar oynaklığını ve ciro ortalamasını anlık tarayarak 13,856.52 $ dinamik kritik talep eşiğini belirlemekte ve C-Level yöneticiler için manuel müdahaleye gerek duymayan akıllı bir tedarik/stok uyarı motoru üretmektedir.
+</p>
+
+---
