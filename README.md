@@ -31,30 +31,30 @@
   <b>OptiChain AI v2.0</b>; ham tedarik zinciri - lojistik veri setini, <b>uçtan uca</b> işleyerek detaylı analizler, tespitler ve
   operasyon yöneticilerinin ve C-Level karar vericilerin günlük stratejik kararlarını optimize eden, gecikme riskini tespit eden ve
   yapay zeka tabanlı küresel bir <b>S&OP (Satış ve Operasyon Planlama) Karar Destek Sistemidir</b>. 
-  Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden ileri düzey analizler, EDA, tespitler, AB testleri ,müşteri analitiğine (<b>RFM, K-Means, CLTV</b>, gamma), power BI da detaylıca analız raporlama sonuçları(ileri,gelişmiş duzey DAX 100+),
-  PostgreSQL mimarisindeki kurumsal veri kalitesi kalkanlarından (<b>Data Quality Validation Views</b>) 
-  açıklanabilir yapay zeka (<b>XAI</b>) ve derin öğrenme simülasyonlarına kadar geniş bir yelpazeyi 
-  iş zekası (<b>Power BI</b>) vizyonuyla birleştirmektedir.
+  Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden ileri düzey analizler, EDA, tespitler, AB testleri ,müşteri analitiğine (<b>RFM, K-Means, CLTV</b>, gamma), iş zekası (<b>Power BI</b>) da detaylıca analız raporlama sonuçları(ileri,gelişmiş duzey DAX 100+),
+  PostgreSQL mimarisindeki kurumsal veri kalitesi kalkanları(<b>Data Quality Validation Views</b>), risk , segmentasyon analizlerine, Ml gecime tahmini  
+  açıklanabilir yapay zeka (<b>XAI</b>) ve derin öğrenme satış tahmin simülasyonları, fast api, cloud, deprloy kadar geniş bir yelpazeyi uçtan uca  
+  birleştirmektedir.
 </p>
 
 <br>
 
-<h3 align="center">🛠️ Stratejik Mühendislik Katmanları ve Çözüm Kümesi</h3>
+<h3 align="center">🛠️ Stratejik Katmanlar ve Çözüm Kümesi</h3>
 
 <p align="center" style="font-size: 16px; max-width: 800px; margin: 0 auto;">
-  🎯 <b>Çok Aşamalı Python Veri Temizliği & Tanıma:</b> Ham veri setleri Python (Pandas/NumPy) mimarisiyle gürültüden arındırılmış, veri tipleri optimize edilmiş ve lojistik iş birimlerinin ihtiyaç duyduğu makro metrikler türetilmiştir.
+  🎯 <b>Çok Aşamalı Python Veri Temizliği & Tanıma:</b> Ham veri setleri Python (Pandas/NumPy) mimarisiyle detaylıca gürültüden arındırılmış temizlenmiştir, veri tipleri optimize edilmiş ve lojistik iş birimlerinin ihtiyaç duyduğu yenı değişkenler makro metrikler türetilmiştir.
   <br><br>
   💎 <b>Gelişmiş CRM & Müşteri Analitiği (RFM, K-Means & CLTV):</b> Müşteri tabanı sadece kuramsal varsayımlarla değil; Python kullanılarak RFM analitiği, K-Means Kümeleme algoritması ve BG/NBD & Gamma-Gamma modelleriyle ileri düzey CLTV (Müşteri Yaşam Boyu Değeri) tahminleme süreçlerine tabi tutulmuştur. Şirketin en kârlı VIP segmentleri matematiksel olarak izole edilmiştir.
   <br><br>
   📊 <b>İstatistiksel Doğrulama (A/B Testing):</b> Dağıtım kanalları, teslimat rotaları ve segment bazlı performans kırılımları parametrik ve non-parametrik hipotez testleriyle (A/B Testleri) matematiksel olarak doğrulanmıştır.
   <br><br>
-  🛡️ <b>İleri Düzey SQL Veri Kalitesi & Sağlık Kontrolü (Data Governance):</b> PostgreSQL seviyesinde kurulan <code>v_data_quality_alerts</code> görünümüyle 180 bin satırlık kurumsal verinin sağlık kontrolü anlık olarak yapılmaktadır. Finansal, lojistik ve zamanlama mantık hataları sistem tarafından otomatik olarak yakalanıp kategorize edilerek Power BI raporlama katmanına hazır hale getirilmiştir.
+  🛡️ <b>İleri Düzey SQL Veri Kalitesi & Sağlık Kontrolü (Data Governance):</b> PostgreSQL seviyesinde kurulan <code>v_data_quality_alerts</code> görünümüyle 180 bin satırlık kurumsal verinin sağlık kontrolü anlık olarak yapılmaktadır. Finansal, lojistik ve zamanlama mantık hataları sistem tarafından otomatik olarak yakalanıp kategorize edilmiş ve detaylı uçtan uca segment analizler Power BI raporlama katmanına hazır hale getirilmiştir.
   <br><br>
   🚨 <b>Proaktif Risk Önceliklendirme & Operasyonel Görünüm (SQL Views):</b> Yazılan <code>v_risky_orders</code> view katmanı ile şüpheli işlemler (Fraud), aşırı finansal kayıplar ve VIP gecikme krizleri hiyerarşik olarak risk puanlarına (Priority 1-6) ayrılmış, karar vericilere anlık aksiyon alma gücü sunulmuştur.
   <br><br>
   🧠 <b>Açıklanabilir Makine Öğrenmesi (CatBoost & SHAP):</b> Sevkiyatlar henüz ambar kapısından çıkmadan önce gecikme olasılığını hesaplayan bir sınıflandırma modeli entegre edilmiştir. SHAP (XAI) katmanıyla, her bir risk faktörünün karara etkisi operasyonel bazda şeffaflaştırılmıştır.
   <br><br>
-  📈 <b>Proaktif Derin Öğrenme Simülasyonları (LSTM):</b> 30 günlük dinamik ciro dalgalanmalarını öngören zaman serisi modeli kurgulanmıştır. Sistem, kampanya şoklarını simüle ederek ambar stoklarının kritik seviyeye düşeceği günü önceden öngörüp proaktif "Tedarik Emirleri" üretmektedir.
+  📈 <b>Proaktif Derin Öğrenme Simülasyonları (LSTM):</b> Girilen tarihten 30 gun sonraı için günlük dinamik ciro dalgalanmalarını öngören zaman serisi modeli kurgulanmıştır. Sistem, kampanya şoklarını simüle ederek ambar stoklarının kritik seviyeye düşeceği günü önceden öngörüp proaktif "Tedarik Emirleri" üretmektedir.
   <br><br>
   💻 <b>Kurumsal Dağıtım & İş Zekası Katmanı (Power BI, FastAPI & Streamlit):</b> Canlı sistem mimarisi FastAPI backend sunucusuyla izole edilmiş, C-Level yöneticilerin senaryo analizi yapabileceği premium bir Streamlit frontend paneli ve kurumsal Power BI raporlama katmanıyla mühürlenmiştir.
 </p>
