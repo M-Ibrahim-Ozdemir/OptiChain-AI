@@ -116,5 +116,38 @@
   
   <p>💎 <b>4. v_customer_360_analysis (CTE & Window Function Sentezi):</b> Ağır veritabanı maliyetleri optimize edilerek, her müşterinin hayat boyu yaptığı toplam harcama <code>(lifetime_sales)</code> ve sipariş başına kâr ortalaması, <code>ROW_NUMBER()</code> pencere fonksiyonuyla yakalanan <b>yaşam boyu en çok ciro bıraktığı favori kategorisi (top_category)</b> ile tek bir satırda birleştirilmiştir. Pazarlama ekipleri için doğrudan nokta atışı kişiselleştirilmiş kampanya altyapısı sağlanmıştır.</p>
 </div>
+---
+
+
+<h2 align="center">📊 5. BUSINESS INTELLIGENCE & C-LEVEL EXECUTIVE REPORTING (POWER BI)</h2>
+
+<p align="center" style="font-size: 16px; max-width: 850px; margin: 0 auto; text-align: justify;">
+  <b>📈 Interaktif Yönetici Gösterge Panelleri ve Karar Destek Mekanizması:</b><br>
+  PostgreSQL sanal veri ambarı katmanından (Star Schema Views) beslenen ve 100'den fazla ileri düzey DAX fonksiyonuyla mühürlenen kurumsal Power BI yönetim paneli, işletmenin makro-finansal durumu ile lojistik darboğazlarını tek bir ekranda C-Level karar vericilere sunmaktadır. Dinamik dilimleyiciler (Slicers) ve akıllı parametrelerle donatılan mimari, Ankara operasyon merkezinin tedarik süreçlerine anlık yön vermektedir.
+</p>
+
+<br>
+
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>Page 1: Finansal Sağlık & Global Operasyon Görünümü</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_financial_health.png" alt="Financial Health Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>Page 2: Bölgesel Performans & Lojistik Koridor Analizi</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_regional_performance.png" alt="Regional Performance Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238;"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🎯 <b>Page 1 - Finansal Sağlık & Global Operasyon Kontrolü:</b> Toplam <b>36.51 Milyon $ Ciro</b> ve %10.89 kâr marjı ile stabil giden finansal yapıda, <b>%57.28'lik kronik Geç Teslimat Oranı</b> en büyük kurumsal risk sızıntısı olarak görselleştirilmiştir. Departman bazlı ciro motorunun <b>102.60 $ ortalama kâr ile net biçimde Technology</b> olduğu tescillenirken; nakit (CASH) ödemelerin banka provizyon ve komisyon sızıntılarını sıfırlayarak en kârlı kanal (%25.94) olduğu, tamamlanmış görünen (COMPLETE) siparişlerin ise 11.9 Milyon $ ile likidite akışını beslediği anlık olarak izlenmektedir.</p>
+  
+  <p>🌐 <b>Page 2 - Bölgesel Performans & Lojistik Koridor Analizi:</b> Küresel operasyonların harita ve skor matrisi kırılımında, 3.50 günlük ortalama teslimat süresine karşılık 0.57 günlük standart gecikme sapması hesaplanmıştır. <b>11.14 Milyon $ ciro ve 1.18 Milyon $ net kâr ile LATAM pazarının en büyük hacimli motor</b> olduğu kanıtlanırken, kâr marjı şampiyonunun %11.72 ile Pacific Asia koridoru olduğu deşifre edilmiştir. 3.53 Milyon $'lık operasyonel zararın coğrafi dağılımı harita üzerinde kırmızı alarm noktaları olarak izole edilerek lojistik ekiplerine rota iyileştirme hedefleri sunulmuştur.</p>
+</div>
 
 ---
+
