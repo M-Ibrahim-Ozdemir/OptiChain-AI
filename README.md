@@ -270,6 +270,40 @@
   <b>🌐 Uçtan Uca Canlı Üretim Mimarisi (Production Architecture):</b><br>
   Projenin son safhasında, geliştirilen tüm analitik zeka ve tahmine dayalı yapay zeka modelleri bulut mimarisi üzerinde canlıya (Production) alınmıştır. Arka plan veri motoru olarak <b>FastAPI</b> kullanılmış, tüm veri akışı buluttaki <b>PostgreSQL</b> veritabanına bağlanmıştır. API katmanı <b>Render Cloud</b> platformu üzerinde Dockerized mantıkla ayağa kaldırılırken; kullanıcı dostu, proaktif karar destek arayüzü <b>Streamlit</b> ile asenkron olarak kodlanmış ve <b>Streamlit Share Cloud</b> üzerinde küresel erişime açılmıştır. Sistem, yöneticilerden karmaşık parametreler istemeden, arka plandaki dinamik boru hatlarını (Pipelines) tetikleyerek gerçek zamanlı karar destek sinyalleri üretmektedir.
 </p>
+<h3 align="center">🛡️ PRODUCTION SCREEN: SİPARİŞ RİSK ANALİZİ & CANLI SHAP TEŞHİS LABS</h3>
+
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>App Screen 1: Lojistik Girdiler (Üst Gövde)</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_delay_risk_analysis_1.png" alt="Streamlit Risk Input Layer 1" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>App Screen 2: CRM Geçmişi & Tetikleyici (Alt Gövde)</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_delay_risk_analysis_2.png" alt="Streamlit Risk Input Layer 2" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>App Screen 3: Olasılık Gauge & Operasyonel Notlar</b></p>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_delay_risk_analysis_3.png" alt="Streamlit Gauge and Diagnosis Output" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>App Screen 4: Canlı SHAP Model Karar Terazisi</b></p>
+      <img src="4-Web_Interface_(Streamlit_Frontend)/app_predict_risk_shap.png" alt="Streamlit SHAP Explanation Output" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🌍 <b>Girdi Katmanları (Screen 1 & 2):</b> Kullanıcı dostu arayüz üzerinden Ankara merkezli pazar yeri, varış coğrafyası, <i>Men's Footwear</i> ürün departmanı ve takvim parametreleri saniyeler içinde set edilebilmektedir. <b>FastAPI API bağlantısı üzerinden buluttaki PostgreSQL veritabanına asenkron istek atılarak</b>, seçilen hedef şehrin <code>(Artemisa)</code> enlem ve boylam koordinatları otomatik olarak arka planda haritalandırılmakta ve modelin yanlış öğrenmesini engelleyen sızıntısız CRM/Sadakat geçmişi <code>(Recency, Frequency, CLTV)</code> simülasyona dahil edilmektedir.</p>
+  
+  <p>🧠 <b>Teşhis ve Karar Katmanları (Screen 3 & 4):</b> 'Risk Analizini Başlat' butonuna basıldığı an, ham veriler FastAPI üzerinde saniyeler içinde lojistik zeka değişkenlerine dönüştürülür. Çıktıda tescillendiği üzere, model <b>%58.1 Gecikme Olasılığı hesaplayarak cerrahi esik değerini (T=%54.1) aşmış ve kırmızı alarm</b> vermiştir. Dynamic lojistik sözlük devreye girerek gecikmeyi tetikleyen en büyük kök nedenin <b>'Teslimat adresinin ana rotalara olan coğrafi uzaklığı (%25.3)'</b> olduğunu deşifre etmiştir. SHAP karar terazisi (Bar grafik) ise <code>customer_segment_Home_Office</code> bayrağının gecikmeyi baskılayan en güçlü avantaj, <code>NEW_CITY_ITEM_QUANTITY_LOAD</code> (Şehir anlık paket yığılması) değişkeninin ise gecikmeyi tetikleyen en büyük bariyer olduğunu kurumsal vitrine fırlatmıştır.</p>
+</div>
+
+---
 ---
 
 
