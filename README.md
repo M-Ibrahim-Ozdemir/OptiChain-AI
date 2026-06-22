@@ -41,7 +41,7 @@
   <p>🎯 <b>Çok Aşamalı Python Veri Temizliği & Tanıma:</b> Ham veri setleri Python (Pandas/NumPy) mimarisiyle detaylıca gürültüden arındırılmış temizlenmiştir, veri tipleri optimize edilmiş ve lojistik iş birimlerinin ihtiyaç duyduğu yeni türetilmiş değişkenler ve makro metrikler boru hattına eklenmiştir.</p>
 
    <p>💎 <b>Gelişmiş Analizler(python,postresql,power bı): Genel finansal global Operansyon analiz, Bölgesel Performans, Sezonsallık-Zaman, Lojistlik&Sevkiyat, Risk-Veri kailitesi denetimi, Veri Bütünlüğü Müşteri Kaybı, Müşteri Zekası(RFM-K-MeANS, Customer360), BG-NBD 
-   GAMMA (CLTV) tahminleri, Karar Bilimi A/B Testleri, Ml(Sipariş Gecikme)-SHAP, DL(LTSM(Globak Satış Hacmı talep tahmin))</p>
+   GAMMA (CLTV) tahminleri, Karar Bilimi A/B Testleri, Ml(Sipariş Gecikme)-SHAP, DL(LTSM(Globak Satış Hacmı talep tahmin)) analiz sayfaları</p>
   
   <p>💎 <b>Gelişmiş CRM & Müşteri Analitiği (RFM, K-Means & CLTV):</b> Müşteri tabanı kuramsal varsayımlarla değil; Python ile RFM analitiği, K-Means kümeleme algoritması ve BG/NBD & Gamma-Gamma modelleriyle ileri düzey CLTV (Müşteri Yaşam Boyu Değeri) tahminleme süreçlerine tabi tutulmuştur. En kârlı VIP müşteri segmentleri matematiksel olarak izole edilmiştir.</p>
   
