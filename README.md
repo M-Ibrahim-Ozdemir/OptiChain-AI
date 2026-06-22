@@ -298,14 +298,11 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>🌍 <b>Esnek Girdi Modülleri (Screen 1 & 2):</b> Kullanıcı dostu arayüz üzerinden küresel pazar yerleri, teslimat bölgeleri, ürün departmanları ve zamansal parametreler dinamik olarak simüle edilebilmektedir. <b>FastAPI boru hattı üzerinden buluttaki PostgreSQL veritabanına asenkron istek atılarak</b>, seçilen hedef lokasyonun coğrafi koordinatları otomatik olarak eşlenmekte ve modelin karar mekanizmasını destekleyen sızıntısız CRM geçmişi veri setine eklenmektedir.</p>
+  <p>🌍 <b>Esnek Girdi Modülleri (Screen 1 & 2):</b> Kullanıcı dostu test simülasyonu üzerinden küresel pazar yerleri <code>(LATAM)</code>, teslimat bölgeleri <code>(Caribbean)</code>, hedef şehirler <code>(Artemisa)</code> ve <i>Men's Footwear</i> gibi spesifik ürün departmanları dinamik olarak set edilebilmektedir. <b>FastAPI boru hattı üzerinden buluttaki PostgreSQL veritabanına asenkron istek atılarak</b>, seçilen hedef lokasyonun coğrafi koordinatları anlık olarak eşlenmekte ve modelin karar mekanizmasını destekleyen sızıntısız CRM geçmişi <code>(Recency: 100, Frequency: 18, CLTV Öngörüsü: 493.77)</code> simülasyona hatasız dahil edilmektedir.</p>
   
-  <p>🧠 <b>Yapay Zeka Teşhis Katmanı (Screen 3 & 4):</b> Karar butonuna basıldığı an, CatBoost V12 inference motoru çalışarak gecikme olasılığını hesaplar. Model risk eşiğini denetleyerek kurumsal Gauge paneli üzerinde anlık durumu görselleştirir. Eşzamanlı çalışan <i>TreeExplainer</i> motoru ise, ilgili siparişe ait karar ağırlıklarını milisaniyeler içinde çözerek <b>en güçlü lojistik risk ve avantaj faktörlerini</b> dynamic olarak listeler. SHAP model karar terazisi (Bar grafik) ise üst düzey yöneticiler için kara kutu (Black-Box) modelleri tamamen şeffaf ve açıklanabilir hale getirir.</p>
+  <p>🧠 <b>Yapay Zeka Teşhis ve Vaka Analizi (Screen 3 & 4):</b> 'Risk Analizini Başlat' butonuna basıldığı an, CatBoost V12 inference motoru çalışarak test senaryosu için <b>%58.1 Gecikme Olasılığı hesaplamış ve belirlenen kritik cerrahi eşik değeri (T=%54.1) aşıldığı için kırmızı alarm</b> vermiştir. Dynamic lojistik sözlükle entegre çalışan adli teşhis motoru, gecikmeyi tetikleyen en büyük kök nedenlerin sırasıyla <b>'Teslimat adresinin ana rotalara olan coğrafi uzaklığı (+%25.3)', 'Müşterinin aktiflik durumu ve adres güncelliği (+%13.4)' ve 'Mevsimsel/dönemsel yük etkileri (+%11.6)'</b> olduğunu saptamıştır. SHAP model karar terazisinde (Şelale Grafik) ise, <code>customer_segment_Home_Office</code> ve <code>NEW_PURE_DISTANCE_STRESS</code> gibi zeka değişkenlerinin olasılığı aşağı çeken güçlü operasyonel kaldıraçlar olduğu, <code>latitude</code> ve <code>order_month</code> kırılımlarının ise gecikmeyi yukarı iten ana suçlular olduğu net bir şekilde tescillenmiştir.</p>
 </div>
 
----
----
----
 
 
 
