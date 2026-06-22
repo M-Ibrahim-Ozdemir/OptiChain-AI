@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">🚀 OptiChain AI v2.0</h1>
-<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği, Tahmine Dayalı Risk Teşhisi ve Akıllı S&OP Karar Destek Ekosistemi</h3>
+<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği, Tahmine Dayalı Risk Teşhisi ve Akıllı Satış ve Operasyon Planlaması Karar Destek Ekosistemi</h3>
 
 <p align="center">
   <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/" target="_blank">
@@ -28,7 +28,9 @@
   <b>🌐 Sektörel Problem Tanımı ve Projenin Vizyonu:</b><br>
   Modern tedarik zinciri, CRM ve lojistik ağlarında karşılaşılan en büyük operasyonel darboğaz, <b>tahmin edilemeyen sevkiyat gecikmeleri</b>, <b>verimsiz stok-talep dengesizlikleri</b> ve veritabanı seviyesinde kontrol edilemeyen <b>kirli veri akışlarıdır</b>. Zamanında teslim edilemeyen tek bir sipariş müşteri sadakatini (<b>Churn Risk</b>) doğrudan tetiklerken; ambarlarda biriken kontrolsüz atıl stoklar kurumsal elde tutma maliyetlerini (<b>Holding Cost</b>) maksimize etmekte, veri tabanındaki lojistik ve finansal mantık hataları ise makine öğrenmesi modellerinin yanlış öğrenmesine (<b>Garbage In, Garbage Out</b>) yol açmaktadır.
   <br><br>
-  <b>OptiChain AI v2.0;</b> ham tedarik zinciri ve lojistik veri setini <b>uçtan uca</b> işleyerek detaylı analizler, stratejik tespitler ve operasyon yöneticileri ile C-Level karar vericilerin günlük kararlarını optimize eden, yapay zeka tabanlı küresel bir <b>S&OP (Satış ve Operasyon Planlama) Karar Destek Sistemidir</b>. Bu ekosistem; Python ile çok aşamalı veri temizliğinden, ileri düzey makro keşifçi veri analizlerine (EDA), parametrik/non-parametrik <b>A/B Testlerine</b>, müşteri analitiği (<b>RFM, K-Means Kümeleme, CLTV, BG/NBD & Gamma-Gamma</b>) modellerine, <b>100+'den fazla gelişmiş DAX fonksiyonu</b> barındıran kurumsal <b>Power BI</b> finansal raporlama katmanına, PostgreSQL mimarisindeki veri yönetişimi kalkanlarına (<b>Data Quality Validation & Risk Views</b>), <b>CatBoost & SHAP</b> tabanlı açıklanabilir makine öğrenmesi (<b>XAI</b>) çıkarım hatlarına ve derin öğrenme (<b>LSTM</b>) satış simülasyonlarına kadar uzanan devasa bir yelpazeyi tek bir çatıda birleştirmektedir.
+  <b>OptiChain AI v2.0;</b> ham tedarik zinciri ve lojistik veri setini <b>uçtan uca</b> işleyerek detaylı analizler, stratejik tespitler ve operasyon yöneticilerinin ve C-Level karar vericilerin günlük stratejik kararlarını optimize eden, gecikme riskini tespit eden ve
+  yapay zeka tabanlı küresel bir <b>S&OP (Satış ve Operasyon Planlama) Karar Destek Sistemidir</b>. 
+. Bu ekosistem; (Python ve Postrsql) ile çok aşamalı veri temizliğinden, ileri düzey makro keşifçi veri analizlerine ,(EDA), tespitler, parametrik/non-parametrik <b>A/B Testlerine</b>, müşteri analitiği (<b>RFM, K-Means Kümeleme, CLTV, BG/NBD & Gamma-Gamma</b>) modellerine, <b>100+'den fazla ileri gelişmiş DAX fonksiyonu</b> barındıran kurumsal iş zekası (<b>Power BI</b>) detaylıca 10+ sayfa analiz raporlama katmanına,  PostgreSQL star shema , WİEWLER, mimarisindeki kurumsal veri kalitesi kalkanları(<b>Data Quality Validation Views</b>), risk , segmentasyon analizlerine, ML <b>CatBoost & SHAP</b> tabanlı açıklanabilir makine öğrenmesi (<b>XAI</b>) çıkarım hatlarına ve derin öğrenme (<b>LSTM</b>) satış simülasyonlarına sonra da fast api, cloud, deploy işlemlerine kadar uzanan devasa bir yelpazeyi tek bir çatıda birleştirmektedir.
 </p>
 
 <br>
@@ -36,9 +38,9 @@
 <h2 align="center">🛠️ 2. STRATEJİK KATMANLAR VE ÇÖZÜM KÜMESİ</h2>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 15px; line-height: 1.6; text-align: left;">
-  <p>🎯 <b>Çok Aşamalı Python Veri Temizliği & Tanıma:</b> Ham veri setleri Python (Pandas/NumPy) mimarisiyle detaylıca gürültüden arındırılmış, veri tipleri optimize edilmiş ve lojistik iş birimlerinin ihtiyaç duyduğu yeni türetilmiş değişkenler ve makro metrikler boru hattına eklenmiştir.</p>
+  <p>🎯 <b>Çok Aşamalı Python Veri Temizliği & Tanıma:</b> Ham veri setleri Python (Pandas/NumPy) mimarisiyle detaylıca gürültüden arındırılmış temizlenmiştir, veri tipleri optimize edilmiş ve lojistik iş birimlerinin ihtiyaç duyduğu yeni türetilmiş değişkenler ve makro metrikler boru hattına eklenmiştir.</p>
   
-  <p>💎 <b>Gelişmiş CRM & Müşteri Analitiği (RFM, K-Means & CLTV):</b> Müşteri tabanı kuramsal varsayımlarla değil; Python ile RFM analitiği, K-Means algoritması ve BG/NBD & Gamma-Gamma modelleriyle ileri düzey CLTV (Müşteri Yaşam Boyu Değeri) tahminleme süreçlerine tabi tutulmuştur. En kârlı VIP müşteri segmentleri matematiksel olarak izole edilmiştir.</p>
+  <p>💎 <b>Gelişmiş CRM & Müşteri Analitiği (RFM, K-Means & CLTV):</b> Müşteri tabanı kuramsal varsayımlarla değil; Python ile RFM analitiği, K-Means kümeleme algoritması ve BG/NBD & Gamma-Gamma modelleriyle ileri düzey CLTV (Müşteri Yaşam Boyu Değeri) tahminleme süreçlerine tabi tutulmuştur. En kârlı VIP müşteri segmentleri matematiksel olarak izole edilmiştir.</p>
   
   <p>📊 <b>İstatistiksel Doğrulama (A/B Testing):</b> Dağıtım kanalları, teslimat rotaları ve segment bazlı performans kırılımları rastgele kabullerle değil, parametrik ve non-parametrik hipotez testleriyle (A/B Testleri) matematiksel olarak doğrulanmıştır.</p>
   
