@@ -192,8 +192,36 @@
   <p>🔍 <b>Page 6 - Veri Bütünlüğü & Müşteri Kaybı (Churn) Analizi:</b> 181K denetlenen toplam işlem hacminde, iptal ve iade edilen operasyonel büyüklük 740.92K olarak hesaplanmış ve genel müşteri terk (Churn) oranı %2.08 olarak tescillenmiştir. Tamamlanmış göründüğü halde IQR istatistiksel alt sınır bariz sınırının altında kalan ve <b>'POTENTIAL_ISSUE' (Potansiyel Sorun) olarak etiketlenen işlemlerin ortalama -546.56 $ zarar yazdığı</b> Forensic Analiz ile doğrulanmıştır. İptal edilen kargoların %43.24'ünün aslında gecikmiş (is_late) olması, kargo gecikmelerinin doğrudan müşteri kaybını (Churn) tetiklediğini bilimsel olarak kanıtlamıştır.</p>
 </div>
 
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 6px;">
+      <p><b>Page 7: Hibrit Segmentasyon (RFM & K-Means)</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_segmentation_kmeans.png" alt="RFM and K-Means Segmentation Dashboard" width="275" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+    <td style="padding: 6px;">
+      <p><b>Page 8: Müşteri 360° & Drill-Through Detay Masası</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_customer_360_drill.png" alt="Customer 360 Drill Through Dashboard" width="275" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+    <td style="padding: 6px;">
+      <p><b>Page 9: Gelecek Projeksiyonu (BG/NBD & CLTV)</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_crm_cltv_prediction.png" alt="CRM BG-NBD and Gamma-Gamma CLTV Dashboard" width="275" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🧠 <b>Page 7 - Müşteri Zekası ve Hibrit Segmentasyon (RFM & K-Means):</b> Geleneksel RFM finansal geçmişi ile K-Means yapay zeka kümeleme algoritması çapraz matrise alınmıştır. <b>3.745 VIP şampiyon müşterinin</b> izole edildiği yapıda, ciro ve frekansı yüksek olmasına rağmen sistemdeki kronik planlama hatalarından ötürü en çok gecikmeye uğrayan riskli kitle <i>(New_High_Risk_Late)</i> lojistik röntgen grafiğiyle deşifre edilmiş ve bu kitleye "özür kuponu" tanımlanacak proaktif CRM aksiyon hattı tetiklenmiştir.</p>
+  
+  <p>🎯 <b>Page 8 - Customer 360° & Operational Performance (Drill-Through):</b> Önceki sayfadaki riskli veya şampiyon segmentlerin üzerine sağ tıklanarak tetiklenen bu adli inceleme masası, <b>5K incelemeye alınan müşterinin 245.02K $ değerindeki risk altındaki finansal hacmini</b> listelemektedir. SQL pencere fonksiyonlarından beslenen bu katmanda, her müşterinin ömür boyu bıraktığı ciro, en çok para harcadığı favori kategorisi <i>(Top Category)</i> ve krizdeki spesifik sipariş isimleri tek satırda listelenerek mikro-hedefleme gücü sağlanmıştır.</p>
+  
+  <p>💎 <b>Page 9 - İleri Düzey CRM & CLTV Gelecek Tahmin Paneli (Lifetimes):</b> BG/NBD ile gelecek 3 aylık satın alma olasılıkları, Gamma-Gamma ile işlem başına beklenen kârlar modellenerek <b>Gelecek 6 Ayda 5.29 Milyon $ Net Kâr (CLTV) Projeksiyonu</b> üretilmiştir. Gelecekteki değerine göre ABCD çeyreklerine bölünen elit <i>'A - Yıldızlar'</i> segmentinin gelecekteki ciro katkısı 2.09 Milyon $ olarak hesaplanmış; gecikme olasılığı %100 olan VIP müşteriler finansal risk tutarlarıyla listelenerek "Öncelikli VIP Lojistik Sevkiyat Hattı" emri mühürlenmiştir.</p>
+</div>
+
 ---
 ---
+
 
 
 
