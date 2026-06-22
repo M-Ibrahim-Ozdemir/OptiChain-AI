@@ -171,7 +171,29 @@
   <p>🚚 <b>Page 4 - Lojistik Darboğaz & Sevkiyat Operasyonu:</b> %57.28'lik devasa gecikme oranının operasyonel kök nedenleri bu sayfada cerrahi olarak izole edilmiştir. Kargo modları incelendiğinde, <b>Standard Class'ın 2.1 Milyon $ ile en yüksek operasyonel zararı</b> yazdığı saptanırken; saatlik sipariş hacmi ile gecikme riski karşılaştırıldığında, risk dalgasının gün boyu %50'nin altına hiç düşmediği kronik bir yapı bulunmuştur. Departman bazlı aylık teslimat sapmalarında ise, <i>Technology</i> ve <i>Pet Shop</i> gruplerının yıl sonuna doğru gecikme süresini 2.45 gün baremine fırlatarak ambar çıkışlarında en yüksek lojistik stres yaratan segmentler olduğu kanıtlanmıştır.</p>
 </div>
 
----
+<table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+  <tr>
+    <td style="padding: 10px;">
+      <p><b>Page 5: Risk & Veri Kalitesi Denetim Merkezi</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_risk_quality.png" alt="Risk and Data Quality Audit Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+    <td style="padding: 10px;">
+      <p><b>Page 6: Veri Bütünlüğü & Müşteri Kaybı (Churn) Analizi</b></p>
+      <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_data_integrity_churn.png" alt="Data Integrity and Churn Analysis Dashboard" width="415" style="border-radius: 6px; border: 1px solid #1a2238"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>🛡️ <b>Page 5 - Risk & Veri Kalitesi Denetim Merkezi:</b> Python temizlik fazında kârı sıfırlanarak finansal manipülasyonu engellenen <b>318 şüpheli işlem</b> izole edilmiş ve <b>169.84K $ finansal sapma (zarar) başarıyla kurtarılmıştır.</b> SQL risk hiyerarşisi ağacında en yüksek operasyonel stresin 'A' ve 'C' segmentlerindeki teslimat gecikmelerinden kaynaklandığı tescillenirken; ödeme yöntemlerine göre risk matrisinde DEBIT kart işlemlerinin 1.39 Milyon $ ile finansal hasarı en çok tetikleyen kanal olduğu kanıtlanmış ve acil müdahale bekleyen ilk 10 sipariş anlık listelenmiştir.</p>
+  
+  <p>🔍 <b>Page 6 - Veri Bütünlüğü & Müşteri Kaybı (Churn) Analizi:</b> 181K denetlenen toplam işlem hacminde, iptal ve iade edilen operasyonel büyüklük 740.92K olarak hesaplanmış ve genel müşteri terk (Churn) oranı %2.08 olarak tescillenmiştir. Tamamlanmış göründüğü halde IQR istatistiksel alt sınır bariz sınırının altında kalan ve <b>'POTENTIAL_ISSUE' (Potansiyel Sorun) olarak etiketlenen işlemlerin ortalama -546.56 $ zarar yazdığı</b> Forensic Analiz ile doğrulanmıştır. İptal edilen kargoların %43.24'ünün aslında gecikmiş (is_late) olması, kargo gecikmelerinin doğrudan müşteri kaybını (Churn) tetiklediğini bilimsel olarak kanıtlamıştır.</p>
+</div>
 
 ---
+---
+
+
 
