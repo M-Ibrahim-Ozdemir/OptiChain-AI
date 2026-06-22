@@ -219,6 +219,19 @@
   <p>💎 <b>Page 9 - İleri Düzey CRM & CLTV Gelecek Tahmin Paneli (Lifetimes):</b> BG/NBD ile gelecek 3 aylık satın alma olasılıkları, Gamma-Gamma ile işlem başına beklenen kârlar modellenerek <b>Gelecek 6 Ayda 5.29 Milyon $ Net Kâr (CLTV) Projeksiyonu</b> üretilmiştir. Gelecekteki değerine göre ABCD çeyreklerine bölünen elit <i>'A - Yıldızlar'</i> segmentinin gelecekteki ciro katkısı 2.09 Milyon $ olarak hesaplanmış; gecikme olasılığı %100 olan VIP müşteriler finansal risk tutarlarıyla listelenerek "Öncelikli VIP Lojistik Sevkiyat Hattı" emri mühürlenmiştir.</p>
 </div>
 
+<p align="center">
+  <b>Page 10: Karar Bilimi & İstatistiksel Doğrulama Laboratuvarı (A/B Labs)</b>
+</p>
+<p align="center">
+  <img src="1-Data_Analytics_&_Business_Intelligence/powerbi_ab_testing_labs.png" alt="Decision Science and A/B Testing Labs Dashboard" width="620" style="border-radius: 6px; border: 1px solid #1a2238"/>
+</p>
+
+<br>
+
+<div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
+  <p>⚖️ <b>Page 10 - Karar Bilimi & İstatistiksel Doğrulama Laboratuvarı (A/B Labs):</b> Python safhasında yürütülen 4 büyük hipotez testi veritabanı entegrasyonuyla görselleştirilmiştir. <b>Kruskal-Wallis analizi kargo modlarının kârlılık marjı üzerinde bir farkı olmadığını ($p=0.46$)</b> kanıtlarken, lojistik operasyonun hız değil planlama odaklı çöktüğü deşifre edilmiştir. <b>Mann-Whitney U testi First Class'ın fiziksel olarak 2 kat hızlı (2.00 gün) ulaştığını</b> belgelerken, <b>Proportions Z-Test ise First Class'ın %95.32 oranında kronik olarak geciktiğini ($p=0.00$)</b> doğrulamıştır. Buradaki kök nedenin fiziksel yavaşlık değil, sisteme girilen gerçek dışı "1 Gün" vaat parametresi olduğu tescillenmiş ve söz verilen sürelerin revize edilmesi emri verilmiştir. Finans-operasyon darboğazı bacağında ise, Debit Kart onay süreçlerindeki provizyon beklemelerinin gecikme riskini anlamlı derecede tetiklediği ($p<0.05$) ciro-gecikme matrisiyle mühürlenmiştir.</p>
+</div>
+
 ---
 ---
 
