@@ -3,7 +3,8 @@
 </p>
 
 <h1 align="center">🚀 OptiChain AI v2.0</h1>
-<h3 align="center">Kurumsal Uçtan Uca Veri Analitiği, Tahmine Dayalı Risk Teşhisi ve Akıllı Satış ve Operasyon Planlaması Karar Destek Ekosistemi</h3>
+<h3 align="center"> Uçtan Uca Veri Analitiği, Tahmine Dayalı Risk Teşhisi ve Akıllı Satış ve Operasyon Planlaması Karar Destek Ekosistemi</h3>
+<h4 align="center">Veri Analitiği - İş Zekası & Veri Bilimi Projesi</h4>
 
 <p align="center">
   <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/" target="_blank">
