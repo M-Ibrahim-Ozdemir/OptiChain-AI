@@ -347,7 +347,7 @@
   <li><b>İş Zekası & Raporlama (BI):</b> Power BI Desktop & Service, DAX Veri Modelleme Mimarisi 📊</li>
   <li><b>Yapay Zeka & Derin Öğrenme:</b> Python, CatBoost Classifier (ML Gecikme Motoru), K-Means (Kümeleme), BG/NBD & Gamma-Gamma (CRM/CLTV), LSTM (Deep Learning Makro Talep Tahmini), SHAP (Açıklanabilir AI - XAI) 🧠</li>
   <li><b>Uygulama Geliştirme & Dağıtım:</b> FastAPI (Kurumsal API Katmanı), Streamlit (İnteraktif Web Arayüzü), Git & GitHub Sürüm Kontrolü 🚀</li>
-  <li><b>Bulut Dağıtım Sunucuları (Cloud Production):</b> Render Cloud (Dockerized API Sunucusu), Streamlit Share Cloud (Canlı Kullanıcı Arayüzü) ☁️</li>
+  <li><b>Bulut Dağıtım Sunucuları (Cloud Production):</b> Render Cloud (Dockerized API Sunucusu), Supbase ,Streamlit ☁️</li>
 </ul>
 
 <br>
