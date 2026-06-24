@@ -345,21 +345,21 @@
 <!-- ========================================================================== -->
 <!-- 🛠️ 7. KULLANILAN TEKNOLOJİLER, KÜTÜPHANELER & DEPLOYMENT ENVANTERİ -->
 <!-- ========================================================================== -->
-<h2>🛠️ 7. KULLANILAN TEKNOLOJİLER</h2>
+<h2>🛠️ 7. KULLANILAN TEKNOLOJİLER & BULUT DAĞITIM ENVANTERİ</h2>
 
-<p>OptiChain AI mimarisi, uçtan uca veri mühendisliği, iş zekası, yapay zeka modelleme ve canlı bulut dağıtım süreçlerini kapsayan kurumsal bir teknoloji yığını (Tech-Stack) ile inşa edilmiştir:</p>
+<p>OptiChain AI mimarisi; uçtan uca veri mühendisliği, iş zekası, yapay zeka modelleme ve canlı bulut dağıtım süreçlerini kapsayan kurumsal bir teknoloji yığını (Tech-Stack) ile inşa edilmiştir:</p>
 
 <ul>
   <li><b>Veri Mühendisliği & Depolama:</b> PostgreSQL (T-SQL), Supabase Cloud (AWS Frankfurt Altyapısı) 🌐</li>
   <li><b>İş Zekası & Raporlama (BI):</b> Power BI Desktop & Service, DAX Veri Modelleme Mimarisi 📊</li>
   <li><b>Yapay Zeka & Derin Öğrenme:</b> Python, CatBoost Classifier (ML Gecikme Motoru), K-Means (Kümeleme), BG/NBD & Gamma-Gamma (CRM/CLTV), LSTM (Deep Learning Makro Talep Tahmini), SHAP (Açıklanabilir AI - XAI) 🧠</li>
-  <li><b>Uygulama Geliştirme & Dağıtım:</b> FastAPI (Kurumsal API Katmanı), Streamlit (İnteraktif Web Arayüzü), Git & GitHub Sürüm Kontrolü 🚀</li>
-  <li><b>Bulut Dağıtım Sunucuları (Cloud Production):</b> Render Cloud (Dockerized API Sunucusu), Supbase ,Streamlit ☁️</li>
+  <li><b>Uygulama Geliştirme & Dağıtım:</b> FastAPI (Kurumsal API Katmanı), Streamlit (İnteraktif Web Arayüzü), Git & GitHub Sürüm Controlü 🚀</li>
+  <li><b>Bulut Dağıtım Sunucuları (Cloud Production):</b> Render Cloud (Dockerized API Sunucusu), Supabase Cloud, Streamlit Share Cloud ☁️</li>
 </ul>
 
 <br>
 
-<div align="center">  SİTE LİNKİ: 
+<div align="center">
   <a href="https://optichain-ai-dxnp6cdz3hkeicoudpz4cx.streamlit.app/" target="_blank" style="padding: 15px 30px; font-size: 20px; font-weight: bold; color: #121927; background-color: #f0a500; border-radius: 10px; text-decoration: none; box-shadow: 0px 4px 15px rgba(240, 165, 0, 0.4);">
     🌐 OPTICHAIN AI LIVE PRODUCTION APPLICATION INTERFACE
   </a>
@@ -390,7 +390,7 @@
     </tr>
     <tr style="background-color: #151d2a;">
       <td style="padding: 10px; border: 1px solid #2d3d5a;"><code>📂 2-Data_Science_&_ML_Engineering/</code></td>
-      <td style="padding: 10px; border: 1px solid #2d3d5a;">CatBoost (<code>.cbm</code>), LSTM (<code>.h5</code>), Scaler pkl nesneleri, SHAP Explainer, Araştırma Scriptleri</td>
+      <td style="padding: 10px; border: 1px solid #2d3d5a;">CatBoost (<code>.cbm</code>), LSTM (<code>.h5</code>), Scaler <code>.pkl</code> nesneleri, SHAP Explainer, Araştırma Scriptleri</td>
       <td style="padding: 10px; border: 1px solid #2d3d5a;">Yapay zeka çıkarım pipeline'larını ve açıklanabilir AI (XAI) motorlarını barındıran çekirdek.</td>
     </tr>
     <tr>
@@ -420,9 +420,6 @@
     </tr>
   </tbody>
 </table>
----
-
-
 
 
 
