@@ -196,11 +196,10 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>🛡️ <b>Page 5 - Risk & Veri Kalitesi Denetim Merkezi:</b> Python temizlik fazında kârı sıfırlanarak finansal manipülasyonu engellenen <b>318 şüpheli işlem</b> izole edilmiş ve <b>169.84K $ finansal sapma (zarar) başarıyla kurtarılmıştır.</b> SQL risk hiyerarşisi ağacında en yüksek operasyonel stresin 'A' ve 'C' segmentlerindeki teslimat gecikmelerinden kaynaklandığı tescillenirken; ödeme yöntemlerine göre risk matrisinde DEBIT kart işlemlerinin 1.39 Milyon $ ile finansal hasarı en çok tetikleyen kanal olduğu kanıtlanmış ve acil müdahale bekleyen ilk 10 sipariş anlık listelenmiştir.</p>
+  <p>🛡️ <b>Page 5 - Risk & Veri Kalitesi Denetim Merkezi:</b> Python temizlik fazında kârı sıfırlanarak manipülasyonu engellenen <b>318 şüpheli işlem</b> izole edilmiş ve <b>169.84K $ finansal sapma (zarar) başarıyla kurtarılmıştır.</b> SQL risk hiyerarşisi ağacında en yüksek operasyonel stresin 'A' ve 'C' segmentlerindeki gecikmelerden kaynaklandığı tescillenirken; risk matrisinde DEBIT kart işlemlerinin 1.39 Milyon $ ile finansal hasarı en çok tetikleyen kanal olduğu kanıtlanmış ve acil müdahale bekleyen ilk 10 sipariş anlık listelenmiştir.</p>
   
-  <p>🔍 <b>Page 6 - Veri Bütünlüğü & Müşteri Kaybı (Churn) Analizi:</b> 181K denetlenen toplam işlem hacminde, iptal ve iade edilen operasyonel büyüklük 740.92K olarak hesaplanmış ve genel müşteri terk (Churn) oranı %2.08 olarak tescillenmiştir. Tamamlanmış göründüğü halde IQR istatistiksel alt sınır bariz sınırının altında kalan ve <b>'POTENTIAL_ISSUE' (Potansiyel Sorun) olarak etiketlenen işlemlerin ortalama -546.56 $ zarar yazdığı</b> Forensic Analiz ile doğrulanmıştır. İptal edilen kargoların %43.24'ünün aslında gecikmiş (is_late) olması, kargo gecikmelerinin doğrudan müşteri kaybını (Churn) tetiklediğini bilimsel olarak kanıtlamıştır.</p>
+  <p>🔍 <b>Page 6 - Veri Bütünlüğü & Müşteri Kaybı (Churn) Analizi:</b> 181K denetlenen toplam işlem hacminde, iptal ve iade edilen operasyonel büyüklük 740.92K, genel müşteri terk (Churn) oranı ise %2.08'dir. Tamamlanmış göründüğü halde IQR istatistiksel alt sınırının altında kalan ve <b>'POTENTIAL_ISSUE' (Potansiyel Sorun) olarak etiketlenen işlemlerin ortalama -546.56 $ zarar yazdığı</b> Forensic Analiz ile doğrulanmıştır. İptal edilen kargoların %43.24'ünün aslında gecikmiş (is_late) olması, gecikmelerin doğrudan müşteri kaybını tetiklediğini kanıtlamıştır.</p>
 </div>
-
 <table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
   <tr>
     <td style="padding: 6px;">
