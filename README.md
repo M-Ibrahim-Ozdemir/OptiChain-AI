@@ -347,7 +347,7 @@
 <!-- ========================================================================== -->
 <!-- 🛠️ 7. KULLANILAN TEKNOLOJİLER, KÜTÜPHANELER & DEPLOYMENT ENVANTERİ -->
 <!-- ========================================================================== -->
-<h2>🛠️ 7. KULLANILAN TEKNOLOJİLER & BULUT DAĞITIM (DEPLOYMENT) ENVANTERİ</h2>
+<h2>🛠️ 7. KULLANILAN TEKNOLOJİLER</h2>
 
 <p>OptiChain AI mimarisi, uçtan uca veri mühendisliği, iş zekası, yapay zeka modelleme ve canlı bulut dağıtım süreçlerini kapsayan kurumsal bir teknoloji yığını (Tech-Stack) ile inşa edilmiştir:</p>
 
