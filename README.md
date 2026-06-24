@@ -159,7 +159,6 @@
   <p>🌐 <b>Page 2 - Bölgesel Performans & Lojistik Koridor Analizi:</b> Küresel operasyonlarda 3.50 günlük teslimat süresine karşılık 0.57 günlük standart gecikme sapması hesaplanmıştır. <b>11.14 Milyon $ ciro ve 1.18 Milyon $ net kâr ile LATAM pazarının en büyük hacimli motor</b> olduğu kanıtlanırken, kâr marjı şampiyonu %11.72 ile Pacific Asia koridorudur. Haritada kırmızı alarm noktası olarak izole edilen 3.53 Milyon $'lık operasyonel zarar, lojistik ekiplerine rota iyileştirme hedefi sunmaktadır.</p>
 </div>
 
-
 <table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
   <tr>
     <td style="padding: 10px;">
@@ -176,9 +175,9 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>⏰ <b>Page 3 - Sezonsallık & Zaman Ritmi Analizi:</b> Toplam 66K siparişlik hacimde, pazarın en yoğun döneminin <b>Ocak ayı</b> ve gün içi en yoğun saatin <b>11:30 (Öğle Yoğunluğu)</b> olduğu tescillenmiştir. Haftalık sipariş ritminin hafta içi ve hafta sonu (Weekday/Weekend) dengeli bir hat izlediği saptanırken, aylık bazda ciro ve kâr trendinin paralel hareket ettiği ancak yıl sonuna doğru (11. ve 12. aylar) operasyonel maliyetlerin kâr marjını baskıladığı matris kırılımlarıyla deşifre edilmiştir.</p>
+  <p>⏰ <b>Page 3 - Sezonsallık & Zaman Ritmi Analizi:</b> Toplam 66K siparişlik hacimde pazarın en yoğun dönemi <b>Ocak ayı</b>, gün içi zirve saati ise <b>11:30 (Öğle Yoğunluğu)</b> olarak tescillenmiştir. Haftalık sipariş ritmi hafta içi ve hafta sonu (Weekday/Weekend) dengeli bir grafik çizerken; aylık ciro ve kâr trendinin paralel hareket ettiği, ancak yıl sonuna doğru (11. ve 12. aylar) operasyonel maliyetlerin kâr marjını baskıladığı matris kırılımlarıyla kanıtlanmıştır.</p>
   
-  <p>🚚 <b>Page 4 - Lojistik Darboğaz & Sevkiyat Operasyonu:</b> %57.28'lik devasa gecikme oranının operasyonel kök nedenleri bu sayfada cerrahi olarak izole edilmiştir. Kargo modları incelendiğinde, <b>Standard Class'ın 2.1 Milyon $ ile en yüksek operasyonel zararı</b> yazdığı saptanırken; saatlik sipariş hacmi ile gecikme riski karşılaştırıldığında, risk dalgasının gün boyu %50'nin altına hiç düşmediği kronik bir yapı bulunmuştur. Departman bazlı aylık teslimat sapmalarında ise, <i>Technology</i> ve <i>Pet Shop</i> gruplerının yıl sonuna doğru gecikme süresini 2.45 gün baremine fırlatarak ambar çıkışlarında en yüksek lojistik stres yaratan segmentler olduğu kanıtlanmıştır.</p>
+  <p>🚚 <b>Page 4 - Lojistik Darboğaz & Sevkiyat Operasyonu:</b> %57.28'lik devasa gecikme oranının operasyonel kök nedenleri bu sayfada izole edilmiştir. Kargo modlarında <b>Standard Class'ın 2.1 Milyon $ ile en yüksek operasyonel zararı</b> yazdığı saptanırken; saatlik sipariş hacmi kırılımında gecikme riskinin gün boyu %50'nin altına düşmediği kronik bir yapı bulunmuştur. Departman bazlı aylık teslimat sapmalarında ise <i>Technology</i> ve <i>Pet Shop</i> gruplarının yıl sonuna doğru gecikme süresini 2.45 gün baremine fırlatarak ambar çıkışlarında en yüksek lojistik stresi yarattığı doğrulanmıştır.</p>
 </div>
 
 <table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
