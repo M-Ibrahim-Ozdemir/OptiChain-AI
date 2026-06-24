@@ -62,7 +62,7 @@
 ---
 
 
-<h2 align="center">🔬 3. ADVANCED ANALYTICS, MACHINE LEARNING & INSIGHT DISCOVERY PHASE (PYTHON)</h2>
+<h2 align="center">🔬 3.GELİŞMİŞ ANALİTİK, MAKİNE ÖĞRENİMİ VE İÇGÖRÜ KEŞFİ AŞAMASI (PYTHON)</h2>
 
 <p align="center" style="font-size: 16px; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: justify;">
   <b>💡 Veri Sızıntısı Yönetimi, Operasyonel Paradokslar ve Proaktif Yapay Zeka Teşhisleri:</b><br>
