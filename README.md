@@ -82,7 +82,7 @@
   <img src="3-Data_Engineering_(Veritabanı)_&_ETL/postgre_star_schema_views.png" alt="PostgreSQL Star Schema Database Tree" width="380" style="border-radius: 8px; border: 1px solid #336791;"/>
 </p>
 
-<h2 align="center">🗄️ 4. DATA ENGINEERING & ENTERPRISE WAREHOUSING (POSTGRESQL)</h2>
+<h2 align="center">🗄️ 4. VERİ MÜHENDİSLİĞİ VE (WAREHOUSING) (POSTGRESQL)</h2>
 
 <p align="center" style="font-size: 16px; max-width: 850px; margin: 0 auto; text-align: justify;">
   <b>🛠️ Veri Tipi Standardizasyonu, Yıldız Şeması (Star Schema) Gösterim Modeli ve İndeks Optimizasyonu:</b><br>
