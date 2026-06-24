@@ -130,11 +130,10 @@
 ---
 
 
-<h2 align="center">📊 5. BUSINESS INTELLIGENCE & C-LEVEL EXECUTIVE REPORTING (POWER BI)</h2>
-
-<p align="center" style="font-size: 16px; max-width: 850px; margin: 0 auto; text-align: justify;">
-  <b>📈 Interaktif Yönetici Gösterge Panelleri ve Karar Destek Mekanizması:</b><br>
-  PostgreSQL sanal veri ambarı katmanından (Star Schema Views) beslenen ve 100'den fazla ileri düzey DAX fonksiyonuyla mühürlenen kurumsal Power BI yönetim paneli, işletmenin makro-finansal durumu ile lojistik darboğazlarını tek bir ekranda C-Level karar vericilere sunmaktadır. Dinamik dilimleyiciler (Slicers) ve akıllı parametrelerle donatılan mimari, Ankara operasyon merkezinin tedarik süreçlerine anlık yön vermektedir.
+<h2 align="center">📊 5. İŞ ZEKASI VE ÜST DÜZEY YÖNETİCİLERE RAPORLAMA (POWER BI)</h2>
+<p align="center" style="font-size: 16px; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: justify;">
+  <b>📈 İnteraktif Yönetici Gösterge Panelleri ve Karar Destek Mekanizması:</b><br>
+  PostgreSQL Star Schema ambar katmanından beslenen ve 100'den fazla ileri düzey DAX fonksiyonuyla mühürlenen kurumsal Power BI paneli, finansal durum ile lojistik darboğazları C-Level yöneticilere sunmaktadır. Dinamik dilimleyiciler (Slicers) ve parametrelerle donatılan mimari, Ankara operasyon merkezinin tedarik süreçlerine anlık yön vermektedir.
 </p>
 
 <br>
@@ -155,9 +154,9 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>🎯 <b>Page 1 - Finansal Sağlık & Global Operasyon Kontrolü:</b> Toplam <b>36.51 Milyon $ Ciro</b> ve %10.89 kâr marjı ile stabil giden finansal yapıda, <b>%57.28'lik kronik Geç Teslimat Oranı</b> en büyük kurumsal risk sızıntısı olarak görselleştirilmiştir. Departman bazlı ciro motorunun <b>102.60 $ ortalama kâr ile net biçimde Technology</b> olduğu tescillenirken; nakit (CASH) ödemelerin banka provizyon ve komisyon sızıntılarını sıfırlayarak en kârlı kanal (%25.94) olduğu, tamamlanmış görünen (COMPLETE) siparişlerin ise 11.9 Milyon $ ile likidite akışını beslediği anlık olarak izlenmektedir.</p>
+  <p>🎯 <b>Page 1 - Finansal Sağlık & Global Operasyon Kontrolü:</b> Toplam <b>36.51 Milyon $ Ciro</b> ve %10.89 kâr marjı içeren stabil yapıda, <b>%57.28'lik kronik Geç Teslimat Oranı</b> en büyük kurumsal risk sızıntısıdır. Ana ciro motorunun <b>102.60 $ ortalama kâr ile Technology</b> departmanı olduğu tescillenmiştir. Nakit (CASH) ödemeler, komisyon sızıntılarını sıfırlayarak en kârlı kanal (%25.94) olarak öne çıkarken; tamamlanmış (COMPLETE) siparişler ise 11.9 Milyon $ ile likidite akışını beslemektedir.</p>
   
-  <p>🌐 <b>Page 2 - Bölgesel Performans & Lojistik Koridor Analizi:</b> Küresel operasyonların harita ve skor matrisi kırılımında, 3.50 günlük ortalama teslimat süresine karşılık 0.57 günlük standart gecikme sapması hesaplanmıştır. <b>11.14 Milyon $ ciro ve 1.18 Milyon $ net kâr ile LATAM pazarının en büyük hacimli motor</b> olduğu kanıtlanırken, kâr marjı şampiyonunun %11.72 ile Pacific Asia koridoru olduğu deşifre edilmiştir. 3.53 Milyon $'lık operasyonel zararın coğrafi dağılımı harita üzerinde kırmızı alarm noktaları olarak izole edilerek lojistik ekiplerine rota iyileştirme hedefleri sunulmuştur.</p>
+  <p>🌐 <b>Page 2 - Bölgesel Performans & Lojistik Koridor Analizi:</b> Küresel operasyonlarda 3.50 günlük teslimat süresine karşılık 0.57 günlük standart gecikme sapması hesaplanmıştır. <b>11.14 Milyon $ ciro ve 1.18 Milyon $ net kâr ile LATAM pazarının en büyük hacimli motor</b> olduğu kanıtlanırken, kâr marjı şampiyonu %11.72 ile Pacific Asia koridorudur. Haritada kırmızı alarm noktası olarak izole edilen 3.53 Milyon $'lık operasyonel zarar, lojistik ekiplerine rota iyileştirme hedefi sunmaktadır.</p>
 </div>
 
 
