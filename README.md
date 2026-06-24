@@ -271,12 +271,13 @@
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
   <p>📉 <b>Page 13 - LSTM Makro Talep Projeksiyonu & %95 Güven Aralığı Hata Koridoru:</b> Projenin en ileri proaktif S&OP (Satış ve Operasyon Planlama) karar destek katmanıdır. Doğrudan satışı tahminlemek yerine "Satış Farkını" (Sales Diff) öngörerek %44.43 dürüstlük oranına ulaşan <i>"The Compact Tank" LSTM</i> modelinin günlük tahminleri bu sayfada sergilenmektedir. Günlük bazda ciro tahminlerinde ortalama 1.500 $ MAE (Ortalama Mutlak Hata) ile çalışan model, küresel lojistik hattında %93'ün üzerinde bir tahmin başarısı sunmaktadır. Model belirsizliğini görselleştiren <b>%95 Güven Aralığı Hata Koridoru (Alt/Üst Limit gölgeli alanı)</b>, gerçekleşen ciro noktalarını kusursuz biçimde içine alarak model başarısını kanıtlamıştır. Sistem, son 30 günlük pazar oynaklığını tarayarak kod tarafından belirlenen <b>13,856.52 $ dinamik kritik talep eşiğini</b> aşan günleri otomatik olarak <b>'⚠️ KRİTİK'</b> (Yetersiz Stok Riski) olarak etiketlemekte, ambar yöneticilerine sıfır manuel müdahaleyle proaktif tedarik emri üreterek veri mühendisliğini doğrudan ticari kârlılığa dönüştürmektedir.</p>
 </div>
-<h2 align="center">🚀 6. LIVE PRODUCTION DEPLOYMENT & INTERACTIVE WEB INTERFACE (FASTAPI & STREAMLIT)</h2>
+<h2 align="center">🚀 6. CANLI ÜRETİM ORTAMI (PRODUCTION) DAĞITIMI VE ETKİLEŞİMLİ WEB ARAYÜZÜ (FASTAPI & STREAMLIT)</h2>
 
-<p align="center" style="font-size: 16px; max-width: 850px; margin: 0 auto; text-align: justify;">
+<p align="center" style="font-size: 16px; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: justify;">
   <b>🌐 Uçtan Uca Canlı Üretim Mimarisi (Production Architecture):</b><br>
-  Projenin son safhasında, geliştirilen tüm analitik zeka ve tahmine dayalı yapay zeka modelleri bulut mimarisi üzerinde canlıya (Production) alınmıştır. Arka plan veri motoru olarak <b>FastAPI</b> kullanılmış, tüm veri akışı buluttaki <b>PostgreSQL</b> veritabanına bağlanmıştır. API katmanı <b>Render Cloud</b> platformu üzerinde Dockerized mantıkla ayağa kaldırılırken; kullanıcı dostu, proaktif karar destek arayüzü <b>Streamlit</b> ile asenkron olarak kodlanmış ve <b>Streamlit Share Cloud</b> üzerinde küresel erişime açılmıştır. Sistem, yöneticilerden karmaşık parametreler istemeden, arka plandaki dinamik boru hatlarını (Pipelines) tetikleyerek gerçek zamanlı karar destek sinyalleri üretmektedir.
+  Projenin son safhasında, geliştirilen tüm analitik zeka ve tahmine dayalı yapay zeka modelleri bulut mimarisi üzerinde canlıya (Production) taşınmıştır. Arka plan veri motoru olarak <b>FastAPI</b> kullanılmış, tüm veri akışı buluttaki <b>PostgreSQL</b> veritabanına bağlanmıştır. API katmanı <b>Render Cloud</b> platformu üzerinde Dockerized mimariyle ayağa kaldırılırken; kullanıcı dostu, proaktif karar destek arayüzü <b>Streamlit</b> ile asenkron olarak kodlanmış ve <b>Streamlit Share Cloud</b> üzerinde küresel erişime açılmıştır. Sistem, yöneticilerden karmaşık parametreler istemeden, arka plandaki dinamik veri hatlarını (Pipelines) tetikleyerek gerçek zamanlı karar destek sinyalleri üretmektedir.
 </p>
+
 <h3 align="center">🛡️ PRODUCTION SCREEN: SİPARİŞ RİSK ANALİZİ & CANLI SHAP TEŞHİS LABS</h3>
 
 <table align="center" style="margin: 0 auto; border-collapse: collapse; text-align: center;">
@@ -305,9 +306,9 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>🌍 <b>Esnek Girdi Modülleri (Screen 1 & 2):</b> Kullanıcı dostu test simülasyonu üzerinden küresel pazar yerleri <code>(LATAM)</code>, teslimat bölgeleri <code>(Caribbean)</code>, hedef şehirler <code>(Artemisa)</code> ve <i>Men's Footwear</i> gibi spesifik ürün departmanları dinamik olarak set edilebilmektedir. <b>FastAPI boru hattı üzerinden buluttaki PostgreSQL veritabanına asenkron istek atılarak</b>, seçilen hedef lokasyonun coğrafi koordinatları anlık olarak eşlenmekte ve modelin karar mekanizmasını destekleyen sızıntısız CRM geçmişi <code>(Recency: 100, Frequency: 18, CLTV Öngörüsü: 493.77)</code> simülasyona hatasız dahil edilmektedir.</p>
+  <p>🌍 <b>Esnek Girdi Modülleri (Screen 1 & 2):</b> Arayüz üzerinden küresel pazar yerleri <code>(LATAM)</code>, teslimat bölgeleri <code>(Caribbean)</code>, hedef şehirler <code>(Artemisa)</code> ve departmanlar <code>(Men's Footwear)</code> dinamik olarak seçilebilmektedir. FastAPI boru hattı üzerinden buluttaki PostgreSQL veritabanına asenkron istek atılarak, seçilen lokasyonun coğrafi koordinatları anlık eşlenmekte ve modelin karar mekanizmasını destekleyen CRM geçmişi <code>(Recency: 100, Frequency: 18, CLTV Öngörüsü: 493.77)</code> sürece dahil edilmektedir.</p>
   
-  <p>🧠 <b>Yapay Zeka Teşhis ve Vaka Analizi (Screen 3 & 4):</b> 'Risk Analizini Başlat' butonuna basıldığı an, CatBoost V12 inference motoru çalışarak test senaryosu için <b>%58.1 Gecikme Olasılığı hesaplamış ve belirlenen kritik cerrahi eşik değeri (T=%54.1) aşıldığı için kırmızı alarm</b> vermiştir. Dynamic lojistik sözlükle entegre çalışan adli teşhis motoru, gecikmeyi tetikleyen en büyük kök nedenlerin sırasıyla <b>'Teslimat adresinin ana rotalara olan coğrafi uzaklığı (+%25.3)', 'Müşterinin aktiflik durumu ve adres güncelliği (+%13.4)' ve 'Mevsimsel/dönemsel yük etkileri (+%11.6)'</b> olduğunu saptamıştır. SHAP model karar terazisinde (Şelale Grafik) ise, <code>customer_segment_Home_Office</code> ve <code>NEW_PURE_DISTANCE_STRESS</code> gibi zeka değişkenlerinin olasılığı aşağı çeken güçlü operasyonel kaldıraçlar olduğu, <code>latitude</code> ve <code>order_month</code> kırılımlarının ise gecikmeyi yukarı iten ana suçlular olduğu net bir şekilde tescillenmiştir.</p>
+  <p>🧠 <b>Yapay Zeka Teşhis ve Vaka Analizi (Screen 3 & 4):</b> Tahmin mekanizması tetiklendiğinde CatBoost V12 inference motoru çalışarak ilgili senaryo için <b>%58.1 Gecikme Olasılığı hesaplamakta ve kritik eşik değeri (T=%54.1) aşıldığı için kırmızı alarm</b> üretmektedir. Dinamik lojistik sözlükle entegre çalışan teşhis motoru; gecikmeyi tetikleyen en büyük kök nedenlerin sırasıyla coğrafi uzaklık (+%25.3), müşteri aktiflik durumu (+%13.4) ve mevsimsel yük etkileri (+%11.6) olduğunu saptamaktadır. SHAP model karar terazisinde (Şelale Grafik) ise <code>customer_segment_Home_Office</code> ve <code>NEW_PURE_DISTANCE_STRESS</code> gibi değişkenlerin risk olasılığını aşağı çeken güçlü operasyonel kaldıraçlar olduğu tescillenmiştir.</p>
 </div>
 <h3 align="center">📈 PRODUCTION SCREEN: LSTM KÜRESEL PROAKTİF TALEP & AMBAR YÖNETİM RADARI</h3>
 
@@ -315,21 +316,21 @@
   <tr>
     <td style="padding: 10px;">
       <p><b>App Screen 1: Stok Kontrolü & Şok Parametreleri</b></p>
-      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_1.png" alt="Streamlit LSTM Input Layer" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_1.png" alt="Streamlit LSTM Input Layer" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a"/>
     </td>
     <td style="padding: 10px;">
       <p><b>App Screen 2: Canlı Projeksiyon Grafikleri & KPI Paneli</b></p>
-      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_2.png" alt="Streamlit LSTM Trend and KPI Output" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_2.png" alt="Streamlit LSTM Trend and KPI Output" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a"/>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <p><b>App Screen 3: S&OP Bilanço Çizelgesi (İlk 10 Gün)</b></p>
-      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_3.png" alt="Streamlit S&OP Ledger Initial Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_3.png" alt="Streamlit S&OP Ledger Initial Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a"/>
     </td>
     <td style="padding: 10px;">
       <p><b>App Screen 4: S&OP Otomatik Tedarik Emirleri (Son Dönem)</b></p>
-      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_4.png" alt="Streamlit S&OP Ledger Critical Alert Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a;"/>
+      <img src="4-Streamlit_Frontend/.streamlit/streamlit_sales_prediction_4.png" alt="Streamlit S&OP Ledger Critical Alert Phase" width="410" style="border-radius: 6px; border: 1px solid #2d3d5a"/>
     </td>
   </tr>
 </table>
@@ -337,10 +338,9 @@
 <br>
 
 <div style="max-width: 850px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; text-align: left;">
-  <p>📦 <b>Simülasyon Girdileri ve KPI Dağılımı (Screen 1 & 2):</b> Kullanıcı tarafından belirlenen test senaryosunda; Projeksiyon Başlangıç Tarihi <code>2018-01-05</code>, Başlangıç Depo Stok Seviyesi <code>230,000.00 $</code>, Tahmini Kampanya Şoku <code>%41</code> ve Günlük Atıl Stok Maliyet Oranı <code>‰26</code> olarak set edilmiştir. FastAPI üzerinden tetiklenen LSTM motoru, <b>30 Günlük Toplam Talep Baskısını 251,370.79 $</b> olarak hesaplamış ve buluttaki PostgreSQL veritabanından <b>15,120.66 $ tutarındaki tarihsel çapa verisini</b> başarıyla doğrulamıştır. Üretilen volatilite koridoru grafiğinde ciro dalgalanmaları %95 güven sınırları içinde izlenirken, ambar stok seviyesinin erime eğrisi sıfır sınır korumalı olarak simüle edilmiştir.</p>
+  <p>📦 <b>Simülasyon Girdileri ve KPI Dağılımı (Screen 1 & 2):</b> Test senaryosunda; Projeksiyon Başlangıç Tarihi <code>2018-01-05</code>, Başlangıç Depo Stok Seviyesi <code>230,000.00 $</code>, Tahmini Kampanya Şoku <code>%41</code> ve Günlük Atıl Stok Maliyet Oranı <code>%2.6</code> olarak set edilmiştir. FastAPI üzerinden tetiklenen LSTM motoru, <b>30 Günlük Toplam Talep Baskısını 251,370.79 $</b> olarak hesaplamış ve buluttaki PostgreSQL veritabanından <b>15,120.66 $ tutarındaki tarihsel çapa verisini</b> doğrulamıştır. Üretilen volatilite koridoru grafiğinde ciro dalgalanmaları %95 güven sınırları içinde izlenirken, ambar stok seviyesinin erime eğrisi simüle edilmiştir.</p>
   
-  <p>📋 <b>Otomatik Tedarik Zinciri Karar Matrisi (Screen 3 & 4):</b> Yaşayan S&OP bilanço çizelgesi incelendiğinde, ilk 10 günlük periyotta (Screen 3) fiziksel stok yeterli olduğu için kaçan ciro riski oluşmamış ve sistem durum parametresini <code>'✅ OPTİMAL'</code>, aksiyon sinyalini ise <code>'👍 SÜREÇ STABİL: Maliyet Optimize'</code> olarak mühürlemiştir. Ancak simülasyonun son dönemine doğru (Screen 4) stok erimesi kritik sınırlara ulaşmıştır. Sistem; 25, 26 ve 27. günlerde stok seviyesi düştüğü için otomatik olarak <code>'⚠️ KRİTİK SEVİYE -> 📦 GÜVENLİK STOKU: Sipariş Geç'</code> emrini fırlatmıştır. Stokların tamamen sıfırlandığı 28 and 29. günlerde ise kaçan ciro riskini engellemek adına adli otomasyon devreye girmiş ve <code>'❌ STOK TÜKENDİ -> 🚨 ACİL TEDARİK: Üretimi Tetikle'</code> üretim tetikleme komutunu kurumsal dökümantasyona canlı olarak işlemiştir.</p>
-</div>
+  <p>📋 <b>Otomatik Tedarik Zinciri Karar Matrisi (Screen 3 & 4):</b> Yaşayan S&OP bilanço çizelgesi incelendiğinde, ilk 10 günlük periyotta (Screen 3) fiziksel stok yeterli olduğu için ciro kaybı riski oluşmamış; sistem durum parametresini <code>'✅ OPTİMAL'</code>, aksiyon sinyalini ise <code>'👍 SÜREÇ STABİL: Maliyet Optimize'</code> olarak mühürlemiştir. Ancak simülasyonun son dönemine doğru (Screen 4) stok erimesi kritik sınırlara ulaşmıştır. Sistem; 25, 26 ve 27. günlerde otomatik olarak <code>'⚠️ KRİTİK SEVİYE -> 📦 GÜVENLİK STOKU: Sipariş Geç'</code> emrini fırlatmıştır. Stokların tamamen tükendiği 28 ve 29. günlerde ise kaçan ciro riskini engellemek adına otomasyon devreye girmiş ve <code>'❌ STOK TÜKENDİ -> 🚨 ACİL TEDARİK: Üretimi Tetikle'</code> komutunu kurumsal dokümantasyona canlı olarak işlemiştir.</p>
 
 <!-- ========================================================================== -->
 <!-- 🛠️ 7. KULLANILAN TEKNOLOJİLER, KÜTÜPHANELER & DEPLOYMENT ENVANTERİ -->
